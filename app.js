@@ -13,7 +13,7 @@ app.use(bodyparser.urlencoded({extended : false}));
 const dbURI = 'mongodb+srv://lighthouselp95:Tienchua123$$$@nodetuts-firsttime.gisbza8.mongodb.net/node-tuts1?retryWrites=true&w=majority';
 mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .then((result) => console.log("Connected to DB"))
-    .catch((err) => console.log("err: ",err))
+    .catch((err) => console.log("err: ", err))
 
 // mongoose and mongoose sandbox route
 app.post('/add-blog', (req, res) => {
@@ -61,9 +61,9 @@ app.listen(3002, () => {
 // });
 
 
-app.use('/public',express.static('publics'));
+app.use('/public', express.static('publics'));
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     // console.log(req.url);
     // res.send('<p>Home Page</p>')
     res.sendFile('./publics/index.html', {root: __dirname});
@@ -78,26 +78,26 @@ app.get('/', (req,res) => {
 //     // console.log(req.url);
 //     res.sendFile('./HTML_folder/assets/images/logo.png', {root: __dirname});
 // });
-app.get('/about', (req,res) => {
+app.get('/about', (req, res) => {
     // res.send('<p>About Page</p>')
     res.sendFile('./publics/about.html', {root: __dirname});
 });
 // redirect
-app.get('/about-us', (req,res) => {
+app.get('/about-us', (req, res) => {
     res.redirect('https://www.google.com');
     res.redirect('/about');
 });
-app.get('/about-us2', (req,res) => {
-    res.writeHead(302,{'Location' : '/about'});
+app.get('/about-us2', (req, res) => {
+    res.writeHead(302, {'Location' : '/about'});
 });
 // handle params
-app.get('/example/:name/:age', (req,res) => {
+app.get('/example/:name/:age', (req, res) => {
     console.log(req.params);
     console.log(req.query, JSON.stringify(req.query));
     res.send(req.params.name +" "+ req.params.age);
 })
 // 404 error
-app.use((req,res) => {
+app.use((req, res) => {
     res.status(404).sendFile('./publics/404.html', {root: __dirname});
 });
 

@@ -72,7 +72,7 @@ function handlePostSubmit(e) {
         }
     })
         .then( res => res.json() )
-        .then ( res => {console.log(res); 
+        .then ( res => {console.log (res); 
             document.getElementsByClassName('create-post')[0].classList.toggle('display');
             addPosts([res]);
         })
