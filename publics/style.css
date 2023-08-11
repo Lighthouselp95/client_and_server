@@ -81,6 +81,9 @@ body {
     background-color: rgb(100% 100% 100% / 70%);
     backdrop-filter: blur(5px);
 }
+#create-a-post:focus .main-column {
+    pointer-events: none;
+}
 .close-button-post {
     position: absolute;
     z-index: 13;

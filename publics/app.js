@@ -26,6 +26,7 @@ addPosts(posts);
 console.log(main_column);
 }
 
+// This function add posts elements to html
 function addPosts(posts) {
     posts.forEach((post) => {
         
@@ -46,7 +47,7 @@ function addPosts(posts) {
      });
 }
 
-
+// Handle post create post submit
 let create_post = document.getElementById('create-post');
 console.log(create_post)
 create_post.addEventListener("submit", handlePostSubmit);
@@ -77,4 +78,19 @@ function handlePostSubmit(e) {
             addPosts([res]);
         })
         .catch( (err) => console.log(err) )
-}
+};
+
+// Prevent scrolling on background
+let create_a_post = document.getElementById('create-a-post');
+create_a_post.addEventListener('focus', () => {
+    document.getElementsByClassName('create-post')[0].classList.toggle('display');
+    
+    if (document.getElementsByClassName('create-post')[0].classList.contains('display')) {
+
+        console.log(document.getElementsByTagName('body'));
+        document.querySelector('body').setAttribute("style", "overflow: hidden");
+    } else {
+        document.querySelector('body').setAttribute("style", "overflow: auto");
+    }
+
+});
