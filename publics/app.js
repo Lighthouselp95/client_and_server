@@ -9,7 +9,7 @@ function fetchNews() {
     fetch('/all-blogs')
         .then(res => res.json())
         .then((data) => {
-            posts = data.reverse();
+            posts = data;
             console.log(posts);
             update_main_column();
         })
