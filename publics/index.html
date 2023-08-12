@@ -7,7 +7,9 @@
         <link rel="icon" href="public/assets/images/logo.png" type="image/png" sizes="16x16">
         <link rel="icon" href="public/icon.svg" type="image/svg+xml" sizes="16x16">
         <link rel="stylesheet" type="text/css" href="public/style.css">
+        
         <script src="public/app.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     </head>
     <body>
             <!-- header-->
@@ -46,8 +48,8 @@
                 <label for="id">Tên tài khoản: </label>
                 <input type="text" name="id">
                 <label for="password">Mật khẩu: </label>
-                <input type="text" name="password">
-                <label for="password">Email: </label>
+                <input type="password" name="password">
+                <label for="email">Email: </label>
                 <input type="text" name="email">
                 <input type="submit" value="Đăng ký" class="submit" id="signin-button">
             </form>
@@ -60,7 +62,7 @@
                 <label for="id">Tên tài khoản: </label>
                 <input type="text" name="id">
                 <label for="password">Mật khẩu: </label>
-                <input type="text" name="password">
+                <input type="password" name="password">
                 <input type="submit" value="Đăng nhập" class="submit" id="login-button">
             </form>
             <i class="close-button-post" id="login-closed-button">

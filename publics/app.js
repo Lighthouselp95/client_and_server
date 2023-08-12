@@ -30,7 +30,7 @@ function addPosts(posts) {
         </div>
         <div class="post-snippet">
         <i>
-        ${post.snippet}
+        ${moment(post.createdAt).format("HH:mm, DD.MM.YYYY ")}
         </i>
         </div>
         <div class="post-body">
@@ -142,7 +142,7 @@ let button_modal = [
 button_modal.forEach((element, index) => {
     element.addEventListener('click', () => {
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
-        document.querySelector('body').setAttribute("style", "overflow: hidden");
+        document.querySelector('body').setAttribute("style", "position: fixed");
     })
     document.getElementsByClassName('close-button-post')[index].addEventListener('click', () => {
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
