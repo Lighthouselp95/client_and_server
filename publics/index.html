@@ -10,10 +10,12 @@
         <script src="public/app.js" defer></script>
     </head>
     <body>
+            <!-- header-->
         <div class="header">
             <div class="logo">
                 <a href="#"><img id="logo" src="public/assets/images/logo.png" alt="logo"></a>
             </div>
+            
             <div class="nav">
                 <a class="button" href="/about">About us</a>
                 <a class="button" href="/about">Menu</a>
@@ -21,38 +23,54 @@
                 <a class="button" href="./about">Contact us</a>
                 
             </div>
+            <div>
+            <button id="signin-button" class="login-button">Sign in</button>
+            <button id="login-button" class="login-button">Login</button>
+            </div>
         </div>
-        
-        <div action="" class="create-post">
+         <!-- create post form-->
+         <div class="create-post">
             <form id="create-post">
-                <label for="title">
-                    Tiêu đề: 
-                </label>
+                <label for="title">Tiêu đề: </label>
                 <input type="text" name="title" id="title">
-                <label for="body">
-                    Nội dung: 
-                </label>
+                <label for="body">Nội dung: </label>
                 <textarea type="text" name="body" id="body"></textarea> 
-                <input type="submit" value="Gửi" id="submit">
+                <input type="submit" value="Gửi" id="submit" class="submit">
             </form>
-            <a href="">
-                <i class="close-button-post" onclick="document.getElementsByClassName('create-post')[0].classList.toggle('display')">
-                </i>
-            </a>
+            <i class="close-button-post" id="create-a-post-closed-button">
+            </i>
         </div>
-
+            <!-- Signin form -->
+        <div class="create-post signin-form">
+            <form id="signin-form">
+                <label for="id">Tên tài khoản: </label>
+                <input type="text" name="id">
+                <label for="password">Mật khẩu: </label>
+                <input type="text" name="password">
+                <label for="password">Email: </label>
+                <input type="text" name="email">
+                <input type="submit" value="Đăng ký" class="submit" id="signin-button">
+            </form>
+            <i class="close-button-post" id="signin-closed-button">
+            </i>
+        </div>
+            <!-- login form -->
+        <div class="create-post login-form">
+            <form id="login-form">
+                <label for="id">Tên tài khoản: </label>
+                <input type="text" name="id">
+                <label for="password">Mật khẩu: </label>
+                <input type="text" name="password">
+                <input type="submit" value="Đăng nhập" class="submit" id="login-button">
+            </form>
+            <i class="close-button-post" id="login-closed-button">
+            </i>
+        </div>
+           
+            <!--body-->
         <div class="content">
             <div class="main-column">
-                <div class="post-head">
-                </div>
-                <div class="post-snippet">
-                    <i>
-                    
-                    </i>
-                </div>
-                
-                <input class="post-body" placeholder="Tạo bài viết của bạn.." 
-                 id="create-a-post"> 
+              <input class="post-body" placeholder="Tạo bài viết của bạn.." id="create-a-post"> 
             </div>
             <div class="main-column">
           

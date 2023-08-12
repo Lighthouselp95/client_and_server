@@ -22,8 +22,7 @@ app.post('/add-blog', (req, res) => {
         personID: 123456789,
         groupID: 9876553431,
         title: req.body.title,
-        tag: req.body.tag,
-        snippet: 'About youtube song',
+        snippet: 'Fb',
         body: req.body.body
     });
     console.log(blog);
@@ -50,9 +49,15 @@ app.get('/single-blog/:id', (req,res) => {
         .then((result) => res.send(result))
         .catch((err) => console.log(err));
 })
+
+//Login
+app.post('/sign-in', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
 // listening to port: 3002
-app.listen(3002, () => {
-    console.log('Listening on port: 3002');
+app.listen(3000, () => {
+    console.log('Listening on port: 3000');
 });
 
 // app.use((req,res,next) => {
