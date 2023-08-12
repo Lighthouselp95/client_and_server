@@ -152,7 +152,7 @@ body {
     width: 510px; /* 510px */
      /* box-shadow: 0px 6px 8px 0px rgba(0,0,0,0.3); */
     margin: 25px auto 15px 25%;
-    padding: 10px;
+    padding: 25px;
 }
 @keyframes append-animate {
     from {
@@ -167,7 +167,7 @@ body {
 .post {
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
     width: 100%;
-    box-shadow: 0px 2px 10px -11px rgb(0 0 0 / 90%);
+    box-shadow: 0px 1px 5px -4px rgb(0 0 0 / 80%);
     border: 0.3px solid rgba(114, 114, 114, 0.14);
     border-radius: 8px;
     margin-bottom: 16px;
@@ -205,11 +205,13 @@ body {
     border-radius: 0px 0px 8px 8px;
 }
 
+
 @media screen and (max-width: 420px) {
     
     .main-column {
         width: 100%;
         margin: 0px;
+        padding: 0px;
     }
     .nav {
         display: none;
@@ -222,7 +224,16 @@ body {
         margin: 0 auto;
         padding: 50px 0px;
     }
-   
+   .post {
+    border-radius: 0px;
+    box-shadow: none;
+   }
+   .post-head {
+    border-radius: 0px;
+   }
+   .post-body {
+    border-radius: 0px;
+   }
 }
 
 @media screen and (max-width: 700px) and (min-width: 420px) {
