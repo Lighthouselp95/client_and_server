@@ -30,7 +30,7 @@ function addPosts(posts) {
         </div>
         <div class="post-snippet">
         <i>
-        ${moment(post.createdAt).format("HH:mm, DD.MM.YYYY ")}
+        ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
         </i>
         </div>
         <div class="post-body">
