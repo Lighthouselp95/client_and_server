@@ -260,12 +260,15 @@ body {
    .post {
     border-radius: 0px;
     box-shadow: none;
+    font-size: 12px;
    }
    .post-head {
     border-radius: 0px;
+    font-size: 14px;
    }
    .post-body {
     border-radius: 0px;
+    opacity: 0.85;
    }
 }
 
