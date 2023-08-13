@@ -4,13 +4,14 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const Blog = require('./models/blogs');
 const app = express();
-
+require('dotenv').config();
 // use morgan to log request
 app.use(morgan('dev'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : false}));
 // connect to mongodb
-const dbURI = 'mongodb+srv://lighthouselp95:Tienchua123$$$@nodetuts-firsttime.gisbza8.mongodb.net/node-tuts1?retryWrites=true&w=majority';
+const dbURI = process.env.DB_URI;
+console.log(dbURI);
 mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .then((result) => console.log("Connected to DB"))
     .catch((err) => console.log("err: ", err))
@@ -60,8 +61,8 @@ app.post('/log-in', (req, res) => {
     res.send(req.body);
 });
 // listening to port: 3002
-app.listen(3000, () => {
-    console.log('Listening on port: 3000');
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port: ${process.env.PORT}`);
 });
 
 // app.use((req,res,next) => {

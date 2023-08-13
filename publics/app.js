@@ -76,7 +76,6 @@ function handlePostSubmit(e) {
             })
             .catch( (err) => console.log(err) )
 };
-
 function handleSigninSubmit(e) {
     console.log('into sign in form');
     let id = document.getElementsByName('id')[0].value;
@@ -132,6 +131,7 @@ function handleLoginSubmit(e) {
     })
     .catch( (err) => console.log(err) );
 }
+
 // Handle modal open and closed
 let button_modal = [
     document.getElementById('create-a-post'),
@@ -142,7 +142,7 @@ let button_modal = [
 button_modal.forEach((element, index) => {
     element.addEventListener('click', () => {
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
-        document.querySelector('body').setAttribute("style", "position: fixed");
+        document.querySelector('body').setAttribute("style", "overflow: hidden");
     })
     document.getElementsByClassName('close-button-post')[index].addEventListener('click', () => {
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
