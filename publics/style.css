@@ -60,7 +60,7 @@ body {
        padding-top: 5px;
        /* background-color: rgb(138, 138, 138); */
        flex-direction: row;
-        gap: 50px;
+        gap: 100px;
         flex-grow: 1;
         
 }
@@ -167,7 +167,7 @@ body {
     box-shadow: 0px 1px 5px -4px rgb(0 0 0 / 80%);
     border: 0.3px solid rgba(114, 114, 114, 0.14);
     border-radius: 6px;
-    padding: 5px;
+    padding: 2px;
     margin-bottom: 16px;
     background-color: #fff;
     text-align: start;
@@ -180,7 +180,7 @@ body {
 .post-head {
     font-weight: 620;
     font-size: 18px;
-    padding: 10px 14px 3px;
+    padding: 11px 14px 3px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 4px 4px 0px 0px;
@@ -203,11 +203,12 @@ body {
     word-spacing: -1px;
     font-weight: 400;
     text-align: start;
-    padding: 4px 13px 15px;
+    padding: 4px 14px 17px;
     margin-bottom: 0px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 0px 0px 4px 4px;
+    white-space: pre-wrap;
 }
 #create-a-post {
     /* border-radius: 0px;

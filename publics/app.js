@@ -33,12 +33,10 @@ function addPosts(posts) {
         ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
         </i>
         </div>
-        <div class="post-body">
-        ${post.body}
-        </div>`;
-
+        <div class="post-body">${post.body}</div>`;
+        console.log(post_dom.innerHTML);
         main_column.insertBefore(post_dom, main_column.firstChild);
-     });
+     }); //replace(/\n/g, "\\n")
 };
 
 // Handle post create post submit
