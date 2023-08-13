@@ -263,10 +263,18 @@ body {
     font-size: 12px;
    }
    .post-head {
+    padding-left: 8px;
+    padding-right: 8px;
     border-radius: 0px;
     font-size: 14px;
    }
+   .post-snippet {
+    padding-left: 8px;
+    padding-right: 8px;
+   }
    .post-body {
+    padding-left: 8px;
+    padding-right: 8px;
     border-radius: 0px;
     opacity: 0.85;
    }
