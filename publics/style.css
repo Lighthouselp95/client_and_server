@@ -263,18 +263,19 @@ body {
     font-size: 12px;
    }
    .post-head {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
     border-radius: 0px;
-    font-size: 14px;
+    font-size: 15px;
    }
    .post-snippet {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
    }
    .post-body {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 11px;
+    padding-right: 11px;
+    border-bottom: 8px;
     border-radius: 0px;
     opacity: 0.85;
    }
