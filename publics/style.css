@@ -261,16 +261,18 @@ body {
    .post {
     border-radius: 0px;
     box-shadow: none;
-    font-size: 12px;
+    font-size: 13px;
+    padding: 7px 9px;
    }
    .post-head {
     padding-left: 11px;
     padding-right: 11px;
     border-radius: 0px;
     font-size: 15px;
+    padding-bottom: 7px;
    }
    .post-snippet {
-    padding-left: 11px;
+    padding-left: 12px;
     padding-right: 11px;
    }
    .post-body {
