@@ -271,6 +271,7 @@ body {
     border-radius: 0px;
     font-size: 16px;
     padding-bottom: 20px;
+    opacity: 0.8;
    }
    .post-snippet {
     padding-left: 12px;
