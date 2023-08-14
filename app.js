@@ -3,6 +3,12 @@ const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const Blog = require('./models/blogs');
+const User = require('./models/users');
+const authen = require('./middlewares/authen');
+const controllerSignup = require("./controllers/controller.signup")
+const verifySignup = require('./middlewares/verifySignup');
+const verifyLogin = require('./middlewares/verifyLogin');
+const bcrypt = require('bcryptjs');
 const app = express();
 require('dotenv').config();
 // use morgan to log request
@@ -11,13 +17,12 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : false}));
 // connect to mongodb
 const dbURI = process.env.DB_URI;
-console.log(dbURI);
 mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .then((result) => console.log("Connected to DB"))
     .catch((err) => console.log("err: ", err))
 
 // mongoose and mongoose sandbox route
-app.post('/add-blog', (req, res) => {
+app.post('/add-blog', authen, (req, res) => {
     console.log(req.body);
     const blog = new Blog({
         personID: 123456789,
@@ -52,14 +57,8 @@ app.get('/single-blog/:id', (req,res) => {
 })
 
 //Login
-app.post('/sign-in', (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
-});
-app.post('/log-in', (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
-});
+app.post('/sign-up', verifySignup.verify, controllerSignup);
+app.post('/log-in', verifyLogin);
 // listening to port: 3002
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port: ${process.env.PORT}`);

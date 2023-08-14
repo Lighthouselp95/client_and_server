@@ -88,18 +88,31 @@ body {
 
 .close-button-post {
     position: absolute;
+    cursor: pointer;
+    text-align: center;
     z-index: 13;
     width: 30px;
     height: 30px;
     background-color: cadetblue;
-    top: 15px;
+    top: 11px;
     right: 15px;
     animation: append-animate 0.5s ease-in-out; 
 }
+.close-button-post svg {
+    margin-top: 3px;
+    padding: 2px;
+    color: white;
+}
 .display {
     display: block;
+    /* transition: 1s;  */
+}
+.hidden {
+    display: none;
+    /* transition: 1s;  */
 }
 .create-post form {
+    position: relative;
     width: 380px;
     margin-left: 190px;
     padding: 50px 0px;
@@ -111,6 +124,7 @@ body {
     border-radius: 3px;
     width: 100%;
     display: block;
+    margin-bottom: 10px;
     /* margin-left: 15px; */
     min-height: 25px;
     padding: 7px 15px;
@@ -144,6 +158,17 @@ body {
     margin-right: 70px;
     padding: 5px 13px;
     
+}
+.post-noti {
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    margin-left: 30px;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: 1s; 
 }
 .content {
     background-color: #f0f2f5 ;

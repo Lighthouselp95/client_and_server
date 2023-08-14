@@ -41,8 +41,9 @@ function addPosts(posts) {
 
 // Handle post create post submit
 document.getElementById('create-post').addEventListener("submit", handlePostSubmit);
-document.getElementById('signin-form').addEventListener("submit", handleSigninSubmit);
+document.getElementById('signup-form').addEventListener("submit", handleSignupSubmit);
 document.getElementById('login-form').addEventListener("submit", handleLoginSubmit);
+document.getElementById('logout-button').addEventListener("click", handleLogoutButton);
 ;
 
 function handlePostSubmit(e) {
@@ -58,11 +59,13 @@ function handlePostSubmit(e) {
                 {
                     title: title,
                     // tag: tag,
-                    body: body
+                    body: body,
+                    token: localStorage.getItem('acess_token')
                 }
             ),
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'Authorization': 'Bearer'
             }
             })  
             .then( res => res.json() )
@@ -72,15 +75,25 @@ function handlePostSubmit(e) {
                 document.querySelector('body').setAttribute("style", "overflow: auto");
                 addPosts([res]);
             })
-            .catch( (err) => console.log(err) )
+            .catch( (err) => {
+                console.log(err);
+                
+                document.getElementsByClassName('post-noti')[0].classList.toggle('hidden');
+                setTimeout(() => {
+                    document.getElementsByClassName('post-noti')[0].classList.toggle('hidden');
+                },1000)
+
+            }
+
+             )
 };
-function handleSigninSubmit(e) {
+function handleSignupSubmit(e) {
     console.log('into sign in form');
     let id = document.getElementsByName('id')[0].value;
     let password = document.getElementsByName('password')[0].value;
     let email = document.getElementsByName('email')[0].value;
     e.preventDefault();
-    fetch('/sign-in', {
+    fetch('/sign-up', {
             method: 'post',
             body: JSON.stringify(
                 {
@@ -97,10 +110,19 @@ function handleSigninSubmit(e) {
     .then( res => res.json() )
     .then ( res => {
         console.log (res); 
+        localStorage.setItem('acess_token', `${res[1]}`);
+        localStorage.setItem('username', `${res[2]}`);
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
+        loginSuccessToggleHtml();
     })
-    .catch( (err) => console.log(err) );
+    .catch( (err) => {
+        console.log(err); 
+        document.getElementsByClassName('post-noti')[1].classList.toggle('hidden');
+                setTimeout(() => {
+                    document.getElementsByClassName('post-noti')[1].classList.toggle('hidden');
+                },1000)
+    });
 }
 function handleLoginSubmit(e) {
     
@@ -124,12 +146,44 @@ function handleLoginSubmit(e) {
     .then( res => res.json() )
     .then ( res => {
         console.log (res); 
+        localStorage.setItem('acess_token', `${res[1]}`);
+        localStorage.setItem('username', `${res[2]}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
-        document.querySelector('body').setAttribute("style", "overflow: auto");
+        loginSuccessToggleHtml();
     })
-    .catch( (err) => console.log(err) );
+    .catch( (err) => {
+        console.log(err);
+        document.getElementsByClassName('post-noti')[2].classList.toggle('hidden');
+                setTimeout(() => {
+                    document.getElementsByClassName('post-noti')[2].classList.toggle('hidden');
+                },1000)
+    });
 }
 
+function loginSuccessToggleHtml() {
+    
+        document.getElementById('signup-button').classList.toggle('hidden');
+        document.getElementById('login-button').classList.toggle('hidden');
+        document.getElementById('logout-button').classList.toggle('hidden');
+        document.querySelector('body').setAttribute("style", "overflow: auto");
+}
+// Handle logoout
+function handleLogoutButton() {
+    localStorage.removeItem('acess_token');
+    localStorage.removeItem('username');
+    document.getElementById('signup-button').classList.toggle('hidden');
+    document.getElementById('login-button').classList.toggle('hidden');
+    document.getElementById('logout-button').classList.toggle('hidden');
+}
+
+function checkoutLoginStatus() {
+    if(localStorage.getItem('acess_token') && localStorage.getItem('username')) {
+        document.getElementById('signup-button').classList.toggle('hidden');
+        document.getElementById('login-button').classList.toggle('hidden');
+        document.getElementById('logout-button').classList.toggle('hidden');
+    }
+}
+checkoutLoginStatus();
 // Handle modal open and closed
 let button_modal = [
     document.getElementById('create-a-post'),
@@ -180,7 +234,7 @@ button_modal.forEach((element, index) => {
 // }
 
 // handle login button
-// document.getElementById('signin-button').addEventListener('click',() => {
+// document.getElementById('signup-button').addEventListener('click',() => {
 //     document.getElementsByClassName('create-post')[2].classList.toggle('display');
 //     document.querySelector('body').setAttribute("style", "overflow: auto");
 //     // }

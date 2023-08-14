@@ -25,9 +25,10 @@
                 <a class="button" href="./about">Contact us</a>
                 
             </div>
-            <div>
-            <button id="signin-button" class="login-button">Sign up</button>
-            <button id="login-button" class="login-button">Login</button>
+            <div class="auth">
+                <button id="signup-button" class="login-button">Sign up</button>
+                <button id="login-button" class="login-button">Login</button>
+                <button id="logout-button" class="login-button hidden">Log out</button>
             </div>
         </div>
          <!-- create post form-->
@@ -38,22 +39,24 @@
                 <label for="body">Nội dung: </label>
                 <textarea type="text" name="body" id="body"></textarea> 
                 <input type="submit" value="Gửi" id="submit" class="submit">
+                <p class="post-noti hidden">Vui lòng đăng nhập!</p>
             </form>
-            <i class="close-button-post" id="create-a-post-closed-button">
+            <i class="close-button-post" id="create-a-post-closed-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" stroke="currentColor" d="M12 8.464L18.965 1.5l.177.177l.152.228a10.097 10.097 0 0 0 2.8 2.801l.23.153l.176.177L15.536 12l6.964 6.965l-.177.176l-.228.153a10.096 10.096 0 0 0-2.801 2.8l-.153.23l-.176.176L12 15.536L5.036 22.5l-.177-.177l-.153-.228a10.098 10.098 0 0 0-2.8-2.801l-.23-.153l-.176-.176L8.465 12L1.5 5.036l.177-.177l.229-.153a10.098 10.098 0 0 0 2.8-2.8l.153-.23l.177-.176L12 8.464Z"/></svg>
             </i>
         </div>
-            <!-- Signin form -->
-        <div class="create-post signin-form">
-            <form id="signin-form">
+            <!-- signup form -->
+        <div class="create-post signup-form">
+            <form id="signup-form">
                 <label for="id">Tên tài khoản: </label>
                 <input type="text" name="id">
                 <label for="password">Mật khẩu: </label>
                 <input type="password" name="password">
                 <label for="email">Email: </label>
                 <input type="text" name="email">
-                <input type="submit" value="Đăng ký" class="submit" id="signin-button">
+                <input type="submit" value="Đăng ký" class="submit" id="signup-button">
+                <p class="post-noti hidden">Tài khoản đã được đăng ký!</p>
             </form>
-            <i class="close-button-post" id="signin-closed-button">
+            <i class="close-button-post" id="signup-closed-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" stroke="currentColor" d="M12 8.464L18.965 1.5l.177.177l.152.228a10.097 10.097 0 0 0 2.8 2.801l.23.153l.176.177L15.536 12l6.964 6.965l-.177.176l-.228.153a10.096 10.096 0 0 0-2.801 2.8l-.153.23l-.176.176L12 15.536L5.036 22.5l-.177-.177l-.153-.228a10.098 10.098 0 0 0-2.8-2.801l-.23-.153l-.176-.176L8.465 12L1.5 5.036l.177-.177l.229-.153a10.098 10.098 0 0 0 2.8-2.8l.153-.23l.177-.176L12 8.464Z"/></svg>
             </i>
         </div>
             <!-- login form -->
@@ -64,8 +67,9 @@
                 <label for="password">Mật khẩu: </label>
                 <input type="password" name="password">
                 <input type="submit" value="Đăng nhập" class="submit" id="login-button">
+                <p class="post-noti hidden">Sai mật khẩu!</p>
             </form>
-            <i class="close-button-post" id="login-closed-button">
+            <i class="close-button-post" id="login-closed-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" stroke="currentColor" d="M12 8.464L18.965 1.5l.177.177l.152.228a10.097 10.097 0 0 0 2.8 2.801l.23.153l.176.177L15.536 12l6.964 6.965l-.177.176l-.228.153a10.096 10.096 0 0 0-2.801 2.8l-.153.23l-.176.176L12 15.536L5.036 22.5l-.177-.177l-.153-.228a10.098 10.098 0 0 0-2.8-2.801l-.23-.153l-.176-.176L8.465 12L1.5 5.036l.177-.177l.229-.153a10.098 10.098 0 0 0 2.8-2.8l.153-.23l.177-.176L12 8.464Z"/></svg>
             </i>
         </div>
            
