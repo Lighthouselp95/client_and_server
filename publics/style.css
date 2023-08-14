@@ -224,6 +224,7 @@ body {
 .post-snippet {
     padding-left: 15px;
     padding-bottom: 10px;
+    margin: 0px 3px;
     text-align: left;
     font-style: oblique;
     font-size: 14px;
@@ -297,7 +298,7 @@ body {
     border-radius: 0px;
     box-shadow: none;
     
-    padding: 7px 9px;
+    padding: 6px 16px;
    }
    .post-head {
     padding-left: 11px;
@@ -308,7 +309,7 @@ body {
     opacity: 0.8;
    }
    .post-snippet {
-    padding-left: 12px;
+    padding-left: 11px;
     padding-right: 11px;
    }
    .post-body {
