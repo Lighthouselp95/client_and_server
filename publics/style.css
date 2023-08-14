@@ -276,7 +276,7 @@ body {
         opacity: 1;
     }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
     
     .main-column {
         width: 100%;
@@ -336,7 +336,7 @@ body {
 }
 }
 
-@media screen and (max-width: 700px) and (min-width: 420px) {
+@media screen and (max-width: 700px) and (min-width: 440px) {
     
     .main-column {
         width: 80%;
