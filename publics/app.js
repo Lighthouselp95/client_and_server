@@ -1,6 +1,14 @@
 "use strict"
 
-
+// check out login status
+function checkoutLoginStatus() {
+    if(localStorage.getItem('acess_token') && localStorage.getItem('username')) {
+        document.getElementById('signup-button').classList.toggle('hidden');
+        document.getElementById('login-button').classList.toggle('hidden');
+        document.getElementById('logout-button').classList.toggle('hidden');
+    }
+}
+checkoutLoginStatus();
 document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
@@ -26,15 +34,19 @@ function addPosts(posts) {
         const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
         post_dom.classList.add('post');
-        post_dom.innerHTML = `<div class="post-head">${post.title}
+        post_dom.innerHTML = `
+        <div class="posts-person">
+        ${post.title}
         </div>
+        <div class="post-head">${post.name}
+        </div>
+        
         <div class="post-snippet">
         <i>
         ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
         </i>
         </div>
         <div class="post-body">${post.body}</div>`;
-        console.log(post_dom.innerHTML);
         main_column.insertBefore(post_dom, main_column.firstChild);
      }); //replace(/\n/g, "\\n")
 };
@@ -81,7 +93,7 @@ function handlePostSubmit(e) {
                 document.getElementsByClassName('post-noti')[0].classList.toggle('hidden');
                 setTimeout(() => {
                     document.getElementsByClassName('post-noti')[0].classList.toggle('hidden');
-                },1000)
+                }, 1000)
 
             }
 
@@ -92,6 +104,7 @@ function handleSignupSubmit(e) {
     let id = document.getElementsByName('id')[0].value;
     let password = document.getElementsByName('password')[0].value;
     let email = document.getElementsByName('email')[0].value;
+    let name = document.getElementsByName('name')[0].value;
     e.preventDefault();
     fetch('/sign-up', {
             method: 'post',
@@ -100,7 +113,8 @@ function handleSignupSubmit(e) {
                     id: id,
                     // tag: tag,
                     password: password,
-                    email: email
+                    email: email,
+                    name: name
                 }
             ),
             headers: {
@@ -176,14 +190,7 @@ function handleLogoutButton() {
     document.getElementById('logout-button').classList.toggle('hidden');
 }
 
-function checkoutLoginStatus() {
-    if(localStorage.getItem('acess_token') && localStorage.getItem('username')) {
-        document.getElementById('signup-button').classList.toggle('hidden');
-        document.getElementById('login-button').classList.toggle('hidden');
-        document.getElementById('logout-button').classList.toggle('hidden');
-    }
-}
-checkoutLoginStatus();
+
 // Handle modal open and closed
 let button_modal = [
     document.getElementById('create-a-post'),

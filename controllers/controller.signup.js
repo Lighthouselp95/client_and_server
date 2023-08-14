@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
     try {
-            const {id, password, email} = req.body;
+            const {id, password, email, name} = req.body;
             encryptedPassword = bcrypt.hashSync(password, 10);
             console.log('encryptedpw: ', encryptedPassword);
             const token = jwt.sign(
@@ -21,6 +21,7 @@ module.exports = async (req, res, next) => {
                 id: id,
                 password: encryptedPassword,
                 email: email,
+                name: name,
                 token: token
             });
             user.save()

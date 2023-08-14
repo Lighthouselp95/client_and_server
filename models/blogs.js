@@ -7,7 +7,10 @@ const blogSchema = new Schema ({
         type: String,
         required: true
     },
-   
+    name: {
+        type: String,
+        required: false
+    },
     groupID: {
         type: String,
         required: false

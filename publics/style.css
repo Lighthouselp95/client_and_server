@@ -181,7 +181,7 @@ body {
 .main-column {
     width: 510px; /* 510px */
      /* box-shadow: 0px 6px 8px 0px rgba(0,0,0,0.3); */
-    margin: 10px auto 0px 17%;
+    margin: 10px auto 0px 28%;
     padding: 15px;
     overflow: auto;
 }
@@ -193,7 +193,7 @@ body {
     box-shadow: 0px 1px 5px -4px rgb(0 0 0 / 80%);
     border: 0.3px solid rgba(114, 114, 114, 0.14);
     border-radius: 6px;
-    padding: 2px;
+    padding: 3px;
     margin-bottom: 16px;
     background-color: #fff;
     text-align: start;
@@ -206,11 +206,20 @@ body {
 .post-head {
     font-weight: 630;
     font-size: 18px;
-    padding: 11px 14px 3px;
+    padding: 9px 14px 4px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 4px 4px 0px 0px;
     opacity: 0.85;
+}
+.posts-person {
+    font-weight: 620;
+    font-size: 11px;
+    padding: 15px 15px 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 4px 4px 0px 0px;
+    opacity: 0.9;
 }
 .post-snippet {
     padding-left: 15px;
@@ -310,6 +319,15 @@ body {
     opacity: 0.85;
     font-size: 15px;
    }
+   .posts-person {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 15px 4px 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 4px 4px 0px 0px;
+    opacity: 0.9;
+}
 }
 
 @media screen and (max-width: 700px) and (min-width: 420px) {
