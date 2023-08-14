@@ -15,13 +15,22 @@ module.exports.verify = async (req, res, next) => {
             const oldUser = await User.findOne({email});
             console.log('signup oldUser: ', oldUser);
             if (oldUser) {
+                console.log("Email is already registed");
+                return res.status(409).send("Email is already registed");
+                
+                    }
+                }
+                    
+            const oldUser2 = await User.findOne({id});
+            console.log('signup oldUser: ', oldUser2);
+            if (oldUser2) {
                 console.log("User is already registed");
                 return res.status(409).send("User is already registed");
                 
-                        }
-           
+                    }
+                
             }
-        }
+        
     catch (err) {
         console.log(err);        
     };
