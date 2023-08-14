@@ -309,6 +309,7 @@ body {
     opacity: 0.8;
    }
    .post-snippet {
+    text-align: right;
     padding-left: 11px;
     padding-right: 11px;
    }
