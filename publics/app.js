@@ -3,11 +3,19 @@
 // check out login status
 function checkoutLoginStatus() {
     if(localStorage.getItem('acess_token') && localStorage.getItem('username')) {
+        if(document.getElementById('logout-button').classList.contains('hidden')) {
         document.getElementById('signup-button').classList.toggle('hidden');
         document.getElementById('login-button').classList.toggle('hidden');
         document.getElementById('logout-button').classList.toggle('hidden');
     }
-}
+    } else {
+        if(!document.getElementById('logout-button').classList.contains('hidden')) {
+            document.getElementById('signup-button').classList.toggle('hidden');
+            document.getElementById('login-button').classList.toggle('hidden');
+            document.getElementById('logout-button').classList.toggle('hidden');
+        }
+    }
+};
 checkoutLoginStatus();
 document.addEventListener("DOMContentLoaded", fetchNews);
 
@@ -176,18 +184,14 @@ function handleLoginSubmit(e) {
 
 function loginSuccessToggleHtml() {
     
-        document.getElementById('signup-button').classList.toggle('hidden');
-        document.getElementById('login-button').classList.toggle('hidden');
-        document.getElementById('logout-button').classList.toggle('hidden');
+        checkoutLoginStatus();
         document.querySelector('body').setAttribute("style", "overflow: auto");
 }
 // Handle logoout
 function handleLogoutButton() {
     localStorage.removeItem('acess_token');
     localStorage.removeItem('username');
-    document.getElementById('signup-button').classList.toggle('hidden');
-    document.getElementById('login-button').classList.toggle('hidden');
-    document.getElementById('logout-button').classList.toggle('hidden');
+    checkoutLoginStatus();
 }
 
 
