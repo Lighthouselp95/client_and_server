@@ -9,7 +9,7 @@ const blogSchema = new Schema ({
     },
     name: {
         type: String,
-        required: false
+        required: true
     },
     groupID: {
         type: String,

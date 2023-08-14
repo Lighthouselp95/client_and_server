@@ -33,7 +33,7 @@ module.exports = async (req, res, next) => {
                         req.token = token;
                         // res.send()
                         // res.writeHead(200, {'Refresh' : '1'});
-                        res.status(200).send(['sucess', token]);
+                        res.status(200).send(['sucess', token, id]);
                         return;
                         }
                     }  
