@@ -22,23 +22,21 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .catch((err) => console.log("err: ", err))
 
 // mongoose and mongoose sandbox route
-app.post('/add-blog', authen, (req, res) => {
-    console.log(req.body);
+app.post('/add-blog', authen, (req, res, next) => {
     const blog = new Blog({
-        personID: 123456789,
+        personID: req.Userid,
         groupID: 9876553431,
         title: req.body.title,
         snippet: 'Fb',
         body: req.body.body
     });
-    console.log(blog);
     blog.save()
         .then((result) => {
-            res.send(result);
+            return res.send(result);
         })
-        .catch((err) => (console.log(err)))
-
+        .catch((err) => (console.log(err)));
 });
+
 // get all the blogs from db
 app.get('/all-blogs', (req,res) => {
     Blog.find()
@@ -46,7 +44,7 @@ app.get('/all-blogs', (req,res) => {
             res.send(result))
         .catch((err) => 
             console.log(err));
-})
+});
 
 // get a single blog
 app.get('/single-blog/:id', (req,res) => {

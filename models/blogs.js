@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const blogSchema = new Schema ({
 
     personID: {
-        type: Number,
+        type: String,
         required: true
     },
    
     groupID: {
-        type: Number,
+        type: String,
         required: false
     },
     title: {
