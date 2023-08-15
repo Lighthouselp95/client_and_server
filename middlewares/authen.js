@@ -11,6 +11,7 @@ const verifyToken = async (req, res, next) => {
     // try {
     jwt.verify( token, process.env.TOKEN_KEY, async (err, decoded) => {
         if(err) {
+            console.log(err);
             return res.status(401).send({message: "Unauthorized!"})
         }
         req.Userid = decoded.id;
@@ -27,11 +28,16 @@ const verifyToken = async (req, res, next) => {
             groupID: 9876553431,
             title: req.body.title,
             snippet: 'Fb',
-            body: req.body.body,
-            name: oldUser.name
+            body: req.body.body
         });
         blog.save()
             .then((result) => {
+                // console.log(result.lean());
+                // Object.assign(result,{dang: 'nguyen'});
+                result = JSON.stringify(result);
+                result = JSON.parse(result);
+                result.name = oldUser.name;
+                console.log(result);
                 return res.send(result);
             })
             .catch((err) => (console.log(err)));

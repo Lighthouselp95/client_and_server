@@ -25,13 +25,28 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 app.post('/add-blog', authen);
 
 // get all the blogs from db
-app.get('/all-blogs', (req,res) => {
-    Blog.find()
-        .then((result) => 
-            res.send(result))
-        .catch((err) => 
-            console.log(err));
-});
+app.get('/all-blogs', async (req,res) => {
+    try {
+        let blogs = await Blog.find().exec();
+        blogs = JSON.stringify(blogs);
+        blogs = JSON.parse(blogs);
+        // console.log(blogs);
+        for (let ele of blogs) {   
+            
+            // console.log(ele.personID);
+            // console.log(typeof ele.personID);
+            const oldUser = await User.findOne({id: ele.personID}).exec();
+            // console.log(oldUser.name);
+            ele.name = oldUser.name;
+            }
+        // console.log(blogs);
+        res.send(blogs);
+        } 
+    catch(err) {
+        console.log(err);
+        };
+    }
+);
 
 // get a single blog
 app.get('/single-blog/:id', (req,res) => {
