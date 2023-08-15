@@ -88,15 +88,18 @@ function handlePostSubmit(e) {
                 'Authorization': 'Bearer'
             }
             })  
-            .then( res => res.json() )
+            .then(res => {
+                if(!res.ok) {throw new Error("Error")};
+                return res.json();
+            })
             .then ( res => {
-                console.log (res); 
+                console.log ("res: ", res); 
                 document.getElementsByClassName('create-post')[0].classList.toggle('display');
                 document.querySelector('body').setAttribute("style", "overflow: auto");
                 addPosts([res]);
             })
             .catch( (err) => {
-                console.log(err);
+                console.log('err: ', err);
                 
                 document.getElementsByClassName('post-noti')[0].classList.toggle('hidden');
                 setTimeout(() => {

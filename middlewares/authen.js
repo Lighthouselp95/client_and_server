@@ -12,7 +12,7 @@ const verifyToken = async (req, res, next) => {
     jwt.verify( token, process.env.TOKEN_KEY, async (err, decoded) => {
         if(err) {
             console.log(err);
-            return res.status(401).send({message: "Unauthorized!"})
+            return res.status(401).send({error:"Unauthorized!"})
         }
         req.Userid = decoded.id;
         try {
