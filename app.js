@@ -23,7 +23,10 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 
 // mongoose and mongoose sandbox route
 app.post('/add-blog', authen);
-
+app.get('/all-users', async (req, res) => {
+    let users = await User.find()
+    res.send(users);
+})
 // get all the blogs from db
 app.get('/all-blogs', async (req,res) => {
     try {

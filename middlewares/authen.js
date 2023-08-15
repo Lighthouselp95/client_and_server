@@ -8,7 +8,7 @@ const verifyToken = async (req, res, next) => {
     if (!token) {
         return res.status(403).send("A access token is needed");
     };
-    // try {
+    try {
     jwt.verify( token, process.env.TOKEN_KEY, async (err, decoded) => {
         if(err) {
             console.log(err);
@@ -30,31 +30,35 @@ const verifyToken = async (req, res, next) => {
             snippet: 'Fb',
             body: req.body.body
         });
-        blog.save()
-            .then((result) => {
-                // console.log(result.lean());
-                // Object.assign(result,{dang: 'nguyen'});
-                result = JSON.stringify(result);
-                result = JSON.parse(result);
-                result.name = oldUser.name;
-                console.log(result);
-                return res.send(result);
-            })
-            .catch((err) => (console.log(err)));
-        // try {
-        // await blog.save();
-        // const recentBlog = Blog.find({})
-        // result.name = oldUser.name;
-        // return res.send(result);
-        // } catch (err) {console.log(err)};
-    }
-    );
+        console.log()
+        // blog.save()
+        //     .then((result) => {
+        //         // console.log(result.lean());
+        //         // Object.assign(result,{dang: 'nguyen'});
+        //         result = JSON.stringify(result);
+        //         result = JSON.parse(result);
+        //         result.name = oldUser.name;
+        //         console.log(result);
+        //         return res.send(result);
+        //     })
+        //     .catch((err) => (console.log(err)));
+        var recentBlog;
+        await blog.save()
+                    .then(async (result) => {
+                        recentBlog = await Blog.findById(result._id).lean()
+                        console.log(recentBlog);
+                        recentBlog.name = oldUser.name;
+                        return res.send(recentBlog);
+                    })
+                    .catch((err) => (console.log(err)));
        
-    // }
-    // catch(err) {
-    //     return res.status(409).send('Wrong token: ', err);
-    //     console.log(err);
-    // }
+            })
+       
+    }
+    catch(err) {
+        return res.status(409).send('Wrong token: ', err);
+        console.log(err);
+    }
 
 };
 
