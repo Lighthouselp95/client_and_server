@@ -21,8 +21,8 @@ const verifyToken = async (req, res, next) => {
         catch (err) {
             console.log('finuser error: ', err);
         }
-        console.log('User finded: ', oldUser);
-        console.log('decoded: ', decoded);
+        // console.log('User finded: ', oldUser);
+        // console.log('decoded: ', decoded);
         const blog = new Blog({
             personID: req.Userid,
             groupID: 9876553431,
@@ -41,6 +41,12 @@ const verifyToken = async (req, res, next) => {
                 return res.send(result);
             })
             .catch((err) => (console.log(err)));
+        // try {
+        // await blog.save();
+        // const recentBlog = Blog.find({})
+        // result.name = oldUser.name;
+        // return res.send(result);
+        // } catch (err) {console.log(err)};
     }
     );
        
