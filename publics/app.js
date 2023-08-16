@@ -2,14 +2,16 @@
 
 // check out login status
 function checkoutLoginStatus() {
-    if(localStorage.getItem('acess_token') && localStorage.getItem('username')) {
+    if(localStorage.getItem('acess_token') && localStorage.getItem('username') && localStorage.getItem('name')) {
         if(document.getElementById('logout-button').classList.contains('hidden')) {
-        document.getElementById('signup-button').classList.toggle('hidden');
-        document.getElementById('login-button').classList.toggle('hidden');
-        document.getElementById('logout-button').classList.toggle('hidden');
+            document.getElementById('username').innerText = localStorage.getItem('name');
+            document.getElementById('signup-button').classList.toggle('hidden');
+            document.getElementById('login-button').classList.toggle('hidden');
+            document.getElementById('logout-button').classList.toggle('hidden');
     }
     } else {
         if(!document.getElementById('logout-button').classList.contains('hidden')) {
+            document.getElementById('username').innerText = '';
             document.getElementById('signup-button').classList.toggle('hidden');
             document.getElementById('login-button').classList.toggle('hidden');
             document.getElementById('logout-button').classList.toggle('hidden');
@@ -176,9 +178,10 @@ function handleSignupSubmit(e) {
         console.log (res); 
         localStorage.setItem('acess_token', `${res[1]}`);
         localStorage.setItem('username', `${res[2]}`);
+        localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
-        loginSuccessToggleHtml();
+        checkoutLoginStatus();
     })
     .catch( (err) => {
         console.log(err); 
@@ -212,8 +215,10 @@ function handleLoginSubmit(e) {
         console.log (res); 
         localStorage.setItem('acess_token', `${res[1]}`);
         localStorage.setItem('username', `${res[2]}`);
+        localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
-        loginSuccessToggleHtml();
+        document.querySelector('body').setAttribute("style", "overflow: auto");
+        checkoutLoginStatus();
     })
     .catch( (err) => {
         console.log(err);
@@ -224,11 +229,6 @@ function handleLoginSubmit(e) {
     });
 }
 
-function loginSuccessToggleHtml() {
-    
-        checkoutLoginStatus();
-        document.querySelector('body').setAttribute("style", "overflow: auto");
-}
 // Handle logoout
 function handleLogoutButton() {
     localStorage.removeItem('acess_token');

@@ -64,6 +64,35 @@ body {
         flex-grow: 1;
         
 }
+.auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.username {
+    opacity: 0.5;
+    font-size: 14.3px;
+    font-weight: 600;
+    padding: 10px 7px;
+    margin-bottom: 2px;
+    letter-spacing: 0px;
+    display: block;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    height: 100%;
+}
+.username:hover {
+    text-decoration-line: underline;
+    text-underline-offset: 2px;
+}
+.login-button {
+    margin-right: 7px;
+    padding: 0px 3px;
+    background-color: #fff;
+    color: #b8bdc5;
+    border: none;
+    cursor: pointer;
+}
 .button {
     background-color: rgb(30, 144, 219);
     color: white;
@@ -280,14 +309,7 @@ body {
     height: 50px;
     margin-left: 3px;
 }
-.login-button {
-    margin-right: 7px;
-    padding: 3px;
-    background-color: #fff;
-    color: #b8bdc5;
-    border: none;
-    cursor: pointer;
-}
+
 @keyframes append-animate {
     from {
         /* transform: scale(0); */

@@ -13,8 +13,8 @@ module.exports = async (req, res, next) => {
                 }
             else {
                 const oldUser = await User.findOne({id: id})
-                console.log('oldUser: ', oldUser);
                 if(oldUser) {
+                    const name = oldUser.name;
                     const isPasswordValid = bcrypt.compareSync(password, oldUser.password);
                     console.log('isPasswordValid: ', isPasswordValid);
                     if(!isPasswordValid) {
@@ -34,7 +34,7 @@ module.exports = async (req, res, next) => {
                         req.token = token;
                         // res.send()
                         // res.writeHead(200, {'Refresh' : '1'});
-                        res.status(200).send(['sucess', token, oldUser._id]);
+                        res.status(200).send(['sucess', token, oldUser._id, name]);
                         return;
                         }
                     }  

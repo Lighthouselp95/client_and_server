@@ -29,7 +29,7 @@ module.exports = async (req, res, next) => {
                         });
                         console.log('signup token: ', token);
                         req.token = token;
-                     res.status(200).send(['sucess', token, user._id]);
+                     res.status(200).send(['sucess', token, user._id, name]);
                      return;
                     // res.redirect(req.get('referer'));
                 })
