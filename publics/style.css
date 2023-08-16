@@ -103,14 +103,7 @@ body {
     padding: 2px;
     color: white;
 }
-.display {
-    display: block;
-    /* transition: 1s;  */
-}
-.hidden {
-    display: none;
-    /* transition: 1s;  */
-}
+
 .create-post form {
     position: relative;
     width: 380px;
@@ -185,8 +178,27 @@ body {
     padding: 15px;
     overflow: auto;
 }
-
+.display {
+    display: block;
+    /* transition: 1s;  */
+}
+.hidden {
+    display: none;
+    
+    /* transition: 1s;  */
+}
+.post.smallerize {
+    /* transform: scaleY(0) translateY(-100%); */
+    /* height: 0px; */
+    /* transition: max-height 1s ease-in-out;  */
+    /* animation: smaller-animate 1s ease-in-out; */
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+    /* animation: disapear-animate 1s ease-in; */
+    
+}
 .post {
+
     position: relative;
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
     width: 100%;
@@ -198,6 +210,7 @@ body {
     background-color: #fff;
     text-align: start;
     animation: append-animate 0.5s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 .post>div {
     background-color: #fff;
@@ -247,6 +260,17 @@ body {
     border-radius: 0px 0px 4px 4px;
     white-space: pre-wrap;
 }
+.more-button {
+    padding-right: 12px;
+    padding-bottom: 5px;
+    text-align: right;
+    cursor: pointer;
+}
+.fa-ellipsis-vertical {
+    display: inline-block;
+    height: 10px;
+    opacity: 60%;
+}
 #create-a-post {
     /* border-radius: 0px;
     margin-bottom: 0px;
@@ -274,6 +298,30 @@ body {
         /* transform: scale(1); */
         /* transform: translateY(0%); */
         opacity: 1;
+    }
+}
+@keyframes disapear-animate {
+    from {
+        /* transform: scale(0); */
+        /* transform: translateY(-100%); */
+        opacity: 1;
+    }
+    to {
+        /* transform: scale(1); */
+        /* transform: translateY(0%); */
+        opacity: 0;
+    }
+}
+@keyframes smaller-animate {
+    from {
+        /* transform: scale(0); */
+        /* transform: translateY(-100%); */
+        height: auto;
+    }
+    to {
+        /* transform: scale(1); */
+        /* transform: translateY(0%); */
+        height: 0px;
     }
 }
 @media screen and (max-width: 440px) {

@@ -54,12 +54,51 @@ function addPosts(posts) {
         ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
         </i>
         </div>
-        <div class="post-body">${post.body}</div>`;
+        <div class="post-body">${post.body}</div>
+        <div class="more-button" data-id="${post._id}"><i class="fa-solid fa-ellipsis-vertical"></i></div>`;
+        const moreButton = post_dom.getElementsByClassName('more-button')[0];
+        deletePost(moreButton);
         main_column.insertBefore(post_dom, main_column.firstChild);
      }); //replace(/\n/g, "\\n")
 };
+// delete post
+function deletePost(moreButton) {
+moreButton.addEventListener('click', () => {
+    const postId = moreButton.getAttribute("data-id");
+    fetch(`/blogs/${postId}`, {
+        method: 'delete',
+        body: JSON.stringify(
+            {
+                post_id: postId,
+                token: localStorage.getItem('acess_token')
+            }
+        ),
+        headers: {
+            'Content-Type' : 'application/json'
+    }})
+    .then(res =>{
+        if(res.ok) {
+           
+            moreButton.parentElement.classList.toggle("smallerize");
+            
+            setTimeout(() => {
+                moreButton.parentElement.remove();
+                // fetchNews()
+            }, 800);
+            
+        }
 
-// Handle post create post submit
+
+        
+    })
+    .catch(err => console.log(err));
+
+})
+}
+// document.getElementsByClassName('more-button').forEach((ele, index) => {
+//     ele.addEventListener
+// })
+// Handle post create submit
 document.getElementById('create-post').addEventListener("submit", handlePostSubmit);
 document.getElementById('signup-form').addEventListener("submit", handleSignupSubmit);
 document.getElementById('login-form').addEventListener("submit", handleLoginSubmit);

@@ -29,6 +29,29 @@ const blogSchema = new Schema ({
     }
     },{timestamps: true});
 
-const Blog = mongoose.model('blogs', blogSchema);
+const userSchema = new Schema ({
 
-module.exports = Blog;
+    id: {
+        type: String,
+        required: true
+    }, 
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    }
+    },{timestamps: true});
+    
+    
+    
+    
+const Blog = mongoose.model('blogs', blogSchema);
+const User = mongoose.model('users', userSchema);
+module.exports = {Blog, User};

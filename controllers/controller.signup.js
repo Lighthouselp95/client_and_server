@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const User = require('../models/users');
+const {Blog, User} = require('../models/Schema');
 const jwt = require('jsonwebtoken');
 
 
@@ -8,28 +8,28 @@ module.exports = async (req, res, next) => {
             const {id, password, email, name} = req.body;
             encryptedPassword = bcrypt.hashSync(password, 10);
             console.log('encryptedpw: ', encryptedPassword);
-            const token = jwt.sign(
-                {id: id, password: password},
-                process.env.TOKEN_KEY,
-                {
-                    allowInsecureKeySizes: true,
-                    expiresIn: "1h"
-                });
-                console.log('signup token: ', token);
-                req.token = token;
+            
             const user = new User({
                 id: id,
                 password: encryptedPassword,
                 email: email,
-                name: name,
-                token: token
+                name: name
             });
             user.save()
                 .then((result) => {
                     console.log('signup inf: ',result);
                     // res.send()
                     // res.writeHead(200, {'Refresh' : '1'});
-                     res.status(200).send(['sucess', token, id]);
+                    const token = jwt.sign(
+                        {id: user._id, password: password},
+                        process.env.TOKEN_KEY,
+                        {
+                            allowInsecureKeySizes: true,
+                            expiresIn: "1h"
+                        });
+                        console.log('signup token: ', token);
+                        req.token = token;
+                     res.status(200).send(['sucess', token, user._id]);
                      return;
                     // res.redirect(req.get('referer'));
                 })

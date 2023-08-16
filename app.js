@@ -2,13 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
-const Blog = require('./models/blogs');
-const User = require('./models/users');
+const {Blog, User} = require('./models/Schema');
 const authen = require('./middlewares/authen');
-const controllerSignup = require("./controllers/controller.signup")
+const controllerSignup = require("./controllers/controller.signup");
+const controllerDeletePost = require('./controllers/controller.deletePost');
+const controllerAddpost = require('./controllers/controller.Addpost');
+const controllerGetallpost =  require('./controllers/controller.getAllpost');
 const verifySignup = require('./middlewares/verifySignup');
 const verifyLogin = require('./middlewares/verifyLogin');
-const bcrypt = require('bcryptjs');
 const app = express();
 require('dotenv').config();
 // use morgan to log request
@@ -22,35 +23,14 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .catch((err) => console.log("err: ", err))
 
 // mongoose and mongoose sandbox route
-app.post('/add-blog', authen);
+app.post('/add-blog', authen, controllerAddpost);
 app.get('/all-users', async (req, res) => {
     let users = await User.find()
     res.send(users);
 })
 // get all the blogs from db
-app.get('/all-blogs', async (req,res) => {
-    try {
-        let blogs = await Blog.find().exec();
-        blogs = JSON.stringify(blogs);
-        blogs = JSON.parse(blogs);
-        // console.log(blogs);
-        for (let ele of blogs) {   
-            
-            // console.log(ele.personID);
-            // console.log(typeof ele.personID);
-            const oldUser = await User.findOne({id: ele.personID}).exec();
-            // console.log(oldUser.name);
-            ele.name = oldUser.name;
-            }
-        // console.log(blogs);
-        res.send(blogs);
-        } 
-    catch(err) {
-        console.log(err);
-        };
-    }
-);
-
+app.get('/all-blogs', controllerGetallpost);
+app.delete('/blogs/:id', authen, controllerDeletePost)
 // get a single blog
 app.get('/single-blog/:id', (req,res) => {
     console.log(req.params.id);
