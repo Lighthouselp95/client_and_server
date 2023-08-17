@@ -26,6 +26,14 @@ const blogSchema = new Schema ({
     body: {
         type: String,
         required: true
+    },
+    like: [{
+        id: String,
+        name: String
+    }],
+    comment: {
+        type: String,
+        required: false
     }
     },{timestamps: true});
 
@@ -49,7 +57,7 @@ const userSchema = new Schema ({
     }
     },{timestamps: true});
     
-    
+
     
     
 const Blog = mongoose.model('blogs', blogSchema);

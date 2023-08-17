@@ -2,7 +2,7 @@
 
 // check out login status
 function checkoutLoginStatus() {
-    if(localStorage.getItem('acess_token') && localStorage.getItem('username') && localStorage.getItem('name')) {
+    if(localStorage.getItem('acess_token') && localStorage.getItem('userId') && localStorage.getItem('name')) {
         if(document.getElementById('logout-button').classList.contains('hidden')) {
             document.getElementById('username').innerText = localStorage.getItem('name');
             document.getElementById('signup-button').classList.toggle('hidden');
@@ -11,7 +11,7 @@ function checkoutLoginStatus() {
     }
     } else {
         if(!document.getElementById('logout-button').classList.contains('hidden')) {
-            document.getElementById('username').innerText = '';
+            document.getElementById('userId').innerText = '';
             document.getElementById('signup-button').classList.toggle('hidden');
             document.getElementById('login-button').classList.toggle('hidden');
             document.getElementById('logout-button').classList.toggle('hidden');
@@ -39,9 +39,9 @@ function fetchNews() {
 
 
 // Add posts elements to html function
-async function addPosts(posts) {
+function addPosts(posts) {
    
-    for await (let post of posts) {
+    for (let post of posts) {
         const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
         post_dom.classList.add('post');
@@ -58,32 +58,51 @@ async function addPosts(posts) {
         </i>
         </div>
         <div class="post-body">${post.body}</div>
-        <div class="more-button" data-id="${post._id}"><i class="fa-solid fa-ellipsis-vertical"></i></div>`;
+        <div class = "react-band">
+        <div class = "react"><i class="fa-regular fa-heart"></i></div>
+        <div class="more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
         
+        </div>`;
         main_column.insertBefore(post_dom, main_column.firstChild);
         
      }; //replace(/\n/g, "\\n")     
-     const main_column = document.getElementsByClassName('main-column')[1];
+        const main_column = document.getElementsByClassName('main-column')[1];
 
-     const moreButton = main_column.getElementsByClassName('more-button');
-        deletePost(moreButton);   
+        const moreButton = main_column.querySelectorAll('.more-button');
+        checkPostCondition(moreButton);
+        likePost();
 };
 // delete post
-function deletePost(moreButton) {
-    for (let ele of moreButton) {
+function likePost () {
+    document.querySelectorAll('.react').forEach((ele) => {
+        ele.addEventListener('click', () => {
+            ele.firstChild.style.color = "red";
+        })
+    })
+}
+
+ //checkPostCondition to display delete sign
+ function checkPostCondition(moreButton) {
+        moreButton.forEach((ele) => {
+        console.log(ele.getAttribute('data-user-id'));
+    if (ele.getAttribute('data-user-id') !== localStorage.getItem('userId')) {
+        console.log("1");
+        ele.style.visibility = 'hidden';
+    } else {
         ele.addEventListener('click', () => {
             const postId = ele.getAttribute("data-id");
             fetch(`/blogs/${postId}`, {
                 method: 'delete',
                 body: JSON.stringify(
-                    {
+                    {   
                         post_id: postId,
                         token: localStorage.getItem('acess_token')
                     }
-                ),
+                    ),
                 headers: {
                     'Content-Type' : 'application/json'
-            }})
+                    }
+                })
             .then(res =>{
                 if(res.ok) {
                 
@@ -95,16 +114,12 @@ function deletePost(moreButton) {
                     }, 800);
                     
                 }
-        
-        
-                
             })
-            .catch(err => console.log(err));
-        
+            .catch(err => console.log(err));    
             })
-  
-    }
- } //lui va 1 o
+        }
+    })
+ }
 // document.getElementsByClassName('more-button').forEach((ele, index) => {
 //     ele.addEventListener
 // })
@@ -185,7 +200,7 @@ function handleSignupSubmit(e) {
     .then ( res => {
         console.log (res); 
         localStorage.setItem('acess_token', `${res[1]}`);
-        localStorage.setItem('username', `${res[2]}`);
+        localStorage.setItem('userId', `${res[2]}`);
         localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
@@ -222,7 +237,7 @@ function handleLoginSubmit(e) {
     .then ( res => {
         console.log (res); 
         localStorage.setItem('acess_token', `${res[1]}`);
-        localStorage.setItem('username', `${res[2]}`);
+        localStorage.setItem('userId', `${res[2]}`);
         localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
@@ -240,7 +255,7 @@ function handleLoginSubmit(e) {
 // Handle logoout
 function handleLogoutButton() {
     localStorage.removeItem('acess_token');
-    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     checkoutLoginStatus();
 }
 
