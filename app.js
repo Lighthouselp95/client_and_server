@@ -60,16 +60,7 @@ app.get('/', (req, res) => {
     // res.send('<p>Home Page</p>')
     res.sendFile('./publics/index.html', {root: __dirname});
 });
-// app.get('/style.css', (req,res) => {
-//     res.sendFile('./HTML_folder/style.css', {root: __dirname});
-// });
-// app.get('/js.js', (req,res) => {
-//     res.sendFile('./HTML_folder/js.js', {root: __dirname});
-// });
-// app.get('/assets/images/logo.png', (req,res) => {
-//     // console.log(req.url);
-//     res.sendFile('./HTML_folder/assets/images/logo.png', {root: __dirname});
-// });
+
 app.get('/about', (req, res) => {
     // res.send('<p>About Page</p>')
     res.sendFile('./publics/about.html', {root: __dirname});

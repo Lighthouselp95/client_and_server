@@ -39,8 +39,9 @@ function fetchNews() {
 
 
 // Add posts elements to html function
-function addPosts(posts) {
-    posts.forEach((post) => {
+async function addPosts(posts) {
+   
+    for await (let post of posts) {
         const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
         post_dom.classList.add('post');
@@ -58,45 +59,52 @@ function addPosts(posts) {
         </div>
         <div class="post-body">${post.body}</div>
         <div class="more-button" data-id="${post._id}"><i class="fa-solid fa-ellipsis-vertical"></i></div>`;
-        const moreButton = post_dom.getElementsByClassName('more-button')[0];
-        deletePost(moreButton);
+        
         main_column.insertBefore(post_dom, main_column.firstChild);
-     }); //replace(/\n/g, "\\n")
+        
+     }; //replace(/\n/g, "\\n")     
+     const main_column = document.getElementsByClassName('main-column')[1];
+
+     const moreButton = main_column.getElementsByClassName('more-button');
+        deletePost(moreButton);   
 };
 // delete post
 function deletePost(moreButton) {
-moreButton.addEventListener('click', () => {
-    const postId = moreButton.getAttribute("data-id");
-    fetch(`/blogs/${postId}`, {
-        method: 'delete',
-        body: JSON.stringify(
-            {
-                post_id: postId,
-                token: localStorage.getItem('acess_token')
-            }
-        ),
-        headers: {
-            'Content-Type' : 'application/json'
-    }})
-    .then(res =>{
-        if(res.ok) {
-           
-            moreButton.parentElement.classList.toggle("smallerize");
-            
-            setTimeout(() => {
-                moreButton.parentElement.remove();
-                // fetchNews()
-            }, 800);
-            
-        }
-
-
+    for (let ele of moreButton) {
+        ele.addEventListener('click', () => {
+            const postId = ele.getAttribute("data-id");
+            fetch(`/blogs/${postId}`, {
+                method: 'delete',
+                body: JSON.stringify(
+                    {
+                        post_id: postId,
+                        token: localStorage.getItem('acess_token')
+                    }
+                ),
+                headers: {
+                    'Content-Type' : 'application/json'
+            }})
+            .then(res =>{
+                if(res.ok) {
+                
+                    ele.parentElement.classList.toggle("smallerize");
+                    
+                    setTimeout(() => {
+                        ele.parentElement.remove();
+                        // fetchNews()
+                    }, 800);
+                    
+                }
         
-    })
-    .catch(err => console.log(err));
-
-})
-}
+        
+                
+            })
+            .catch(err => console.log(err));
+        
+            })
+  
+    }
+ } //lui va 1 o
 // document.getElementsByClassName('more-button').forEach((ele, index) => {
 //     ele.addEventListener
 // })
