@@ -76,7 +76,7 @@ function addPosts(posts) {
 function likePost () {
     document.querySelectorAll('.react').forEach((ele) => {
         ele.addEventListener('click', () => {
-            ele.firstChild.style.color = "red";
+            ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
         })
     })
 }
