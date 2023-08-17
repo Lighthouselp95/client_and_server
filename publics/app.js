@@ -11,7 +11,7 @@ function checkoutLoginStatus() {
     }
     } else {
         if(!document.getElementById('logout-button').classList.contains('hidden')) {
-            document.getElementById('userId').innerText = '';
+            document.getElementById('username').innerText = '';
             document.getElementById('signup-button').classList.toggle('hidden');
             document.getElementById('login-button').classList.toggle('hidden');
             document.getElementById('logout-button').classList.toggle('hidden');
