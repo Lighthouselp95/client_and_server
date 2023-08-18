@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const verifyToken = async (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers['x-acess-token'];
+
     if (!token) {
         return res.status(403).send("A access token is needed");
     };
@@ -12,7 +13,8 @@ const verifyToken = async (req, res, next) => {
                 return res.status(401).send({error:"Unauthorized!"})
             }
             req.userId = decoded.userId; //export userid
-
+            req.userName = decoded.name;
+            // console.log(decoded, req.userName, req.userId);
         })
     }
     catch(err) {

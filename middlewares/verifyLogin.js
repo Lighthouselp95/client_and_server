@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
                     console.log('sucess! ', oldUser);
                     
                     const token = jwt.sign(
-                        {userId: oldUser._id, password: password},
+                        {userId: oldUser._id, password: password, name: name},
                         process.env.TOKEN_KEY,
                         {
                             allowInsecureKeySizes: true,

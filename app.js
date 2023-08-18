@@ -7,7 +7,9 @@ const authen = require('./middlewares/authen');
 const controllerSignup = require("./controllers/controller.signup");
 const controllerDeletePost = require('./controllers/controller.deletePost');
 const controllerAddpost = require('./controllers/controller.Addpost');
+const controllerLikePost = require('./controllers/controller.likePost');
 const controllerGetallpost =  require('./controllers/controller.getAllpost');
+const controllerUserLike = require('./controllers/controller.userLike');
 const verifySignup = require('./middlewares/verifySignup');
 const verifyLogin = require('./middlewares/verifyLogin');
 const app = express();
@@ -24,14 +26,18 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 
 // mongoose and mongoose sandbox route
 app.post('/add-blog', authen, controllerAddpost);
+app.post('/like/:postid', authen, controllerLikePost);
+app.post('/userlike', authen, controllerUserLike)
 app.get('/all-users', async (req, res) => {
     let users = await User.find()
     res.send(users);
 })
 // get all the blogs from db
 app.get('/all-blogs', controllerGetallpost);
-app.delete('/blogs/:id', authen, controllerDeletePost)
+app.delete('/blogs/:id', authen, controllerDeletePost);
 // get a single blog
+
+
 app.get('/single-blog/:id', (req,res) => {
     console.log(req.params.id);
     Blog.findById(req.params.id)

@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "paulmolluzzo.convert-css-in-js",
+        "tabnine.tabnine-vscode",
+        "esbenp.prettier-vscode",
+        "zignd.html-css-class-completion",
+        "ecmel.vscode-html-css",
+        "tarrow.css-class-intellisense",
+        "codeium.codeium"
+    ]
+}

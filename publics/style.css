@@ -292,8 +292,8 @@ body {
     white-space: pre-wrap;
 }
 .more-button {
-    padding-right: 12px;
-    padding-bottom: 5px;
+    /* padding-right: 12px; */
+    padding: 0px 0px 5px 12px;
     text-align: right;
     cursor: pointer;
     

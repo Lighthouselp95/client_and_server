@@ -66,29 +66,82 @@ function addPosts(posts) {
         main_column.insertBefore(post_dom, main_column.firstChild);
         
      }; //replace(/\n/g, "\\n")     
-        const main_column = document.getElementsByClassName('main-column')[1];
-
-        const moreButton = main_column.querySelectorAll('.more-button');
-        checkPostCondition(moreButton);
+        checkPostCondition();
+        checkLikePost();
         likePost();
 };
+//check like post
+function checkLikePost() {
+    let moreButtons = document.querySelectorAll('.more-button');    
+    var userLikes;
+    fetch(`/userlike`, {
+        method: 'post',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(
+            {
+                token: localStorage.getItem('acess_token'),
+                userId: localStorage.getItem('userId')
+            }
+            )
+            
+            })
+        .then(res => res.json())
+        .then((data) => { userLikes = data;
+            for(let moreButton of moreButtons) {
+                moreButton.parentElement.querySelector('.react').setAttribute('data-like', 0);
+                moreButton.parentElement.querySelector('.react').innerHTML = '<i class="fa-regular fa-heart"></i>';
+            }
+            userLikes = userLikes.map((ele) => ele.postId);
+            console.log(userLikes);
+            moreButtons = [...moreButtons];
+            console.log(moreButtons);
+            const moreButtonsLikes = moreButtons.filter((moreButton) => {
+            return userLikes.includes(moreButton.getAttribute('data-id'));
+                    }) 
+            for(let moreButtonsLike of moreButtonsLikes) {
+                moreButtonsLike.parentElement.querySelector('.react').setAttribute('data-like', 1);
+                moreButtonsLike.parentElement.querySelector('.react').innerHTML = '<i class="fa-solid fa-heart"></i>';
+            }
+        })
+        .catch(err => console.log(err))
+    
+
+}
 // delete post
 function likePost () {
     document.querySelectorAll('.react').forEach((ele) => {
+        let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
-            ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            fetch(`/like/${postId}`, {
+                method: 'post',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(
+                    {
+                        token: localStorage.getItem('acess_token'),
+                        userId: localStorage.getItem('userId')
+                    }
+                    )
+                    
+                })
+            .then(res => {
+                checkLikePost();
+            })     
+            .catch(err => console.log(err))
         })
     })
 }
 
  //checkPostCondition to display delete sign
- function checkPostCondition(moreButton) {
+ function checkPostCondition() {
+    
+        const moreButton = document.querySelectorAll('.more-button');    
         moreButton.forEach((ele) => {
         console.log(ele.getAttribute('data-user-id'));
     if (ele.getAttribute('data-user-id') !== localStorage.getItem('userId')) {
         console.log("1");
         ele.style.visibility = 'hidden';
     } else {
+        ele.style.visibility = 'visible';
         ele.addEventListener('click', () => {
             const postId = ele.getAttribute("data-id");
             fetch(`/blogs/${postId}`, {
@@ -106,10 +159,10 @@ function likePost () {
             .then(res =>{
                 if(res.ok) {
                 
-                    ele.parentElement.classList.toggle("smallerize");
+                    ele.parentElement.parentElement.classList.toggle("smallerize");
                     
                     setTimeout(() => {
-                        ele.parentElement.remove();
+                        ele.parentElement.parentElement.remove();
                         // fetchNews()
                     }, 800);
                     
@@ -138,7 +191,7 @@ function handlePostSubmit(e) {
         let body = document.getElementById('body').value;
     
         fetch('/add-blog', {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify(
                 {
                     title: title,
@@ -241,7 +294,11 @@ function handleLoginSubmit(e) {
         localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
+        
+    })
+    .then(() => {
         checkoutLoginStatus();
+        checkPostCondition();
     })
     .catch( (err) => {
         console.log(err);
@@ -257,6 +314,7 @@ function handleLogoutButton() {
     localStorage.removeItem('acess_token');
     localStorage.removeItem('userId');
     checkoutLoginStatus();
+    checkPostCondition();
 }
 
 
