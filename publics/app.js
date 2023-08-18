@@ -132,16 +132,21 @@ function likePost () {
                     
                 })
             .then(res => {
-                if(ele.getAttribute('data-like') == 0) {
-                    ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
-                    ele.setAttribute('data-like', 1);
-                } else {
+                if(!res.ok) {
                     ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
-                    ele.setAttribute('data-like', 0);
-                    }
-                })     
+                } 
+                else {
+                    if(ele.getAttribute('data-like') == 0) {
+                        ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                        ele.setAttribute('data-like', 1);
+                    } else {
+                        ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                        ele.setAttribute('data-like', 0);
+                        }
+                }
+            })     
             .catch(err => {console.log(err);
-                ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                
             }
                 )
         })
