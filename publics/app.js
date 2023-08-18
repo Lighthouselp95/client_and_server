@@ -19,7 +19,8 @@ function checkoutLoginStatus() {
     }
 };
 checkoutLoginStatus();
-document.addEventListener("DOMContentLoaded", fetchNews);
+fetchNews();
+// document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
 function fetchNews() {
@@ -112,6 +113,7 @@ function likePost () {
     document.querySelectorAll('.react').forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
+            
             fetch(`/like/${postId}`, {
                 method: 'post',
                 headers: {"Content-Type": "application/json"},
@@ -124,8 +126,14 @@ function likePost () {
                     
                 })
             .then(res => {
-                checkLikePost();
-            })     
+                if(ele.getAttribute('data-like') == 0) {
+                    ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                    ele.setAttribute('data-like', 1);
+                } else {
+                    ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                    ele.setAttribute('data-like', 0);
+                    }
+                })     
             .catch(err => console.log(err))
         })
     })
