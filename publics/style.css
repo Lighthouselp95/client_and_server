@@ -302,10 +302,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 10px 8px 22px;
+    padding: 20px 10px 8px 12px;
 }
 .react {
     cursor: pointer;
+    padding: 3px 5px;
+    font-size: 17px;
 }
 .fa-ellipsis-vertical {
     display: inline-block;

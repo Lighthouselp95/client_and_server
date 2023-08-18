@@ -140,7 +140,10 @@ function likePost () {
                     ele.setAttribute('data-like', 0);
                     }
                 })     
-            .catch(err => console.log(err))
+            .catch(err => {console.log(err);
+                ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            }
+                )
         })
     })
 }
@@ -334,6 +337,7 @@ function handleLogoutButton() {
     checkoutLoginStatus();
     checkPostCondition();
     checkLikePost();
+    
 }
 
 
