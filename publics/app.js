@@ -112,7 +112,7 @@ function checkLikePost() {
                 moreButtonsLike.parentElement.querySelector('.react').innerHTML = '<i class="fa-solid fa-heart"></i>';
             }
         })
-        
+
         .catch(err => {console.log(err);
             for(let moreButton of moreButtons) {
                 moreButton.parentElement.querySelector('.react').setAttribute('data-like', 0);
@@ -126,7 +126,11 @@ function addLikeEvent (posts) {
     posts.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
-            
+            if(ele.getAttribute('data-like') == 0) {
+            ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        } else {
+            ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            };
             fetch(`/like/${postId}`, {
                 method: 'post',
                 headers: {"Content-Type": "application/json"},

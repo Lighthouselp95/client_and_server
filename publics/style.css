@@ -11,6 +11,8 @@ body {
     font-size: .9375rem;
     font-weight: 400;
     scroll-behavior: smooth;
+    overflow-y: scroll;
+
 }
 .header {
     position: fixed;
@@ -37,6 +39,7 @@ body {
 .logo img {
     border-radius: 50%;
     height: 100%;  
+    width: auto;
     background-color: white;
 }
 .about-header {
@@ -64,6 +67,7 @@ body {
         
 }
 .auth {
+    width: 220px;
     display: flex;
     flex-direction: row;
     justify-content: center;
