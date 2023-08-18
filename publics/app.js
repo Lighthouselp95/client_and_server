@@ -18,7 +18,10 @@ function checkoutLoginStatus() {
         }
     }
 };
-checkoutLoginStatus();
+
+// checkoutLoginStatus();
+
+document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
 // fetchNews();
 document.addEventListener("DOMContentLoaded", fetchNews);
 
@@ -89,9 +92,11 @@ function checkLikePost() {
             )
             
             })
+
         .then(res => res.json())
+
         .then((data) => { userLikes = data;
-            for(let moreButton of moreButtons) {
+            for (let moreButton of moreButtons) {
                 moreButton.parentElement.querySelector('.react').setAttribute('data-like', 0);
                 moreButton.parentElement.querySelector('.react').innerHTML = '<i class="fa-regular fa-heart"></i>';
             }
@@ -100,13 +105,14 @@ function checkLikePost() {
             moreButtons = [...moreButtons];
             console.log(moreButtons);
             const moreButtonsLikes = moreButtons.filter((moreButton) => {
-            return userLikes.includes(moreButton.getAttribute('data-id'));
+                return userLikes.includes(moreButton.getAttribute('data-id'));
                     }) 
-            for(let moreButtonsLike of moreButtonsLikes) {
+            for (let moreButtonsLike of moreButtonsLikes) {
                 moreButtonsLike.parentElement.querySelector('.react').setAttribute('data-like', 1);
                 moreButtonsLike.parentElement.querySelector('.react').innerHTML = '<i class="fa-solid fa-heart"></i>';
             }
         })
+        
         .catch(err => {console.log(err);
             for(let moreButton of moreButtons) {
                 moreButton.parentElement.querySelector('.react').setAttribute('data-like', 0);
@@ -114,8 +120,6 @@ function checkLikePost() {
             }
         }
             )
-    
-
 }
 // delete post
 function addLikeEvent (posts) {
@@ -132,7 +136,6 @@ function addLikeEvent (posts) {
                         userId: localStorage.getItem('userId')
                     }
                     )
-                    
                 })
             .then(res => {
                 if(!res.ok) {
