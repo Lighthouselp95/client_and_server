@@ -10,8 +10,7 @@ body {
     font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
     font-size: .9375rem;
     font-weight: 400;
-    animation: append-animate 0.5s ease-in-out;
-    overflow: scroll;
+    scroll-behavior: smooth;
 }
 .header {
     position: fixed;
@@ -203,9 +202,9 @@ body {
 }
 
 .main-column {
-    width: 510px; /* 510px */
+    width: 505px; /* 510px */
      /* box-shadow: 0px 6px 8px 0px rgba(0,0,0,0.3); */
-    margin: 10px auto 0px 28%;
+    margin: 10px auto 0px 26%;
     padding: 15px;
     overflow: auto;
 }
@@ -235,13 +234,12 @@ body {
     width: 100%;
     box-shadow: 0px 1px 1px -2px rgb(0 0 0 / 80%);
     border: 0.3px solid rgba(114, 114, 114, 0.14);
-    border-radius: 6px;
+    border-radius: 0px;
     padding: 3px;
     margin-bottom: 16px;
     background-color: #fff;
     text-align: start;
     animation: append-animate 0.5s ease-in-out;
-    transition: all 1s ease-in-out;
 }
 .post>div {
     background-color: #fff;
@@ -253,7 +251,7 @@ body {
     padding: 9px 14px 4px;
     margin-left: 3px;
     margin-right: 3px;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 0px;
     opacity: 0.85;
 }
 .posts-person {
@@ -262,7 +260,7 @@ body {
     padding: 15px 15px 3px;
     margin-left: 3px;
     margin-right: 3px;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 0px;
     opacity: 0.9;
 }
 .post-snippet {
@@ -288,12 +286,12 @@ body {
     margin-bottom: 0px;
     margin-left: 3px;
     margin-right: 3px;
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 0px;
     white-space: pre-wrap;
 }
 .more-button {
     /* padding-right: 12px; */
-    padding: 0px 0px 5px 12px;
+    padding: 5px 8px;
     text-align: right;
     cursor: pointer;
     
@@ -310,9 +308,6 @@ body {
     font-size: 17px;
 }
 .fa-ellipsis-vertical {
-    display: inline-block;
-    height: 10px;
-    opacity: 60%;
 }
 #create-a-post {
     /* border-radius: 0px;

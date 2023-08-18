@@ -32,6 +32,8 @@ function fetchNews() {
             posts = data;
             console.log(posts);
             addPosts(posts);
+            checkPostCondition();
+            checkLikePost();
         })
         .catch(err => console.log(err));
     };
@@ -60,16 +62,17 @@ function addPosts(posts) {
         </div>
         <div class="post-body">${post.body}</div>
         <div class = "react-band">
-        <div class = "react"><i class="fa-regular fa-heart"></i></div>
-        <div class="more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
+        <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
         
         </div>`;
+        
+        addDeleteEvent([post_dom.querySelector('.more-button')]);
+        addLikeEvent([post_dom.querySelector('.react')]);
         main_column.insertBefore(post_dom, main_column.firstChild);
         
      }; //replace(/\n/g, "\\n")     
-        checkPostCondition();
-        checkLikePost();
-        likePost();
+        
 };
 //check like post
 function checkLikePost() {
@@ -115,8 +118,8 @@ function checkLikePost() {
 
 }
 // delete post
-function likePost () {
-    document.querySelectorAll('.react').forEach((ele) => {
+function addLikeEvent (posts) {
+    posts.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
             
@@ -164,6 +167,12 @@ function likePost () {
         ele.style.visibility = 'hidden';
     } else {
         ele.style.visibility = 'visible';
+    }})
+}
+
+function addDeleteEvent(posts) {
+        
+        posts.forEach((ele) => {
         ele.addEventListener('click', () => {
             const postId = ele.getAttribute("data-id");
             fetch(`/blogs/${postId}`, {
@@ -192,9 +201,9 @@ function likePost () {
             })
             .catch(err => console.log(err));    
             })
-        }
-    })
- }
+        })
+    }
+   
 // document.getElementsByClassName('more-button').forEach((ele, index) => {
 //     ele.addEventListener
 // })
@@ -236,6 +245,7 @@ function handlePostSubmit(e) {
                 document.getElementsByClassName('create-post')[0].classList.toggle('display');
                 document.querySelector('body').setAttribute("style", "overflow: auto");
                 addPosts([res]);
+                
             })
             .catch( (err) => {
                 console.log('err: ', err);
@@ -280,8 +290,6 @@ function handleSignupSubmit(e) {
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
         checkoutLoginStatus();
-        checkPostCondition();
-        checkLikePost();
 
     })
     .catch( (err) => {
