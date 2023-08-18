@@ -7,6 +7,7 @@ module.exports = async (req, res, next) => {
 
         const blog = new Blog({
             personID: req.userId,
+            name: req.userName,
             groupID: 9876553431,
             title: req.body.title,
             snippet: 'Fb',

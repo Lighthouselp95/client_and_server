@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
                         res.status(409).send("wrong password");
                     } 
                     else {
-                    console.log('sucess! ', oldUser);
+                    // console.log('sucess! ', oldUser);
                     
                     const token = jwt.sign(
                         {userId: oldUser._id, password: password, name: name},

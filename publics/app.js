@@ -19,8 +19,8 @@ function checkoutLoginStatus() {
     }
 };
 checkoutLoginStatus();
-fetchNews();
-// document.addEventListener("DOMContentLoaded", fetchNews);
+// fetchNews();
+document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
 function fetchNews() {
@@ -104,7 +104,13 @@ function checkLikePost() {
                 moreButtonsLike.parentElement.querySelector('.react').innerHTML = '<i class="fa-solid fa-heart"></i>';
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => {console.log(err);
+            for(let moreButton of moreButtons) {
+                moreButton.parentElement.querySelector('.react').setAttribute('data-like', 0);
+                moreButton.parentElement.querySelector('.react').innerHTML = '<i class="fa-regular fa-heart"></i>';
+            }
+        }
+            )
     
 
 }
@@ -266,6 +272,9 @@ function handleSignupSubmit(e) {
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
         checkoutLoginStatus();
+        checkPostCondition();
+        checkLikePost();
+
     })
     .catch( (err) => {
         console.log(err); 
@@ -307,6 +316,7 @@ function handleLoginSubmit(e) {
     .then(() => {
         checkoutLoginStatus();
         checkPostCondition();
+        checkLikePost();
     })
     .catch( (err) => {
         console.log(err);
@@ -323,6 +333,7 @@ function handleLogoutButton() {
     localStorage.removeItem('userId');
     checkoutLoginStatus();
     checkPostCondition();
+    checkLikePost();
 }
 
 

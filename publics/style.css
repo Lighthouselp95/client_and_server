@@ -302,7 +302,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px 10px 0px 15px;
+    padding: 20px 10px 8px 22px;
 }
 .react {
     cursor: pointer;
