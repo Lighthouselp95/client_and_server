@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports.verify = async (req, res, next) => {
     try {
         const {id, password, email, name} = req.body;
-
+        console.log(req.body);
         if(!(id && password && email)) {
             console.log("All input is required")
             res.status(400).send("All input is required");
