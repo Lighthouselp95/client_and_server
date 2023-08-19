@@ -302,7 +302,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 10px 8px 9px;
+    padding: 20px 10px 0px 9px;
 }
 .react {
     cursor: pointer;
@@ -310,6 +310,12 @@ body {
     font-size: 17px;
 }
 .fa-ellipsis-vertical {
+}
+.number-like {
+    padding-left: 15px;
+    padding-bottom: 13px;
+    font-size: 12px;
+    font-weight: 550;
 }
 #create-a-post {
     /* border-radius: 0px;

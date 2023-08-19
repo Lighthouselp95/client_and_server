@@ -67,8 +67,9 @@ function addPosts(posts) {
         <div class = "react-band">
         <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
         <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-        
-        </div>`;
+        </div>
+        <div class="number-like">${post.like.length} person likes</div>
+        `;
         
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
@@ -122,8 +123,8 @@ function checkLikePost() {
             )
 }
 // delete post
-function addLikeEvent (posts) {
-    posts.forEach((ele) => {
+function addLikeEvent (likeButtons) {
+    likeButtons.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
             if(ele.getAttribute('data-like') == 0) {
@@ -141,20 +142,28 @@ function addLikeEvent (posts) {
                     }
                     )
                 })
-            .then(res => {
-                if(!res.ok) {
-                    ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
-                } 
-                else {
+                .then(res => {
+                    if(!res.ok) {
+                        ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                    } 
+                    return res.json();
+                })
+                .then(data => {
+                    ele.parentElement.parentElement.querySelector('.number-like').innerHTML = `${data[2].like.length} person likes`
                     if(ele.getAttribute('data-like') == 0) {
                         ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                        
+                        // const a = ele.parentElement.parentElement.querySelector('.number-like');
+                        // a.innerHTML = parseInt(a.innerHTML,10) + 1 + 'person likes';
                         ele.setAttribute('data-like', 1);
                     } else {
                         ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
                         ele.setAttribute('data-like', 0);
+                        // const a = ele.parentElement.parentElement.querySelector('.number-like');
+                        // a.innerHTML = parseInt(a.innerHTML,10) - 1 + 'person likes';
                         }
                 }
-            })     
+            )     
             .catch(err => {console.log(err);
                 
             }
