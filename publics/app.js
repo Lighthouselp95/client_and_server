@@ -50,8 +50,10 @@ function addPosts(posts) {
     for (let post of posts) {
         const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
-        post_dom.classList.add('post');
-        post_dom.innerHTML = `
+        post_dom.classList.add('post-wrapper');
+        post_dom.innerHTML = 
+        `
+        <div class="post">
         <div class="posts-person">
         ${post.title}
         </div>
@@ -69,8 +71,13 @@ function addPosts(posts) {
         <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
         </div>
         <div class="number-like">${post.like.length} person likes</div>
+        </div>
         `;
-        
+        const comment = document.createElement('div');
+        comment.classList.add('comment');
+        comment.innerHTML = '<button class="button-8">Comment</button>';
+        post_dom.appendChild(comment);
+
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
         main_column.insertBefore(post_dom, main_column.firstChild);
