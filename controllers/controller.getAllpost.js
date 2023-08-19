@@ -4,7 +4,7 @@ const {Blog, User} = require('../models/Schema');
 
 module.exports = async (req, res, next) => {
     try {
-        let blogs = await Blog.find().exec();
+        let blogs = await Blog.find().sort({createdAt: 1}).exec();
         // blogs = JSON.stringify(blogs);
         // blogs = JSON.parse(blogs);
         // console.log(blogs);

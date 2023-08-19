@@ -29,7 +29,7 @@ app.post('/add-blog', authen, controllerAddpost);
 app.post('/like/:postid', authen, controllerLikePost);
 app.post('/userlike', authen, controllerUserLike)
 app.get('/all-users', async (req, res) => {
-    let users = await User.find()
+    let users = await User.find().sort({createdAt: 1});
     res.send(users);
 })
 // get all the blogs from db
