@@ -279,17 +279,30 @@ body {
 }
 .post-body {    
     /* line-height: 20px; */
+    position: relative;
     font-size: 15px;
     line-height: 22px;
     word-spacing: -1px;
     font-weight: 400;
     text-align: start;
-    padding: 4px 14px 30px;
+    padding: 23px 14px 30px;
     margin-bottom: 0px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 0px;
     white-space: pre-wrap;
+}
+.post-body::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 433.5px;
+    margin: auto;
+    padding: auto;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 0px;
+    border-bottom: 1px solid #b8bdc53a; 
 }
 .more-button {
     /* padding-right: 12px; */
@@ -303,20 +316,20 @@ body {
     position: relative;
     flex-direction: row;
     justify-content: space-between;
-    padding: 16px 8px 5px 19px;
+    padding: 18px 8px 1px 19px;
 
 }
 .react-band::before {
     content: "";
     position: absolute;
     display: block;
-    width: 92.5%;
+    width: 433.47px;
     margin: auto;
     padding: auto;
     transform: translateX(-50%);
     left: 50%;
-    top: 5px;
-    border-bottom: 1px solid #b8bdc588; 
+    top: 0px;
+    border-bottom: 1px solid #b8bdc53a; 
 }
 .react {
     cursor: pointer;

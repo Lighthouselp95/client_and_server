@@ -178,12 +178,13 @@ function addLikeEvent (likeButtons) {
         const moreButton = document.querySelectorAll('.more-button');    
         moreButton.forEach((ele) => {
         console.log(ele.getAttribute('data-user-id'));
-    if (ele.getAttribute('data-user-id') !== localStorage.getItem('userId')) {
-        console.log("1");
-        ele.style.visibility = 'hidden';
-    } else {
-        ele.style.visibility = 'visible';
-    }})
+        if (ele.getAttribute('data-user-id') !== localStorage.getItem('userId')) {
+            console.log("1");
+            ele.style.visibility = 'hidden';
+        } else {
+            ele.style.visibility = 'visible';
+        }
+    })
 }
 
 function addDeleteEvent(posts) {
