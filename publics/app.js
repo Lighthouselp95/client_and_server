@@ -52,31 +52,67 @@ function addPosts(posts) {
         const post_dom = document.createElement('div');
         post_dom.classList.add('post-wrapper');
         post_dom.innerHTML = 
-        `
-        <div class="post">
-        <div class="posts-person">
-        ${post.title}
-        </div>
-        <div class="post-head">${post.name}
-        </div>
-        
-        <div class="post-snippet">
-        <i>
-        ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
-        </i>
-        </div>
-        <div class="post-body">${post.body}</div>
-        <div class = "react-band">
-        <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
-        <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-        </div>
-        <div class="number-like">${post.like.length} person likes</div>
-        </div>
-        `;
-        const comment = document.createElement('div');
-        comment.classList.add('comment');
-        comment.innerHTML = '<button class="button-8">Comment</button>';
-        post_dom.appendChild(comment);
+            `
+            <div class="post">
+            <div class="posts-person">
+            ${post.title}
+            </div>
+            <div class="post-head">${post.name}
+            </div>
+            
+            <div class="post-snippet">
+            <i>
+            ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
+            </i>
+            </div>
+            <div class="post-body">${post.body}</div>
+            <div class = "react-band">
+            <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
+            <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+            </div>
+            <div class="number-like">${post.like.length} person likes</div>
+            </div>
+            <div class="comment-button">
+                <button class="button-8">Comment</button>
+            </div>
+           
+            
+            `;
+            // <div class="comment-content">
+            // <div class="write-comment">
+            //     <input placeholder="Write comment: ">
+
+            // </div>
+            // <div class="comment-body">
+            //     <p>${post.comments.personName}</p>
+            //     <div class="comment-line">${post.comments.comment}</div>
+            // </div>
+            // </div>
+        const cmt = document.createElement('div');
+        cmt.innerHTML = `<div class="comment-content">
+            <div >
+                <form class="write-comment">
+                    <textarea placeholder="Write comment: " id="write-comment"></textarea>
+                </form>
+            </div>
+                <div class="comment-body">
+                </div>
+            </div>`;
+            
+            cmt.querySelector('#write-comment').onchange = function() {
+                this.size = this.value.length;
+            }
+            post_dom.querySelector('.comment-button').onclick = () => {
+                cmt.querySelector('.comment-content').classList.toggle('display')
+            }
+        // cmt.appendChild(document.createElement('div'));
+        // cmt.classList.add('comment-content');
+        post.comments.forEach((e) => 
+        cmt.querySelector('.comment-body').innerHTML += `
+        <p>${e.comments.personName?e.comments.personName:""}</p>
+        <div class="comment-line">${e.comments.comment}</div>
+        `);
+        post_dom.appendChild(cmt);
 
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
@@ -214,10 +250,10 @@ function addDeleteEvent(posts) {
             .then(res =>{
                 if(res.ok) {
                 
-                    ele.parentElement.parentElement.classList.toggle("smallerize");
+                    document.querySelector('.post-wrapper').classList.toggle("smallerize");
                     
                     setTimeout(() => {
-                        ele.parentElement.parentElement.remove();
+                        document.querySelector('.post-wrapper').remove();
                         // fetchNews()
                     }, 800);
                     
@@ -239,11 +275,13 @@ document.getElementById('logout-button').addEventListener("click", handleLogoutB
 ;
 
 function handlePostSubmit(e) {
+        document.getElementsByClassName('create-post')[0].classList.toggle('display');
+        document.querySelector('body').setAttribute("style", "overflow: auto");
         console.log('into former')
         e.preventDefault();
         let title = document.getElementById('title').value;
         // let tag = document.getElementById('tag').value;
-        let body = document.getElementById('body').value;
+        let body = document.getElementById('create-post-body').value;
     
         fetch('/add-blog', {
             method: 'POST',
@@ -266,8 +304,7 @@ function handlePostSubmit(e) {
             })
             .then ( res => {
                 console.log ("res: ", res); 
-                document.getElementsByClassName('create-post')[0].classList.toggle('display');
-                document.querySelector('body').setAttribute("style", "overflow: auto");
+                
                 addPosts([res]);
                 
             })

@@ -35,10 +35,10 @@ const blogSchema = new Schema ({
         userId: String,
         name: String
     }],
-    comment: {
-        type: String,
-        required: false
-    }
+    comments: [{
+        uerId: String,
+        name: String
+    }]
     },{timestamps: true});
 
 const userSchema = new Schema ({
