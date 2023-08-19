@@ -149,7 +149,7 @@ function addLikeEvent (likeButtons) {
                     return res.json();
                 })
                 .then(data => {
-                    ele.parentElement.parentElement.querySelector('.number-like').innerHTML = `${data[2].like.length} person likes`
+                    // ele.parentElement.parentElement.querySelector('.number-like').innerHTML = `${data[2].like.length} person likes`
                     if(ele.getAttribute('data-like') == 0) {
                         ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
                         

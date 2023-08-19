@@ -284,7 +284,7 @@ body {
     word-spacing: -1px;
     font-weight: 400;
     text-align: start;
-    padding: 4px 14px 17px;
+    padding: 4px 14px 30px;
     margin-bottom: 0px;
     margin-left: 3px;
     margin-right: 3px;
@@ -293,28 +293,46 @@ body {
 }
 .more-button {
     /* padding-right: 12px; */
-    padding: 5px 8px;
+    padding: 0px 8px;
     text-align: right;
     cursor: pointer;
     
 }
 .react-band {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 10px 0px 9px;
+    padding: 16px 8px 5px 19px;
+
+}
+.react-band::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 92.5%;
+    margin: auto;
+    padding: auto;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 5px;
+    border-bottom: 1px solid #b8bdc588; 
 }
 .react {
     cursor: pointer;
-    padding: 5px 8px;
+    padding: 0px 1px;
     font-size: 17px;
 }
+i {
+    /* vertical-align: middle; */
+}
 .fa-ellipsis-vertical {
+    padding-top: 2px;
 }
 .number-like {
-    padding-left: 15px;
-    padding-bottom: 13px;
-    font-size: 12px;
+    padding-left: 17px;
+    padding-bottom: 11px;
+    font-size: 10px;
     font-weight: 550;
 }
 #create-a-post {
