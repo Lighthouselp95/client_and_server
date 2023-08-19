@@ -343,6 +343,9 @@ function handleLoginSubmit(e) {
     .then( res => res.json() )
     .then ( res => {
         console.log (res); 
+        var cre = new PasswordCredential(e.target);
+        navigator.credentials.store(cre);
+        console.log(cre);
         localStorage.setItem('acess_token', `${res[1]}`);
         localStorage.setItem('userId', `${res[2]}`);
         localStorage.setItem('name', `${res[3]}`);
