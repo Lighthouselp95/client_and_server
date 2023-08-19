@@ -351,12 +351,13 @@ function handleLoginSubmit(e) {
         localStorage.setItem('name', `${res[3]}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
-        
+        cre = navigator.credentials.get({password: true});
     })
     .then(() => {
         checkoutLoginStatus();
         checkPostCondition();
         checkLikePost();
+        console.log(cre);
     })
     .catch( (err) => {
         console.log(err);
