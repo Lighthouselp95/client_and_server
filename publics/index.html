@@ -42,7 +42,7 @@
                 <label for="title">Tiêu đề: </label>
                 <input type="text" name="title" id="title">
                 <label for="body">Nội dung: </label>
-                <textarea type="text" name="body" id="body"></textarea> 
+                <textarea type="text" name="body" id="create-post-body"></textarea> 
                 <input type="submit" value="Gửi" id="submit" class="submit">
                 <p class="post-noti hidden">Vui lòng đăng nhập!</p>
             </form>
@@ -53,11 +53,11 @@
         <div class="create-post signup-form">
             <form id="signup-form">
                 <label for="id">Tên tài khoản: </label>
-                <input type="text" name="id" autocomplete="on">
+                <input type="text" name="id" autocomplete="username">
                 <label for="password">Mật khẩu: </label>
-                <input type="password" name="password" autocomplete="on">
-                <label for="email" autocomplete="on">Email: </label>
-                <input type="text" name="email">
+                <input type="password" name="password" autocomplete="password">
+                <label for="email" >Email: </label>
+                <input type="text" name="email" autocomplete="email">
                 <label for="name" autocomplete="on">Tên hiển thị: </label>
                 <input type="text" name="name">
                 <input type="submit" value="Đăng ký" class="submit" id="signup-button">
@@ -70,9 +70,9 @@
         <div class="create-post login-form">
             <form id="login-form">
                 <label for="id">Tên tài khoản: </label>
-                <input type="text" name="id"  autocomplete="on">
+                <input type="text" name="id"   autocomplete="username">
                 <label for="password">Mật khẩu: </label>
-                <input type="password" name="password" autocomplete="on">
+                <input type="password" name="password"  autocomplete="password">
                 <input type="submit" value="Đăng nhập" class="submit" id="login-button">
                 <p class="post-noti hidden">Sai mật khẩu!</p>
             </form>

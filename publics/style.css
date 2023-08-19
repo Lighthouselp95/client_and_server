@@ -75,7 +75,7 @@ body {
 }
 
 .username {
-    opacity: 0.5;
+    opacity: 0.9;
     font-size: 14.3px;
     font-weight: 600;
     padding: 10px 7px;
@@ -93,7 +93,7 @@ body {
     margin-right: 7px;
     padding: 0px 3px;
     background-color: #fff;
-    color: #b8bdc5;
+    color: #91959c;
     border: none;
     cursor: pointer;
 }
@@ -171,6 +171,9 @@ CSS */
     padding: 50px 0px;
 
 }
+form input, form textarea, input {
+    outline: none;
+}
 .create-post input, #create-a-post {
     font-family: Georgia, 'Times New Roman', Times, serif;
     border: 0.5px solid rgba(0 0 0 /40%);
@@ -194,7 +197,7 @@ CSS */
     color: rgba(0 0 0 /60%);
 
 }
-.create-post #body {
+.create-post #create-post-body {
     resize: vertical;
     font-family: Georgia, 'Times New Roman', Times, serif;
     border: 0.5px solid rgba(0 0 0 /40%);
@@ -282,7 +285,7 @@ CSS */
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 0px;
-    opacity: 0.85;
+    opacity: 0.95;
 }
 .posts-person {
     font-weight: 620;
@@ -302,7 +305,7 @@ CSS */
     font-style: oblique;
     font-size: 12px;
     font-weight: 490;
-    opacity: 0.22;
+    opacity: 0.42;
 
 }
 .post-body {    
@@ -330,7 +333,8 @@ CSS */
     transform: translateX(-50%);
     left: 50%;
     top: 0px;
-    border-bottom: 1px solid #b8bdc53a; 
+    border-bottom: 1px solid #b8bdc56a; 
+    z-index: 13;
 }
 .more-button {
     /* padding-right: 12px; */
@@ -453,7 +457,7 @@ i {
     border-radius: 0px;
     font-size: 16px;
     padding-bottom: 19px;
-    opacity: 0.8;
+    opacity: 0.9;
    }
    .post-snippet {
     text-align: right;
@@ -465,7 +469,7 @@ i {
     padding-right: 11px;
     border-bottom: 2px;
     border-radius: 0px;
-    opacity: 0.85;
+    opacity: 0.95;
     font-size: 15px;
    }
    .posts-person {
