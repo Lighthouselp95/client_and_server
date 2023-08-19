@@ -53,13 +53,13 @@
         <div class="create-post signup-form">
             <form id="signup-form">
                 <label for="id">Tên tài khoản: </label>
-                <input type="text" name="id" autocomplete="username">
+                <input type="text" name="id" autocomplete="username" required>
                 <label for="password">Mật khẩu: </label>
-                <input type="password" name="password" autocomplete="password">
+                <input type="password" name="password" autocomplete="new-password" required>
                 <label for="email" >Email: </label>
-                <input type="text" name="email" autocomplete="email">
-                <label for="name" autocomplete="on">Tên hiển thị: </label>
-                <input type="text" name="name">
+                <input type="text" name="email" autocomplete="email" required>
+                <label for="name">Tên hiển thị: </label>
+                <input type="text" name="name"  autocomplete="name" required>
                 <input type="submit" value="Đăng ký" class="submit" id="signup-button">
                 <p class="post-noti hidden">Tài khoản đã được đăng ký!</p>
             </form>
@@ -72,7 +72,7 @@
                 <label for="id">Tên tài khoản: </label>
                 <input type="text" name="id"   autocomplete="username">
                 <label for="password">Mật khẩu: </label>
-                <input type="password" name="password"  autocomplete="password">
+                <input type="password" name="password"  autocomplete="current-password">
                 <input type="submit" value="Đăng nhập" class="submit" id="login-button">
                 <p class="post-noti hidden">Sai mật khẩu!</p>
             </form>
