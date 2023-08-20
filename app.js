@@ -10,6 +10,7 @@ const controllerAddpost = require('./controllers/controller.Addpost');
 const controllerLikePost = require('./controllers/controller.likePost');
 const controllerGetallpost =  require('./controllers/controller.getAllpost');
 const controllerUserLike = require('./controllers/controller.userLike');
+const controllerComment = require('./controllers/controller.comment')
 const verifySignup = require('./middlewares/verifySignup');
 const verifyLogin = require('./middlewares/verifyLogin');
 const app = express();
@@ -28,6 +29,7 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 app.post('/add-blog', authen, controllerAddpost);
 app.post('/like/:postid', authen, controllerLikePost);
 app.post('/userlike', authen, controllerUserLike)
+app.post('/comment/:postId', authen, controllerComment)
 app.get('/all-users', async (req, res) => {
     let users = await User.find().sort({createdAt: 1});
     res.send(users);

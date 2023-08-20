@@ -37,6 +37,7 @@ const blogSchema = new Schema ({
     }],
     comments: [{
         uerId: String,
+        comment: String,
         name: String
     }]
     },{timestamps: true});

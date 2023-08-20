@@ -72,55 +72,89 @@ function addPosts(posts) {
             </div>
             <div class="number-like">${post.like.length} person likes</div>
             </div>
+
             <div class="comment-button">
                 <button class="button-8">Comment</button>
             </div>
            
-            
-            `;
-            // <div class="comment-content">
-            // <div class="write-comment">
-            //     <input placeholder="Write comment: ">
-
-            // </div>
-            // <div class="comment-body">
-            //     <p>${post.comments.personName}</p>
-            //     <div class="comment-line">${post.comments.comment}</div>
-            // </div>
-            // </div>
-        const cmt = document.createElement('div');
-        cmt.innerHTML = `<div class="comment-content">
-            <div >
-                <form class="write-comment">
-                    <textarea placeholder="Write comment: " id="write-comment"></textarea>
-                </form>
-            </div>
-                <div class="comment-body">
+            <div class="comment-content">
+                <div >
+                    <form class="write-comment">
+                        <div class="send-wrapper" data-comments="${post.comments.length}" data-id="${post._id}">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
+                        <input placeholder="Write comment: " id="write-comment"></input>
+                    </form>
                 </div>
-            </div>`;
+                    <div class="comment-body">
+                    </div>
+                </div>
             
-            cmt.querySelector('#write-comment').onchange = function() {
-                this.size = this.value.length;
+            `;           
+        
+        const cmt = post_dom.querySelector('.comment-body');
+        post_dom.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            post_dom.querySelector('.send-wrapper').click()
+        })
+        addComment(post.comments, cmt);
+
+
+        post_dom.querySelector('.comment-button').onclick = () => {
+            post_dom.querySelector('.comment-content').classList.toggle('display');
             }
-            post_dom.querySelector('.comment-button').onclick = () => {
-                cmt.querySelector('.comment-content').classList.toggle('display')
-            }
-        // cmt.appendChild(document.createElement('div'));
-        // cmt.classList.add('comment-content');
-        post.comments.forEach((e) => 
-        cmt.querySelector('.comment-body').innerHTML += `
-        <p>${e.comments.personName?e.comments.personName:""}</p>
-        <div class="comment-line">${e.comments.comment}</div>
-        `);
-        post_dom.appendChild(cmt);
 
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
+        addCommentEvent([post_dom.querySelector('.send-wrapper')])
         main_column.insertBefore(post_dom, main_column.firstChild);
         
      }; //replace(/\n/g, "\\n")     
         
 };
+//
+function addCommentEvent(sendButtons) {
+    sendButtons.forEach((ele) => {
+        ele.addEventListener('click', () => {
+        const id = ele.getAttribute('data-id');
+        const cmts = ele.getAttribute('data-comments');
+        const value = ele.parentElement.querySelector('#write-comment').value;
+                fetch(`/comment/${id}`, {
+                    method: 'post',
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(
+                        {
+                            token: localStorage.getItem('acess_token'),
+                            userId: localStorage.getItem('userId'),
+                            comment: value
+                        }
+                        )
+                    })
+                    .then(res => res.json())
+                    .then(data => {console.log(data);
+                        addComment([data]);
+                    })
+                    .catch(err => console.log(err))
+                
+    })
+}
+    )}
+//
+function addComment(comments, commentBodyDom = document.querySelector('.comment-body')) {
+        comments.forEach((e) => {
+        const div = document.createElement('div');
+        div.classList.add('comment-wrapper');
+        div.innerHTML = `
+        <p class="comment-user">${e.name?e.name:""}</p>
+        <div class="comment-line"><p>${e.comment}</p></div>
+        `;
+        
+        commentBodyDom.insertBefore( div, commentBodyDom.firstChild);
+            }
+        );
+        ;
+    return commentBodyDom;
+}
 //check like post
 function checkLikePost() {
     let moreButtons = document.querySelectorAll('.more-button');    
