@@ -36,7 +36,7 @@ const blogSchema = new Schema ({
         name: String
     }],
     comments: [{
-        uerId: String,
+        userId: String,
         comment: String,
         name: String
     }]
@@ -60,6 +60,12 @@ const userSchema = new Schema ({
         type: String,
         required: true
     },
+    comments: [{
+        postId: String,
+        comment: String,
+        name: String,
+        
+    }],
     like: [{postId: String}]
     },{timestamps: true});
     

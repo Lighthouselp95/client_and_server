@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
 function fetchNews() {
+    document.getElementsByClassName('main-column')[1].innerHTML= "";
     let posts = [];
     console.log('into fetchnew')
     fetch('/all-blogs')
@@ -145,11 +146,35 @@ function addCommentEvent(sendButtons) {
 function addComment(comments, commentBodyDom) {
         comments.forEach((e) => {
         const div = document.createElement('div');
+        div.setAttribute('data-cm-id', e._id);
+        
+        div.setAttribute('data-user-id', e.userId);
         div.classList.add('comment-wrapper');
         div.innerHTML = `
         <p class="comment-user">${e.name?e.name:""}</p>
-        <div class="comment-line"><p>${e.comment}</p></div>
+        <div class="comment-line"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
+        localStorage.getItem('userId') == e.userId? div.querySelector('.delete-comment').style.visibility = 'visible' : 
+        div.querySelector('.delete-comment').style.visibility = 'hidden';
+        
+        div.querySelector('.delete-comment').addEventListener('click', () => {
+            fetch(`comment/${e._id}`,{
+                method: 'delete',
+                headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(
+                        {
+                            token: localStorage.getItem('acess_token'),
+                            userId: localStorage.getItem('userId'),
+                            cmId: e.userId
+                        }
+                        )
+                    })
+                    .then(res => {res.json();
+                        document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove();
+                    })
+                    .catch(err => console.log(err))
+          
+        });
         
         commentBodyDom.insertBefore( div, commentBodyDom.firstChild);
             }
@@ -434,9 +459,10 @@ function handleLoginSubmit(e) {
     })
     .then(() => {
         checkoutLoginStatus();
-        checkPostCondition();
-        checkLikePost();
-        console.log(cre);
+        // checkPostCondition();
+        // checkLikePost();
+        // console.log(cre)
+        fetchNews();
     })
     .catch( (err) => {
         console.log(err);
@@ -452,9 +478,9 @@ function handleLogoutButton() {
     localStorage.removeItem('acess_token');
     localStorage.removeItem('userId');
     checkoutLoginStatus();
-    checkPostCondition();
-    checkLikePost();
-    
+    // checkPostCondition();
+    // checkLikePost();
+    fetchNews();
 }
 
 
