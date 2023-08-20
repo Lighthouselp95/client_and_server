@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
                         {returnOriginal: false});
             const blog = await Blog.findOneAndUpdate({"comments": {$elemMatch:{_id: req.params.cmtId}}}, {$pull: {"comments": {"_id": req.params.cmtId}}},
             {returnOriginal: false});
-            console.log(user, blog);
+            // console.log(user, blog);
             return res.status(200).send('comment deleted');
         }
         catch(err) {
