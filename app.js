@@ -40,13 +40,18 @@ app.delete('/blogs/:id', authen, controllerDeletePost);
 // get a single blog
 
 
-app.get('/single-blog/:id', (req,res) => {
+app.get('/blog/:id', (req,res) => {
     console.log(req.params.id);
     Blog.findById(req.params.id)
         .then((result) => res.send(result))
         .catch((err) => console.log(err));
 })
-
+app.get('/user/:id', (req,res) => {
+    console.log(req.params.id);
+    User.findById(req.params.id)
+        .then((result) => res.send(result))
+        .catch((err) => console.log(err));
+})
 //Login
 app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);

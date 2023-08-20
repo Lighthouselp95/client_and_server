@@ -50,7 +50,9 @@ function addPosts(posts) {
     for (let post of posts) {
         const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
+
         post_dom.classList.add('post-wrapper');
+        post_dom.setAttribute('data-id', post._id)
         post_dom.innerHTML = 
             `
             <div class="post">
@@ -86,9 +88,9 @@ function addPosts(posts) {
                         <input placeholder="Write comment: " id="write-comment" type="text" required></input>
                     </form>
                 </div>
-                    <div class="comment-body">
-                    </div>
+                <div class="comment-body" data-id="${post._id}">
                 </div>
+            </div>
             
             `;           
         
@@ -132,7 +134,7 @@ function addCommentEvent(sendButtons) {
                     })
                     .then(res => res.json())
                     .then(data => {console.log(data);
-                        addComment([data]);
+                        addComment([data], document.querySelector(`.comment-body[data-id="${id}"]`));
                     })
                     .catch(err => console.log(err))
                 
@@ -140,7 +142,7 @@ function addCommentEvent(sendButtons) {
 }
     )}
 //
-function addComment(comments, commentBodyDom = document.querySelector('.comment-body')) {
+function addComment(comments, commentBodyDom) {
         comments.forEach((e) => {
         const div = document.createElement('div');
         div.classList.add('comment-wrapper');
@@ -284,10 +286,10 @@ function addDeleteEvent(posts) {
             .then(res =>{
                 if(res.ok) {
                 
-                    document.querySelector('.post-wrapper').classList.toggle("smallerize");
+                    document.querySelector(`[data-id="${postId}"]`).classList.toggle("smallerize");
                     
                     setTimeout(() => {
-                        document.querySelector('.post-wrapper').remove();
+                        document.querySelector(`[data-id="${postId}"]`).remove();
                         // fetchNews()
                     }, 800);
                     
