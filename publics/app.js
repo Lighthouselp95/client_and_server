@@ -83,7 +83,7 @@ function addPosts(posts) {
                         <div class="send-wrapper" data-comments="${post.comments.length}" data-id="${post._id}">
                             <i class="fa-regular fa-paper-plane"></i>
                         </div>
-                        <input placeholder="Write comment: " id="write-comment"></input>
+                        <input placeholder="Write comment: " id="write-comment" type="text" required></input>
                     </form>
                 </div>
                     <div class="comment-body">
