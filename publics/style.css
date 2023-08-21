@@ -466,35 +466,40 @@ i {
 }
 .comment-body {
     /* border-top: 1px solid #cbcbcb; */
-    /* margin-left: 35px; */
+    margin-left: 1px;
     /* margin-right: 10px; */
     margin-top: 5px;
     /* padding: 8px 15px; */
     /* padding-right: 15px; */
-    border-radius: 10px;
-    /* background-color: #fff; */
+    /* border-radius: 10px; */
+    background-color: #f1f2f3;
 }
 
 .comment-wrapper {
     color: #0e28a4;
     border-radius: 5px;
-    background-color: #dbe6f2;
+    /* background-color: #dbe6f2; */
     border-radius: 15px;
     padding: 5px 10px;
     margin-bottom: 5px;
+    padding-left: 34px;
 }
 .comment-user {
     /* background-color: #fff; */
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 19px;
     margin-top: 5px;
+    margin-left: -9px;
 }
 .comment-line {
-    /* background-color: #E4E4E4; */
-    padding: 5px 8px 6px 15px;
+    line-height: 26px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 8px 9px 10px 20px;
+    margin-right: 38px;
     font-style: 14px;
-    border-radius: 20px;
+    border-radius: 77px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
