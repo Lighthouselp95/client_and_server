@@ -392,7 +392,7 @@ i {
 .comment-button {
     /* background-color: #39739d; */
     margin-bottom: 16px;
-    padding: 4px 3px;
+    padding: 6px 3px;
     position: relative;
 }
 .comment-button::after {
@@ -529,10 +529,13 @@ i {
 /* comment button <button class="button-8" role="button">Button 8</button> */
 .button-8 {
     cursor: context-menu;
-    /* background-color: #e1ecf4; */
-    border-radius: 3px;
+    background-color: #e1ecf4;
+    background-color: #d0ebff;
+    border-radius: 35px;
     /* border: none; */
-    border: 1px solid #1471b4;
+    /* border: 1px solid #7190a7; */
+    border: 1px solid #e1ecf4;
+    /* border: 1px solid #f0f2f5; */
     /* box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset; */
     box-sizing: border-box;
     color: #39739d;
@@ -554,35 +557,30 @@ i {
     vertical-align: baseline;
     white-space: nowrap;
 }
-
-
 .button-8:active {
-    /* background-color: #a0c7e4; */
-    box-shadow: none;
-    /* color: #2c5777; */
-    color: #24689b;
-}
-.button-8:focus {
-    /* box-shadow: 0 0 0 2px rgba(0, 149, 255, .15); */
-}
-
-.button-8:hover, .button-8:focus {
-    box-shadow: 0 0 8px 2px rgb(195 214 229 / 95%);
-    /* background-color: #ffffff; */
-    /* color: #2c5777; */
-    /* border: 1px solid #ffffff; */
-}
-.button-8:focus {
-    /* box-shadow: 0 0 0 2px rgba(0, 149, 255, .15); */
-}
-
-.button-8:active {
-    box-shadow: 0 0 0 2px rgba(0, 149, 255, .15);
+    /* background-color: #f2f4f5f2; */
+    background-color: #f0f2f5;
+    /* box-shadow: 0 0 0 2px rgb(196 196 196 / 15%); */
     /* background-color: #a0c7e4; */
     /* box-shadow: none; */
     /* color: #2c5777; */
     color: #24689b;
 }
+.button-8:focus {
+    /* box-shadow: 0 0 0 2px rgba(0, 149, 255, .15); */
+}
+
+.button-8:hover {
+    /* box-shadow: 0 0 1px 1px #c3d6e5f2; */
+    /* background-color: #f5f5f5; */
+    /* color: #2c5777; */
+    /* border: 1px solid #7190a77a; */
+    /* border: 1px solid #e1ecf4; */
+}
+.button-8:focus {
+    /* box-shadow: 0 0 0 2px rgba(0, 149, 255, .15); */
+}
+
 /* end comment button */
 #create-a-post {
     /* border-radius: 0px;
