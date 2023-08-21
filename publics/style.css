@@ -488,7 +488,7 @@ i {
     /* background-color: #fff; */
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 19px;
+    margin-bottom: 16px;
     margin-top: 5px;
     margin-left: -9px;
 }
@@ -497,7 +497,7 @@ i {
     background-color: #ffffff;
     color: #000;
     padding: 8px 9px 10px 20px;
-    margin-right: 38px;
+    margin-right: -8px;
     font-style: 14px;
     border-radius: 77px;
     display: flex;
