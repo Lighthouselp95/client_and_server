@@ -122,6 +122,7 @@ function addCommentEvent(sendButtons) {
         const id = ele.getAttribute('data-id');
         const cmts = ele.getAttribute('data-comments');
         const value = ele.parentElement.querySelector('#write-comment').value;
+        if(value) {
                 fetch(`/comment/${id}`, {
                     method: 'post',
                     headers: {"Content-Type": "application/json"},
@@ -139,7 +140,7 @@ function addCommentEvent(sendButtons) {
                     })
                     .catch(err => console.log(err))
                 
-    })
+    }})
 }
     )}
 //
