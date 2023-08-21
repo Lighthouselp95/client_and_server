@@ -479,9 +479,9 @@ function handleLogoutButton() {
     localStorage.removeItem('acess_token');
     localStorage.removeItem('userId');
     checkoutLoginStatus();
-    // checkPostCondition();
-    // checkLikePost();
-    fetchNews();
+    checkPostCondition();
+    checkLikePost();
+    // fetchNews();
 }
 
 
