@@ -100,13 +100,13 @@ function addPosts(posts) {
             e.preventDefault();
             post_dom.querySelector('.send-wrapper').click()
         })
-        addComment(post.comments, cmt);
+        
 
 
         post_dom.querySelector('.comment-button').onclick = () => {
             post_dom.querySelector('.comment-content').classList.toggle('display');
             }
-
+        addComment(post.comments, cmt);
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
         addCommentEvent([post_dom.querySelector('.send-wrapper')])
@@ -144,7 +144,7 @@ function addCommentEvent(sendButtons) {
     )}
 //
 function addComment(comments, commentBodyDom) {
-        comments.forEach((e) => {
+    comments.forEach((e) => {
         const div = document.createElement('div');
         div.setAttribute('data-cm-id', e._id);
         
@@ -175,14 +175,14 @@ function addComment(comments, commentBodyDom) {
                     }
                     })
                 
-                    .catch(err => console.log(err))
-          
-        });
+                .catch(err => console.log(err))
+        
+            });
         
         commentBodyDom.insertBefore( div, commentBodyDom.firstChild);
-            }
-        );
-        ;
+        }
+    );
+    ;
     return commentBodyDom;
 }
 //check like post
@@ -209,9 +209,9 @@ function checkLikePost() {
                 moreButton.parentElement.querySelector('.react').innerHTML = '<i class="fa-regular fa-heart"></i>';
             }
             userLikes = userLikes.map((ele) => ele.postId);
-            console.log(userLikes);
+            // console.log(userLikes);
             moreButtons = [...moreButtons];
-            console.log(moreButtons);
+            // console.log(moreButtons);
             const moreButtonsLikes = moreButtons.filter((moreButton) => {
                 return userLikes.includes(moreButton.getAttribute('data-id'));
                     }) 
@@ -234,11 +234,9 @@ function addLikeEvent (likeButtons) {
     likeButtons.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
-            if(ele.getAttribute('data-like') == 0) {
-            ele.innerHTML = '<i class="fa-solid fa-heart"></i>';
-        } else {
-            ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
-            };
+            ele.getAttribute('data-like') == 0? 
+            ele.innerHTML = '<i class="fa-solid fa-heart"></i>' : ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+          
             fetch(`/like/${postId}`, {
                 method: 'post',
                 headers: {"Content-Type": "application/json"},

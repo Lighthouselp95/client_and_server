@@ -528,10 +528,12 @@ i {
 } */
 /* comment button <button class="button-8" role="button">Button 8</button> */
 .button-8 {
+    cursor: context-menu;
     /* background-color: #e1ecf4; */
     border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    /* border: none; */
+    border: 1px solid #1471b4;
+    /* box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset; */
     box-sizing: border-box;
     color: #39739d;
     /* cursor: pointer; */
@@ -565,9 +567,10 @@ i {
 }
 
 .button-8:hover, .button-8:focus {
-    box-shadow: 0 0 0 2px rgba(0, 149, 255, .15);
-    /* background-color: #9bc6e4; */
+    box-shadow: 0 0 8px 2px rgb(195 214 229 / 95%);
+    /* background-color: #ffffff; */
     /* color: #2c5777; */
+    /* border: 1px solid #ffffff; */
 }
 .button-8:focus {
     /* box-shadow: 0 0 0 2px rgba(0, 149, 255, .15); */
