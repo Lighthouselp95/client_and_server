@@ -171,7 +171,7 @@ function addComment(comments, commentBodyDom) {
                     })
                     .then(res => {
                         document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).classList.add('opacity0');
-                        setTimeout(() => document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove(), 600);
+                        setTimeout(() => document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove(), 500);
                     })
                     .catch(err => console.log(err))
           

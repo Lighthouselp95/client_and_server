@@ -17,7 +17,20 @@ const verifyLogin = require('./middlewares/verifyLogin');
 const app = express();
 require('dotenv').config();
 // use morgan to log request
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
+// morgan.token('user-type', function(req, res) {
+//     return req.headers['user-type']
+// })
+app.use(morgan((tokens, req, res) => {
+    return [
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res),
+        tokens.res(req, res, 'content-length'), '-',
+        tokens['response-time'](req, res), 'ms'
+    ].join(' ')
+}));
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : false}));
 // connect to mongodb
