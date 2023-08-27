@@ -3,7 +3,7 @@ const {Blog, User} = require('../models/Schema');
 module.exports = async (req, res, next) => {
     try {
 
-        var oldUser = await User.findById(req.userId).exec();
+        // var oldUser = await User.findById(req.userId).exec();
 
         const blog = new Blog({
             personID: req.userId,
