@@ -54,6 +54,15 @@ function addPosts(posts) {
 
         post_dom.classList.add('post-wrapper');
         post_dom.setAttribute('data-id', post._id)
+        // post.file!== undefined? post.file = post.file.replace('"',''):'';
+        // if (post.file!== undefined) {
+        // post.file = JSON.stringify(post.file);
+        // post.file = JSON.parse(post.file);
+        
+        // post.file = JSON.parse(post.file);
+        // }
+        console.log(post.file, ': typeof :', typeof post.file);
+        
         post_dom.innerHTML = 
             `
             <div class="post">
@@ -68,7 +77,7 @@ function addPosts(posts) {
             ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
             </i>
             </div>
-            <div class="post-body">${post.body}</div>
+            <div class="post-body">${post.file[0]?.url?`<img src=${(post.file[0].url)} class="post-img">`:''} ${post.body}</div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
             <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
@@ -162,20 +171,20 @@ function addComment(comments, commentBodyDom) {
             fetch(`comment/${e._id}`,{
                 method: 'delete',
                 headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(
-                        {
-                            token: localStorage.getItem('acess_token'),
-                            userId: localStorage.getItem('userId'),
-                            cmId: e.userId
-                        }
-                        )
-                    })
-                    .then(res => {if(res.ok) {
-                        document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).classList.add('opacity0');
-                        setTimeout(() => document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove(), 500);
+                body: JSON.stringify(
+                    {
+                        token: localStorage.getItem('acess_token'),
+                        userId: localStorage.getItem('userId'),
+                        cmId: e.userId
                     }
-                    })
-                
+                    )
+                })
+                .then(res => {if(res.ok) {
+                    document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).classList.add('opacity0');
+                    setTimeout(() => document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove(), 500);
+                }
+                })
+            
                 .catch(err => console.log(err))
         
             });
@@ -184,7 +193,7 @@ function addComment(comments, commentBodyDom) {
         }
     );
     ;
-    return commentBodyDom;
+    // return commentBodyDom;
 }
 //check like post
 function checkLikePost() {
@@ -345,19 +354,28 @@ function handlePostSubmit(e) {
         let title = document.getElementById('title').value;
         // let tag = document.getElementById('tag').value;
         let body = document.getElementById('create-post-body').value;
-    
+        let file_url = document.getElementById('file').value;
+        console.log(file_url);
+        const form = document.getElementsByTagName('form')[0];
+        const submiter = document.getElementById('submit');
+        const formData = new FormData(form, submiter);
+        formData.append('token', localStorage.getItem('acess_token'));
+        for (const [key, value] of formData) {
+            console.log(key, ': ', value);
+        }
         fetch('/add-blog', {
             method: 'POST',
-            body: JSON.stringify(
-                {
-                    title: title,
-                    // tag: tag,
-                    body: body,
-                    token: localStorage.getItem('acess_token')
-                }
-            ),
+            // body: JSON.stringify(
+            //     {
+            //         title: title,
+            //         // tag: tag,
+            //         body: body,
+            //         file_url: file_url,
+            //         token: localStorage.getItem('acess_token')
+            //     }
+            // ),
+            body: formData,
             headers: {
-                'Content-Type' : 'application/json',
                 'Authorization': 'Bearer'
             }
             })  

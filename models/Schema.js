@@ -31,6 +31,12 @@ const blogSchema = new Schema ({
         type: String,
         required: true
     },
+    file: [{
+        url: String,
+        file_type: String,
+        createAt: String,
+        file_format: String
+    }],
     like: [{
         userId: String,
         name: String

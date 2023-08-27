@@ -16,6 +16,8 @@ const verifySignup = require('./middlewares/verifySignup');
 const verifyLogin = require('./middlewares/verifyLogin');
 const app = express();
 require('dotenv').config();
+const uploader = require("./middlewares/multer");
+const cloudinary_upload = require('./middlewares/upload_cloudinary')
 // use morgan to log request
 // app.use(morgan('dev'));
 // morgan.token('user-type', function(req, res) {
@@ -32,15 +34,16 @@ app.use(morgan((tokens, req, res) => {
 }));
 
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended : false}));
+app.use(bodyparser.urlencoded({extended : true}));
 // connect to mongodb
 const dbURI = process.env.DB_URI;
 mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .then((result) => console.log("Connected to DB"))
     .catch((err) => console.log("err: ", err))
 
-// mongoose and mongoose sandbox route
-app.post('/add-blog', authen, controllerAddpost);
+// Cloudinary upload
+
+app.post('/add-blog', uploader.single("file"), authen, cloudinary_upload, controllerAddpost);
 app.post('/like/:postid', authen, controllerLikePost);
 app.post('/userlike', authen, controllerUserLike)
 app.post('/comment/:postId', authen, controllerComment);

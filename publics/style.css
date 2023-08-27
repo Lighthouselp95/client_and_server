@@ -229,11 +229,45 @@ form input, form textarea, input {
 .content {
     background-color: #f0f2f5 ;
     margin-top: 40px;
-    padding-top: 50px;
+    padding-top: 58px;
     border-top: 0.3px solid rgba(0,0,0,0.1);
-
+    position: relative;
 }
-
+.side-bar {
+    position: absolute;
+    width: 220px;
+    height: 100%;
+    left: 0px;
+    top: 25px;
+    /* border-radius: 8px; */
+    background-color: #9bacbc;
+    border: 0.5px solid #efefef;
+    box-shadow: 2px 2px 1px -15px rgb(0 0 0 / 50%);
+    padding: 27px 7px;
+    /* padding-right: 0px; */
+}
+.right-side-bar {
+    position: absolute;
+    border-radius: 5px;
+    height: 500px;
+    width: 30%;
+    right: 20px;
+    top: 90px;  
+    background-color: #fff;
+}
+.side-bar-content {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 8px;
+    /* border: 0.5px sold #91959c; */
+    background-color: #ffffff;
+    
+    /* border: 0.5px solid #ffffff; */
+}
+.side-bar-content:hover {
+    
+    background-color: #dbdbdb;
+}
 .main-column {
     width: 505px; /* 510px */
      /* box-shadow: 0px 6px 8px 0px rgba(0,0,0,0.3); */
@@ -325,12 +359,18 @@ form input, form textarea, input {
     word-spacing: -1px;
     font-weight: 400;
     text-align: start;
-    padding: 23px 14px 30px;
+    padding: 16px 14px 30px;
     margin-bottom: 0px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 0px;
     white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.post-img {
+    padding: 0px 0px;
+    max-width: 100%;
+    min-width: 50%;
 }
 .post-body::before {
     content: "";
