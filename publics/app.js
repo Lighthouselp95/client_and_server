@@ -77,10 +77,10 @@ function addPosts(posts) {
             ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
             </i>
             </div>
-            <div class="post-body">
-            ${post.file[0]?.url? (post.file[0].url.split('.').pop()=='mp4'? `<video src=${(post.file[0].url)} class="post-img" controls></video>`
-            :`<img src=${(post.file[0].url)} class="post-img">`):''} 
-            ${post.body}
+            <div class="post-body">${post.file[0]?.url? (post.file[0].url.split('.').pop()=='mp4'? 
+            `<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls></video>`
+            :`<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`)
+            :''}${post.body}
             </div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
