@@ -441,6 +441,10 @@ i {
     padding: 6px 3px;
     position: relative;
 }
+.comment-button button {
+    
+    cursor: pointer;
+}
 .comment-button button::after {
     content: attr(data-number-comment);
     font-weight: 500;
