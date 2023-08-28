@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
                         process.env.TOKEN_KEY,
                         {
                             allowInsecureKeySizes: true,
-                            expiresIn: "1d"
+                            expiresIn: "3d"
                         });
                         console.log('login token: ', token);
                         req.token = token;
@@ -39,8 +39,8 @@ module.exports = async (req, res, next) => {
                         }
                     }  
                 else {
-                    res.status(409).send("Account have not been registed yet");
-                    return;
+                    return res.status(409).send("Account have not been registed yet");
+                    
                 }       
                 }
             }

@@ -34,7 +34,7 @@ const blogSchema = new Schema ({
     file: [{
         asset_id: String,
         url: String,
-        file_type: String,
+        resource_type: String,
         createAt: String,
         file_format: String
     }],

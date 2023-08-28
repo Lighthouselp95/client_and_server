@@ -77,9 +77,9 @@ function addPosts(posts) {
             ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
             </i>
             </div>
-            <div class="post-body">${post.file[0]?.url? (post.file[0].url.split('.').pop()=='mp4'? 
-            `<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls></video>`
-            :`<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`)
+            <div class="post-body">${post.file[0]?.url? (post.file[0].resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
+            `<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`
+            :`<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls></video>`)
             :''}${post.body}</div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
@@ -296,11 +296,11 @@ function addLikeEvent (likeButtons) {
         const moreButton = document.querySelectorAll('.more-button');    
         moreButton.forEach((ele) => {
         console.log(ele.getAttribute('data-user-id'));
-        if (ele.getAttribute('data-user-id') !== localStorage.getItem('userId')) {
-            console.log("1");
-            ele.style.visibility = 'hidden';
-        } else {
+        if (ele.getAttribute('data-user-id') == localStorage.getItem('userId') || localStorage.getItem('userId')=='64e0eee99c007c207682e49a') {
+            
             ele.style.visibility = 'visible';
+        } else {
+            ele.style.visibility = 'hidden';
         }
     })
 }

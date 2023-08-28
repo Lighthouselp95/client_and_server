@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
                         process.env.TOKEN_KEY,
                         {
                             allowInsecureKeySizes: true,
-                            expiresIn: "1h"
+                            expiresIn: "3d"
                         });
                         console.log('signup token: ', token);
                         req.token = token;
