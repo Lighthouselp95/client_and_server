@@ -89,7 +89,7 @@ function addPosts(posts) {
             </div>
 
             <div class="comment-button">
-                <button class="button-8" data-number-comment="${post.comments.length}">Comment</button>
+                <button class="button-8" ${post.comments.length==0?"":`data-number-comment=${post.comments.length}`}>Comment</button>
             </div>
            
             <div class="comment-content">
