@@ -811,7 +811,7 @@ i {
         padding: 9px 19px 10px 20px;
         /* margin-right: -8px; */
         font-style: 14px;
-        border-radius: 0px;
+        /* border-radius: 0px; */
         margin-right: 0px;
         display: flex;
         flex-direction: row;
