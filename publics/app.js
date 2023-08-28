@@ -167,7 +167,7 @@ function addComment(comments, commentBodyDom) {
         <p class="comment-user">${e.name?e.name:""}</p>
         <div class="comment-line"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
-        localStorage.getItem('userId') == e.userId? div.querySelector('.delete-comment').style.visibility = 'visible' : 
+        localStorage.getItem('userId') == e.userId || localStorage.getItem('userId')=='64e0eee99c007c207682e49a'? div.querySelector('.delete-comment').style.visibility = 'visible' : 
         div.querySelector('.delete-comment').style.visibility = 'hidden';
         
         div.querySelector('.delete-comment').addEventListener('click', () => {
