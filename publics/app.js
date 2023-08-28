@@ -80,8 +80,7 @@ function addPosts(posts) {
             <div class="post-body">${post.file[0]?.url? (post.file[0].url.split('.').pop()=='mp4'? 
             `<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls></video>`
             :`<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`)
-            :''}${post.body}
-            </div>
+            :''}${post.body}</div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
             <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
