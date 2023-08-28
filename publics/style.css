@@ -441,16 +441,23 @@ i {
     padding: 6px 3px;
     position: relative;
 }
-.comment-button::after {
-    content: attr(data-numnber-comment);
+.comment-button button::after {
+    content: attr(data-number-comment);
     font-weight: 500;
     font-size: 12px;
     position: absolute;
-    left: 85px;
-    top: 5px;
+    left: 78px;
+    top: -6px;
     /* transform: translateY(-50%); */
     /* top: 50%; */
     /* transform: translateY(-50%); */
+    width: 15px;
+    height: 15px;
+    color: white;
+    background-color: #a42121;
+    border-radius: 50%;
+    /* border: 0.5px solid #857d7d; */
+    text-align: center;
 }
 .comment-content {
     display: none;
