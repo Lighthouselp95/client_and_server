@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
             title: req.body.title,
             snippet: 'Fb',
             body: req.body.body,
-            file: {asset_id: req.file.asset_id, url: req.file.url, resource_type: req.file.resource_type, createAt: req.file.created_at, file_format: req.file.format}
+            file: {asset_id: req.file.asset_id, url: req.file.secure_url, resource_type: req.file.resource_type, createAt: req.file.created_at, file_format: req.file.format}
         });
 
         var recentBlog;
