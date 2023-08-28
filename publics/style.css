@@ -372,7 +372,7 @@ form input, form textarea, input {
     /* right: 50%; */
     width: 490px;
     margin-left: -8px;
-    margin-right: 14px;
+    /* margin-right: 14px; */
     padding: 0px 0px;
     /* max-width: 100%; */
     /* min-width: 50%; */
@@ -700,8 +700,9 @@ i {
     padding: 6px 0px;
    }
    .post-head {
-    padding-left: 11px;
-    padding-right: 11px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-left: 1px;
     border-radius: 0px;
     font-size: 16px;
     padding-bottom: 19px;
@@ -730,14 +731,27 @@ i {
     /* min-width: 50%; */
     margin-bottom: 5px;
 }
-   .posts-person {
+.posts-person {
     font-weight: 600;
     font-size: 13px;
-    padding: 15px 11px 3px;
-    margin-left: 3px;
+    padding: 15px 7px 3px;
+    margin-left: 2px;
     margin-right: 3px;
     border-radius: 4px 4px 0px 0px;
     opacity: 0.9;
+}
+.react-band {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 18px 8px 1px;
+}
+.number-like {
+    padding-left: 9px;
+    padding-bottom: 11px;
+    font-size: 10px;
+    font-weight: 550;
 }
 #create-a-post {
     margin-left: 12px;
