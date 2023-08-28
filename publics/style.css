@@ -382,7 +382,7 @@ form input, form textarea, input {
     content: "";
     position: absolute;
     display: block;
-    width: 433.5px;
+    width: 94%;
     margin: auto;
     padding: auto;
     transform: translateX(-50%);
