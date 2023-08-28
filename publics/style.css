@@ -133,7 +133,10 @@ CSS */
   touch-action: manipulation;
   text-decoration: none;
 }
-
+.nav .button:hover {
+    border-radius: 10px;
+    background-color: #86eaea;
+}
 
 .create-post {
     width: 100%;
@@ -324,11 +327,16 @@ form input, form textarea, input {
 .post-head {
     font-weight: 630;
     font-size: 18px;
-    padding: 9px 14px 4px;
+    padding: 8px 14px 8px;
     margin-left: 3px;
     margin-right: 3px;
     border-radius: 0px;
     opacity: 0.95;
+}
+.post-head:hover {
+    cursor: pointer;
+    background-color: #cdcdcd;
+    border-radius: 16px;
 }
 .posts-person {
     font-weight: 620;
