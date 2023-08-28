@@ -459,8 +459,11 @@ i {
 }
 .comment-button button::after {
     content: attr(data-number-comment);
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: 550;
+    font-size: 11px;
+    line-height: 14px;
+    vertical-align: middle;
+    /* justify-content: center; */
     position: absolute;
     left: 78px;
     top: -6px;
