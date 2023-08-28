@@ -449,6 +449,7 @@ i {
 .comment-button {
     /* background-color: #39739d; */
     margin-bottom: 16px;
+    margin-top: 3px;
     padding: 6px 3px;
     position: relative;
 }
@@ -502,10 +503,14 @@ i {
 }
 
 .write-comment {
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; */
+    /* box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
     /* background-color: #bcbcbc; */
     padding: 18px 9px;
     margin-left: 10px;
-    /* margin-right: 10px; */
+    margin-right: 1px;
     display: flex;
     flex-direction: row;
 }
@@ -536,7 +541,7 @@ i {
     /* border-top: 1px solid #cbcbcb; */
     margin-left: 1px;
     /* margin-right: 10px; */
-    margin-top: 5px;
+    margin-top: 29px;
     /* padding: 8px 15px; */
     /* padding-right: 15px; */
     /* border-radius: 10px; */
@@ -550,7 +555,7 @@ i {
     border-radius: 15px;
     padding: 5px 10px;
     margin-bottom: 5px;
-    padding-left: 34px;
+    padding-left: 12px;
 }
 .comment-user {
     /* background-color: #fff; */
@@ -561,10 +566,25 @@ i {
     margin-left: 3px;
 }
 .comment-line {
-    line-height: 26px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px; */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px; */
+    /* box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
+    /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px; */
+    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px; */
+    /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px; */
+    line-height: 30px;
     background-color: #ffffff;
     color: #000;
-    padding: 7px 19px 11px 20px;
+    padding: 6px 19px 8px 20px;
     margin-right: -8px;
     font-style: 14px;
     border-radius: 8px;
@@ -572,6 +592,7 @@ i {
     flex-direction: row;
     justify-content: space-between;
 }
+
 .comment-line p {
     flex-grow: 1;
 }
