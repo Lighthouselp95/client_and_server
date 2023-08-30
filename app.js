@@ -76,6 +76,7 @@ app.post('/log-in', verifyLogin);
 // listening to port: 3002
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port: ${process.env.PORT}`);
+    console.log(`Worker pid = ${process.pid}`); 
 });
 
 // app.use((req,res,next) => {
