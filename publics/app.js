@@ -118,6 +118,9 @@ function addPosts(posts) {
         post_dom.querySelector('.comment-button').onclick = () => {
             post_dom.querySelector('.comment-content').classList.toggle('display');
             }
+        post_dom.querySelector('.post').onclick = () => {
+            post_dom.querySelector('.comment-content').classList.toggle('display');
+            }
         addComment(post.comments, cmt);
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
