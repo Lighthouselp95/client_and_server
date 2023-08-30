@@ -61,7 +61,7 @@ function addPosts(posts) {
         
         // post.file = JSON.parse(post.file);
         // }
-        console.log(post.file, ': typeof :', typeof post.file);
+        // console.log(post.file, ': typeof :', typeof post.file);
         
         post_dom.innerHTML = 
             `
@@ -74,7 +74,7 @@ function addPosts(posts) {
             
             <div class="post-snippet">
             <i>
-            ${moment(post.createdAt).format("HH:mm DD/MM/YYYY ")}
+            ${moment(post.createdAt).fromNow()}
             </i>
             </div>
             <div class="post-body">${post.file[0]?.url? (post.file[0].resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
@@ -115,12 +115,14 @@ function addPosts(posts) {
         
 
 
-        post_dom.querySelector('.comment-button').onclick = () => {
+        post_dom.querySelector('.comment-button').onclick = (e) => {
+            
             post_dom.querySelector('.comment-content').classList.toggle('display');
             }
-        post_dom.querySelector('.post').onclick = () => {
+        post_dom.querySelector('.post-body').addEventListener('click', (e) => {
+            // if (e.target === post_dom.querySelector('.react')) {e.preventDefault()}
             post_dom.querySelector('.comment-content').classList.toggle('display');
-            }
+            })
         addComment(post.comments, cmt);
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
@@ -169,6 +171,7 @@ function addComment(comments, commentBodyDom) {
         div.classList.add('comment-wrapper');
         div.innerHTML = `
         <p class="comment-user">${e.name?e.name:""}</p>
+        <div class="comment-time">${moment(e.createAt).format("lll")}</div>
         <div class="comment-line"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
         localStorage.getItem('userId') == e.userId || localStorage.getItem('userId')=='64e0eee99c007c207682e49a'? div.querySelector('.delete-comment').style.visibility = 'visible' : 
