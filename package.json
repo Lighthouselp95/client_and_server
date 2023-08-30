@@ -2,10 +2,11 @@
   "name": "client-and-sever",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "npx pm2 start app.js -i 0",
+    "dev": "node app.js"
   },
   "author": "",
   "license": "ISC",

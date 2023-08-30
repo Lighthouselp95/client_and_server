@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const os = require('os');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const {Blog, User} = require('./models/Schema');
@@ -32,7 +33,7 @@ app.use(morgan((tokens, req, res) => {
         tokens['response-time'](req, res), 'ms'
     ].join(' ')
 }));
-
+console.log(os.cpus());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 // connect to mongodb
