@@ -26,6 +26,8 @@ const http = require('http')
 //     return req.headers['user-type']
 // })
 // console.log(http.METHODS, http.STATUS_CODES);
+
+app.set('trust proxy', 'loopback, linklocal, uniquelocal')
 app.use((req, res, next) => {
     console.log(req.ip);
     next();
