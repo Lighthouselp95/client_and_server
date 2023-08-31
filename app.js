@@ -19,11 +19,13 @@ const app = express();
 require('dotenv').config();
 const uploader = require("./middlewares/multer");
 const cloudinary_upload = require('./middlewares/upload_cloudinary')
+const http = require('http')
 // use morgan to log request
 // app.use(morgan('dev'));
 // morgan.token('user-type', function(req, res) {
 //     return req.headers['user-type']
 // })
+// console.log(http.METHODS, http.STATUS_CODES);
 app.use(morgan((tokens, req, res) => {
     return [
         tokens.method(req, res),
@@ -33,7 +35,7 @@ app.use(morgan((tokens, req, res) => {
         tokens['response-time'](req, res), 'ms'
     ].join(' ')
 }));
-console.log(os.cpus());
+// console.log(os.cpus());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 // connect to mongodb
