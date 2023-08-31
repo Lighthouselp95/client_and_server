@@ -154,7 +154,7 @@ function addCommentEvent(sendButtons) {
                     .then(res => res.json())
                     .then(data => {console.log(data);
                         addComment([data], document.querySelector(`.comment-body[data-id="${id}"]`));
-                        fetchNews();
+                        // fetchNews();
                     })
                     .catch(err => console.log(err))
                 
