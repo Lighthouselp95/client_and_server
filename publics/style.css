@@ -278,6 +278,43 @@ form input, form textarea, input {
     padding: 15px;
     overflow: auto;
 }
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 6px solid #772c2c;
+    border-top: 6px solid #383636;
+    border-left: 6px solid #383636;
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
+}
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loader-container {
+    display: grid;
+    justify-content: center;
+    /* align-items: center; */
+    padding-top: 150px;
+    height: 100vh;
+    width: 100%;
+    
+    /* padding-bottom: 500px; */
+  }
+/* .loader-container {
+    width: 100%;
+    left: 0px;
+    /* height: 100%; */
+    /* position: relative; */
+
+    /* background: #000 url("./assets/giphy.gif") center no-repeat; */
+    /* z-index: 1; */
+/* } */ 
 .display {
     display: block;
     /* transition: 1s;  */

@@ -18,7 +18,11 @@ function checkoutLoginStatus() {
         }
     }
 };
-
+const loader = document.createElement('div');
+    loader.classList.add('loader-container');
+    loader.innerHTML = `<div class="loading-spinner">
+    </div>`
+    document.querySelectorAll('.content')[0].appendChild(loader);
 // checkoutLoginStatus();
 
 document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
@@ -27,7 +31,7 @@ document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
 function fetchNews() {
-    document.getElementsByClassName('main-column')[1].innerHTML= "";
+    
     let posts = [];
     console.log('into fetchnew')
     fetch('/all-blogs')
@@ -35,6 +39,7 @@ function fetchNews() {
         .then((data) => {
             posts = data;
             console.log(posts);
+            document.getElementsByClassName('loader-container')[0].remove();
             addPosts(posts);
             checkPostCondition();
             checkLikePost();
