@@ -101,7 +101,7 @@ function addPosts(posts) {
             <div class="comment-content">
                 <div >
                     <form class="write-comment">
-                        <div class="send-wrapper" data-comments="${post.comments.length}" data-id="${post._id}">
+                        <div class="send-wrapper" data-id="${post._id}">
                             <i class="fa-regular fa-paper-plane"></i>
                         </div>
                         <input placeholder="Write comment: " id="write-comment" type="text" required></input>
@@ -143,7 +143,6 @@ function addCommentEvent(sendButtons) {
     sendButtons.forEach((ele) => {
         ele.addEventListener('click', () => {
         const id = ele.getAttribute('data-id');
-        const cmts = ele.getAttribute('data-comments');
         const value = ele.parentElement.querySelector('#write-comment').value;
         if(value) {
                 fetch(`/comment/${id}`, {
@@ -160,6 +159,8 @@ function addCommentEvent(sendButtons) {
                     .then(res => res.json())
                     .then(data => {console.log(data);
                         addComment([data], document.querySelector(`.comment-body[data-id="${id}"]`));
+                        const button8 = ele.parentElement.parentElement.parentElement.parentElement.querySelector('.button-8');
+                        button8.setAttribute('data-number-comment', Number(button8.getAttribute('data-number-comment')) + 1);
                         // fetchNews();
                     })
                     .catch(err => console.log(err))
