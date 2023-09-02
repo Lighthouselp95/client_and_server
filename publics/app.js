@@ -18,11 +18,11 @@ function checkoutLoginStatus() {
         }
     }
 };
-const loader = document.createElement('div');
-    loader.classList.add('loader-container');
-    loader.innerHTML = `<div class="loading-spinner">
-    </div>`
-    document.querySelectorAll('.content')[0].appendChild(loader);
+// const loader = document.createElement('div');
+//     loader.classList.add('loader-container');
+//     loader.innerHTML = `<div class="loading-spinner">
+//     </div>`
+//     document.querySelectorAll('.content')[0].appendChild(loader);
 // checkoutLoginStatus();
 
 document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
@@ -53,11 +53,11 @@ function fetchNews() {
 
 // Add posts elements to html function
 function addPosts(posts) {
-   
+    const main_column = document.createElement('div');
+    main_column.classList.add('main-column');
+    document.querySelector('.content').appendChild(main_column);
     for (let post of posts) {
-        const main_column = document.getElementsByClassName('main-column')[1];
         const post_dom = document.createElement('div');
-
         post_dom.classList.add('post-wrapper');
         post_dom.setAttribute('data-id', post._id)
         // post.file!== undefined? post.file = post.file.replace('"',''):'';
