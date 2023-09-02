@@ -55,18 +55,18 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 
 // Cloudinary upload
 
-app.post('/add-blog', uploader.single("file"), authen, cloudinary_upload, controllerAddpost);
+app.post('/blog', uploader.single("file"), authen, cloudinary_upload, controllerAddpost);
 app.post('/like/:postid', authen, controllerLikePost);
 app.post('/userlike', authen, controllerUserLike)
 app.post('/comment/:postId', authen, controllerComment);
 app.delete('/comment/:cmtId', authen, controllerDeleteComment);
-app.get('/all-users', async (req, res) => {
+app.get('/user', async (req, res) => {
     let users = await User.find().sort({createdAt: 1});
     res.send(users);
 })
 // get all the blogs from db
-app.get('/all-blogs', controllerGetallpost);
-app.delete('/blogs/:id', authen, controllerDeletePost);
+app.get('/blog', controllerGetallpost);
+app.delete('/blog/:id', authen, controllerDeletePost);
 // get a single blog
 
 

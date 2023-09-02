@@ -3,10 +3,12 @@ const cloudinary = require("./cloudinary");
 const uploader = require("./multer");
 
 module.exports = async (req, res, next) => {
+  if (req.file) {
     try {
-      console.group("Req file: ", req.file);
+      console.log("Req file: ", req.file);
       const upload = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"}); //video, image or k co
-      req.file = upload;
+      req.file = [];
+      req.file.push(upload);
       console.log("Upload is: ", req.file);
       // return res.json({
       //   success: true,
@@ -17,5 +19,6 @@ module.exports = async (req, res, next) => {
       res.send(err);
       console.log(err)
     }
+  }
     next();
   };

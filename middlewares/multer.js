@@ -9,7 +9,6 @@ module.exports = multer({
   storage: storage,
   limits: { fileSize: 50000000 }
 });
-// console.log(req.body, '---', req.file);
 
     
 // });

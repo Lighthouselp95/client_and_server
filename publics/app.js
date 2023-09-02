@@ -34,7 +34,7 @@ function fetchNews() {
     
     let posts = [];
     console.log('into fetchnew')
-    fetch('/all-blogs')
+    fetch('/blog')
         .then(res => res.json())
         .then((data) => {
             posts = data;
@@ -82,10 +82,10 @@ function addPosts(posts) {
             ${moment(post.createdAt).fromNow()}
             </i>
             </div>
-            <div class="post-body">${post.file[0]?.url? (post.file[0].resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
+            <div class="post-body">${post.file? (post.file.length!==0? (post.file[0].resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
             `<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`
             :`<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls autoplay="autoplay" muted></video>`)
-            :''}${post.body}</div>
+            :''):''}${post.body}</div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
             <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
@@ -322,7 +322,7 @@ function addDeleteEvent(posts) {
         posts.forEach((ele) => {
         ele.addEventListener('click', () => {
             const postId = ele.getAttribute("data-id");
-            fetch(`/blogs/${postId}`, {
+            fetch(`/blog/${postId}`, {
                 method: 'delete',
                 body: JSON.stringify(
                     {   
@@ -378,7 +378,7 @@ function handlePostSubmit(e) {
         for (const [key, value] of formData) {
             console.log(key, ': ', value);
         }
-        fetch('/add-blog', {
+        fetch('/blog', {
             method: 'POST',
             // body: JSON.stringify(
             //     {
