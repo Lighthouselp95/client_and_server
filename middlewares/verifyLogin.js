@@ -34,6 +34,15 @@ module.exports = async (req, res, next) => {
                         req.token = token;
                         // res.send()
                         // res.writeHead(200, {'Refresh' : '1'});
+                        res.cookie()
+                        res.cookie(`token`, token, {
+                            maxAge: 432000000,
+                            // expires works the same as the maxAge
+                            // expires: new Date('01 12 2021'),
+                            // secure: true,
+                            httpOnly: true,
+                            sameSite: 'lax'
+                        });
                         res.status(200).send(['sucess', token, oldUser._id, name]);
                         return;
                         }

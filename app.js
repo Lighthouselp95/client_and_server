@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const os = require('os');
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const {Blog, User} = require('./models/Schema');
 const authen = require('./middlewares/authen');
@@ -17,6 +18,7 @@ const verifySignup = require('./middlewares/verifySignup');
 const verifyLogin = require('./middlewares/verifyLogin');
 const app = express();
 require('dotenv').config();
+app.use(cookieParser());
 const uploader = require("./middlewares/multer");
 const cloudinary_upload = require('./middlewares/upload_cloudinary')
 const http = require('http')
@@ -85,6 +87,12 @@ app.get('/user/:id', (req,res) => {
 //Login
 app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);
+app.get("/logout", (req, res) => {
+    // clear the cookie
+    res.clearCookie("token");
+    // redirect to login
+    res.send("Log out successful");
+  });
 // listening to port: 3002
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port: ${process.env.PORT}`);

@@ -41,10 +41,10 @@ function fetchNews() {
         .then((data) => {
             posts = data;
             console.log(posts);
-            document.getElementsByClassName('loader-container')[0].remove();
+            document.getElementsByClassName('loader-container')[0]?document.getElementsByClassName('loader-container')[0].remove():'';
             addPosts(posts);
-            checkPostCondition();
             checkLikePost();
+            checkPostCondition();
         })
         .catch(err => console.log(err));
         console.log('post ngoai: ', posts);
@@ -104,7 +104,7 @@ function addPosts(posts) {
                         <div class="send-wrapper" data-id="${post._id}">
                             <i class="fa-regular fa-paper-plane"></i>
                         </div>
-                        <input placeholder="Write comment: " id="write-comment" type="text" required></input>
+                        <input placeholder="Write comment: " type="text" required></input>
                     </form>
                 </div>
                 <div class="comment-body" data-id="${post._id}">
@@ -143,7 +143,7 @@ function addCommentEvent(sendButtons) {
     sendButtons.forEach((ele) => {
         ele.addEventListener('click', () => {
         const id = ele.getAttribute('data-id');
-        const value = ele.parentElement.querySelector('#write-comment').value;
+        const value = ele.parentElement.querySelector('.write-comment input').value;
         if(value) {
                 fetch(`/comment/${id}`, {
                     method: 'post',
@@ -197,8 +197,13 @@ function addComment(comments, commentBodyDom) {
                     )
                 })
                 .then(res => {if(res.ok) {
+                    
                     document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).classList.add('opacity0');
-                    setTimeout(() => document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove(), 500);
+                    setTimeout(() => {
+                        document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove();
+                        const button8 = commentBodyDom.parentElement.previousElementSibling.querySelector('.button-8');
+                        button8.setAttribute('data-number-comment', Number(button8.getAttribute('data-number-comment')) - 1);
+                    }, 500);
                 }
                 })
             
@@ -514,6 +519,10 @@ function handleLoginSubmit(e) {
 function handleLogoutButton() {
     localStorage.removeItem('acess_token');
     localStorage.removeItem('userId');
+    fetch('/logout', {
+        method: 'get',
+        mode: 'no-cors'
+    });
     checkoutLoginStatus();
     checkPostCondition();
     checkLikePost();

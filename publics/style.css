@@ -534,7 +534,7 @@ i {
 .comment-content.display {
     display: block;
 }
-.comment-content #write-comment {
+.comment-content input {
     width: 100%;
     resize: none;
     border: 1px solid gainsboro;
