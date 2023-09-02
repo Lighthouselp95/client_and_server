@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
 function fetchNews() {
-    
+    const main_column = document.createElement('div');
+    main_column.classList.add('main-column');
+    document.querySelector('.content').appendChild(main_column);
     let posts = [];
     console.log('into fetchnew')
     fetch('/blog')
@@ -53,9 +55,7 @@ function fetchNews() {
 
 // Add posts elements to html function
 function addPosts(posts) {
-    const main_column = document.createElement('div');
-    main_column.classList.add('main-column');
-    document.querySelector('.content').appendChild(main_column);
+    const main_column = document.querySelectorAll('.main-column')[1];
     for (let post of posts) {
         const post_dom = document.createElement('div');
         post_dom.classList.add('post-wrapper');
