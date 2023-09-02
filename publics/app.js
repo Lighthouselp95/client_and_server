@@ -45,6 +45,7 @@ function fetchNews() {
             checkLikePost();
         })
         .catch(err => console.log(err));
+        console.log('post ngoai: ', posts);
     };
 
 // Update timeline column function
