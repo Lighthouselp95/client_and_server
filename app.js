@@ -56,7 +56,7 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
     .catch((err) => console.log("err: ", err))
 
 // Cloudinary upload
-app.post('/blog', uploader.single("file"), authen, cloudinary_upload, controllerAddpost);
+app.post('/blog', uploader.array("file"), authen, cloudinary_upload, controllerAddpost);
 
 app.post('/like/:postid', authen, controllerLikePost);
 app.post('/userlike', authen, controllerUserLike)

@@ -3,18 +3,26 @@ const cloudinary = require("./cloudinary");
 const uploader = require("./multer");
 
 module.exports = async (req, res, next) => {
-  if (req.file) {
+  if (req.files) {
     try {
-      console.log("Req file: ", req.file);
-      const upload = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"}); //video, image or k co
-      req.file = [];
-      req.file.push(upload);
-      console.log("Upload is: ", req.file);
-      // return res.json({
-      //   success: true,
-      //   file: upload.secure_url,
-      // });
+      console.log(req.body, '---', req.files, '--', req.file)
+      const uploads = [];
+      for(let e of req.files) {
+        console.log("Req file: ", e);
+        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto"})
+        uploads.push(temp); //video, image or k co
+        
+        // req.file.push(upload);
+        console.log("Upload is: ", req.file);
+        // return res.json({
+        //   success: true,
+        //   file: upload.secure_url,
+        // });}
+        }
+      req.files = uploads;
+      console.log(req.files);
     } 
+  
     catch (err) {
       res.send(err);
       console.log(err)

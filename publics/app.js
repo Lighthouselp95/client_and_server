@@ -86,10 +86,10 @@ function addPosts(posts) {
             ${moment(post.createdAt).fromNow()}
             </i>
             </div>
-            <div class="post-body">${post.file? (post.file.length!==0? (post.file[0].resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
-            `<img src=${(post.file[0].url)} class="post-img" width="100%" height="100%">`
-            :`<video src=${(post.file[0].url)} class="post-img" width="100%" height="100%" controls autoplay="autoplay" muted></video>`)
-            :''):''}${post.body}</div>
+            <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => e.resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
+            `<img src=${e.url} class="post-img" width="100%" height="100%">`
+            : `<video src=${e.url} class="post-img" width="100%" height="100%" controls autoplay="autoplay" muted></video>`).join(''))+'</div>')
+            : '') :''}${post.body}</div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
             <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
@@ -374,13 +374,13 @@ document.getElementById('logout-button').addEventListener("click", handleLogoutB
 function handlePostSubmit(e) {
         document.getElementsByClassName('create-post')[0].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
-        console.log('into former')
+        console.log('into form')
         e.preventDefault();
         let title = document.getElementById('title').value;
         // let tag = document.getElementById('tag').value;
         let body = document.getElementById('create-post-body').value;
         let file_url = document.getElementById('file').value;
-        console.log(file_url);
+        console.log('file upload url: ', file_url);
         const form = document.getElementsByTagName('form')[0];
         const submiter = document.getElementById('submit');
         const formData = new FormData(form, submiter);
