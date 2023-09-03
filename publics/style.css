@@ -427,6 +427,7 @@ form input, form textarea, input {
     align-self: baseline;
     flex-shrink: 1;
     flex-grow: 1;
+    flex-basis: 50%;
     min-width: 50%;
     max-width: 100%;
     /* width: 490px; */
