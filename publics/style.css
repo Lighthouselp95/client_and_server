@@ -855,14 +855,14 @@ i {
    .post-img {
     position: relative;
     /* right: 50%; */
-    width: 100vw;
-    margin-left: -7px;
+    /* width: 100vw; */
+    /* margin-left: -7px; */
     /* margin-right: 14px; */
     padding: 0px 0px;
     /* max-width: 100%; */
     /* min-width: 50%; */
     margin-bottom: 5px;
-    }
+}
     .posts-person {
         font-weight: 600;
         font-size: 13px;
