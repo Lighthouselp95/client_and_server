@@ -40,14 +40,17 @@ function fetchNews() {
         .then(res => res.json())
         .then((data) => {
             posts = data;
-            console.log(posts);
-            document.getElementsByClassName('loader-container')[0]?document.getElementsByClassName('loader-container')[0].remove():'';
+            // console.log(posts);
+            if(document.getElementsByClassName('loader-container')[0]) {
+                // document.getElementsByClassName('loader-container')[0].classList.add('opacity0');
+                setTimeout(() => document.getElementsByClassName('loader-container')[0].remove(), 300);
+            };
             addPosts(posts);
             checkLikePost();
             checkPostCondition();
         })
         .catch(err => console.log(err));
-        console.log('post ngoai: ', posts);
+        // console.log('post ngoai: ', posts);
     };
 
 // Update timeline column function
@@ -314,7 +317,7 @@ function addLikeEvent (likeButtons) {
     
         const moreButton = document.querySelectorAll('.more-button');    
         moreButton.forEach((ele) => {
-        console.log(ele.getAttribute('data-user-id'));
+        // console.log(ele.getAttribute('data-user-id'));
         if (ele.getAttribute('data-user-id') == localStorage.getItem('userId') || localStorage.getItem('userId')=='64e0eee99c007c207682e49a') {
             
             ele.style.visibility = 'visible';
@@ -406,7 +409,7 @@ function handlePostSubmit(e) {
                 return res.json();
             })
             .then ( res => {
-                console.log ("res: ", res); 
+                // console.log ("res: ", res); 
                 
                 addPosts([res]);
                 
@@ -448,7 +451,7 @@ function handleSignupSubmit(e) {
             })  
     .then( res => res.json() )
     .then ( res => {
-        console.log (res); 
+        // console.log (res); 
         // var cre = new PasswordCredential(e.target);
         // navigator.credentials.store(cre);
         // console.log(cre);

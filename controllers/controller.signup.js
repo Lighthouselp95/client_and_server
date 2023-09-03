@@ -29,6 +29,14 @@ module.exports = async (req, res, next) => {
                         });
                         console.log('signup token: ', token);
                         req.token = token;
+                        res.cookie(`token`, token, {
+                            maxAge: 432000000,
+                            // expires works the same as the maxAge
+                            // expires: new Date('01 12 2021'),
+                            // secure: true,
+                            httpOnly: true,
+                            sameSite: 'lax'
+                        });
                      res.status(200).send(['sucess', token, user._id, name]);
                      return;
                     // res.redirect(req.get('referer'));

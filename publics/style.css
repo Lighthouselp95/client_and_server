@@ -285,7 +285,9 @@ form input, form textarea, input {
     border-top: 6px solid #517ca2;
     border-left: 6px solid #517ca2;
     border-radius: 50%;
-    animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite, append-animate 0.4s;
+    /* opacity: 1; */
+    /* animation: append-animate 0.2s; */
 }
 
   @keyframes spinner {

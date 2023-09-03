@@ -34,7 +34,7 @@ module.exports = async (req, res, next) => {
                         req.token = token;
                         // res.send()
                         // res.writeHead(200, {'Refresh' : '1'});
-                        res.cookie()
+                       
                         res.cookie(`token`, token, {
                             maxAge: 432000000,
                             // expires works the same as the maxAge
