@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
         blog.file = [];
         if(req.files) {
         req.files.forEach((e) => {
-            blog.file.push({asset_id: e.asset_id, url: e.secure_url, resource_type: e.resource_type, createAt: e.created_at, file_format: e.format})
+            blog.file.push({asset_id: e.asset_id, public_id: e.public_id, url: e.secure_url, resource_type: e.resource_type, createAt: e.created_at, file_format: e.format})
         })
     }
         console.log(blog);

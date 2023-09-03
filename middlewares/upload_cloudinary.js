@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       const uploads = [];
       for(let e of req.files) {
         console.log("Req file: ", e);
-        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto"})
+        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto", folder: "client_and_server_proj"})
         uploads.push(temp); //video, image or k co
         
         // req.file.push(upload);
