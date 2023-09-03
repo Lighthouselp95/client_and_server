@@ -525,10 +525,14 @@ function handleLogoutButton() {
     fetch('/logout', {
         method: 'get',
         mode: 'no-cors'
-    });
-    checkoutLoginStatus();
-    checkPostCondition();
-    checkLikePost();
+    })
+    .then(() => {
+        checkoutLoginStatus();
+        checkPostCondition();
+        checkLikePost();
+    })
+    .catch(err => console.log(err));
+    
     // fetchNews();
 }
 
