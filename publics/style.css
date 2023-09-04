@@ -436,7 +436,7 @@ form input, form textarea, input {
     padding: 0px 0px;
     /* max-width: 100%; */
     /* min-width: 50%; */
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 .post-body::before {
@@ -848,12 +848,13 @@ i {
     padding-right: 11px;
    }
    .post-body {
-    padding: 0px 3px;
+    margin: 0px;
+    padding: 0px;
     border-bottom: 2px;
     border-radius: 0px;
     opacity: 0.95;
     font-size: 15px;
-   }
+}
    .post-img {
     flex-basis: auto;
     position: relative;
@@ -864,7 +865,7 @@ i {
     padding: 0px 0px;
     /* max-width: 100%; */
     /* min-width: 50%; */
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
     .posts-person {
         font-weight: 600;
