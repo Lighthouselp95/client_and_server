@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pm2-start": "npx pm2-runtime start app.js -i 0",
-    "pm2-kill": "npx pm2 kill",
+    "pm2start": "npx pm2-runtime start app.js -i 0",
+    "pm2kill": "npx pm2 kill",
     "start": "node app.js"
   },
   "author": "",
@@ -24,7 +24,6 @@
     "mongoose": "^7.4.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "pm2": "^4.2.3",
-    "semver": "^7.5.4"
+    "pm2": "^4.2.3"
   }
 }
