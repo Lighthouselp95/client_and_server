@@ -12,8 +12,18 @@ module.exports = async (req, res, next) => {
         
         if(blog.file.length!==0) {
             for(let e of blog.file) {
-                await cloudinary.uploader.destroy(e.public_id);
-                console.log('deleted on cloudinary')
+                console.log(!e.public_id, '--', e.url);
+                console.log(e.url.split('/').slice(-1));
+                if(!e.public_id) {
+                    e.public_id = e.url.split('/').slice(-1)[0];
+                    console.log(e.public_id);
+                    await cloudinary.uploader.destroy(e.public_id);
+                    console.log('deleted on cloudinary');
+                }
+                else {
+                    await cloudinary.uploader.destroy(e.public_id);
+                    console.log('deleted on cloudinary');
+                }
                 
             }
         }
