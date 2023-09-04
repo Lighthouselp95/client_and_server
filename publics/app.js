@@ -151,6 +151,7 @@ function addCommentEvent(sendButtons) {
         ele.addEventListener('click', () => {
         const id = ele.getAttribute('data-id');
         const value = ele.parentElement.querySelector('.write-comment-input').value;
+        ele.parentElement.querySelector('.write-comment-input').value = '';
         if(value) {
                 fetch(`/comment/${id}`, {
                     method: 'post',
@@ -166,6 +167,7 @@ function addCommentEvent(sendButtons) {
                     .then(res => res.json())
                     .then(data => {console.log(data);
                         addComment([data], document.querySelector(`.comment-body[data-id="${id}"]`));
+                        
                         const button8 = ele.parentElement.parentElement.parentElement.parentElement.querySelector('.button-8');
                         button8.setAttribute('data-number-comment', Number(button8.getAttribute('data-number-comment')) + 1);
                         // fetchNews();
@@ -186,8 +188,9 @@ function addComment(comments, commentBodyDom) {
         div.innerHTML = `
         <p class="comment-user">${e.name?e.name:""}</p>
         <div class="comment-time">${moment(e.createAt).format("lll")}</div>
-        <div class="comment-line"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
+        <div class="comment-line ${comments.length==1?'anime1':''}"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
+        
         localStorage.getItem('userId') == e.userId || localStorage.getItem('userId')=='64e0eee99c007c207682e49a'? div.querySelector('.delete-comment').style.visibility = 'visible' : 
         div.querySelector('.delete-comment').style.visibility = 'hidden';
         
@@ -376,6 +379,7 @@ document.getElementById('logout-button').addEventListener("click", handleLogoutB
 ;
 
 function handlePostSubmit(e) {
+        document.querySelector('#create-a-post').value = '';
         document.getElementsByClassName('create-post')[0].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
         console.log('into form')
@@ -550,10 +554,12 @@ let button_modal = [
 
 button_modal.forEach((element, index) => {
     element.addEventListener('click', () => {
+        document.querySelector('#create-a-post').value = '';
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: hidden");
     })
     document.getElementsByClassName('close-button-post')[index].addEventListener('click', () => {
+        document.querySelector('#create-a-post').value = '';
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
     })
