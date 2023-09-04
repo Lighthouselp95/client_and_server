@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const fs = require('fs');
 const os = require('os');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -20,6 +21,7 @@ const app = express();
 require('dotenv').config();
 app.use(cookieParser());
 const uploader = require("./middlewares/multer");
+const cloudinary = require("./middlewares/cloudinary");
 const cloudinary_upload = require('./middlewares/upload_cloudinary')
 const http = require('http')
 // use morgan to log request
@@ -113,10 +115,27 @@ app.get('/', (req, res) => {
     res.sendFile('./publics/index.html', {root: __dirname});
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', async (req, res) => {
     // res.send('<p>About Page</p>')
-    res.sendFile('./publics/about.html', {root: __dirname});
-});
+    try {
+    console.log(__dirname);
+    // fs.createReadStream("E:/Videos/Films/Davinci s Demon/Da.Vincis.Demons.S02E09.720p.mp4").pipe(fs.createWriteStream('./publics/assets/Davinci Demon.mp4'));
+    // await cloudinary.uploader.upload("./publics/assets/giphy.gif", {resource_type: "auto", folder: "client_and_server_proj"})
+    // await cloudinary.uploader.upload_large("E:/Videos/Films/Davinci s Demon/Da.Vincis.Demons.S02E09.720p.mp4", 
+    // {resource_type: "auto", chunk_size: 6000000, folder: "client_and_server_proj"}, (err, result) => {
+    //     if(result) console.log(result);
+    //     if(err) console.log(err);
+    // })
+
+    
+    res.download("./publics/assets/giphy.gif",'giphy.gif', (err) => {
+        console.log(err);
+    })
+}
+    catch(err) {console.log(err)}
+    // res.sendFile('./publics/about.html', {root: __dirname});
+}
+);
 // redirect
 app.get('/about-us', (req, res) => {
     res.redirect('https://www.google.com');

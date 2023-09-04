@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
         await blog.save()
                     .then(async (result) => {
                         recentBlog = await Blog.findById(result._id)
-                        return res.send(recentBlog);
+                        return res.status(201).send(recentBlog);
                     })
                     .catch((err) => (console.log(err)));
                 }
