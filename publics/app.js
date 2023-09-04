@@ -89,7 +89,7 @@ function addPosts(posts) {
             <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => e.resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
             `<img src=${e.url} class="post-img" width="100%" height="100%">`
             : `<video src=${e.url} class="post-img" width="100%" height="100%" controls autoplay="autoplay" muted></video>`).join(''))+'</div>')
-            : '') :''}${post.body}</div>
+            : '') :''}<p>${post.body}</p></div>
             <div class = "react-band">
             <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
             <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
@@ -107,7 +107,7 @@ function addPosts(posts) {
                         <div class="send-wrapper" data-id="${post._id}">
                             <i class="fa-regular fa-paper-plane"></i>
                         </div>
-                        <input placeholder="Write comment: " type="text" required></input>
+                        <textarea placeholder="Write comment: " type="text" required class="write-comment-input"></textarea>
                     </form>
                 </div>
                 <div class="comment-body" data-id="${post._id}">
@@ -146,7 +146,7 @@ function addCommentEvent(sendButtons) {
     sendButtons.forEach((ele) => {
         ele.addEventListener('click', () => {
         const id = ele.getAttribute('data-id');
-        const value = ele.parentElement.querySelector('.write-comment input').value;
+        const value = ele.parentElement.querySelector('.write-comment-input').value;
         if(value) {
                 fetch(`/comment/${id}`, {
                     method: 'post',
