@@ -2,23 +2,32 @@
 
 // check out login status
 function checkoutLoginStatus() {
-    let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
-    if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
-        if(document.getElementById('logout-button').classList.contains('hidden')) {
-            document.getElementById('username').innerText = localStorage.getItem('name');
-            document.getElementById('signup-button').classList.toggle('hidden');
-            document.getElementById('login-button').classList.toggle('hidden');
-            document.getElementById('logout-button').classList.toggle('hidden');
-    }
-    } else {
-        if(!document.getElementById('logout-button').classList.contains('hidden')) {
-            document.getElementById('username').innerText = '';
-            document.getElementById('signup-button').classList.toggle('hidden');
-            document.getElementById('login-button').classList.toggle('hidden');
-            document.getElementById('logout-button').classList.toggle('hidden');
-        }
-    }
-};
+    fetch('/log-in', {
+        method: 'post'        
+        })  
+        .then( res => {
+            let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
+            if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
+                if(document.getElementById('logout-button').classList.contains('hidden')) {
+                    document.getElementById('username').innerText = localStorage.getItem('name');
+                    document.getElementById('signup-button').classList.toggle('hidden');
+                    document.getElementById('login-button').classList.toggle('hidden');
+                    document.getElementById('logout-button').classList.toggle('hidden');
+            }
+            } else {
+                if(!document.getElementById('logout-button').classList.contains('hidden')) {
+                    document.getElementById('username').innerText = '';
+                    document.getElementById('signup-button').classList.toggle('hidden');
+                    document.getElementById('login-button').classList.toggle('hidden');
+                    document.getElementById('logout-button').classList.toggle('hidden');
+                }
+            }
+        })
+        .catch ( err => {
+            console.log (err); 
+        })
+}
+
 // const loader = document.createElement('div');
 //     loader.classList.add('loader-container');
 //     loader.innerHTML = `<div class="loading-spinner">
@@ -90,7 +99,7 @@ function addPosts(posts) {
             <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => e.resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
             `<img src=${e.url} class="post-img" width="100%" height="100%">`
             :  e.resource_type=='video'?`<video  class="post-img" width="100%" height="100%" controls autoplay="autoplay" webkit-playsinline playsinline muted><source src=${e.url}></video>`
-            :`<audio controls class="post-img" width="100%" height="100%" autoplay="autoplay">
+            :`<audio controls class="post-img" width="100%" height="100%">
                 <source src=${e.url}>
                 Your browser does not support the audio tag.
             </audio>`).join(''))+'</div>')

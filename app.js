@@ -96,7 +96,7 @@ app.get("/logout", (req, res) => {
     .then(result => console.log(result))
     .catch(err => console.log(err));
     res.clearCookie("token");
-    
+    res.clearCookie("uid");
     // redirect to login
     res.send("Log out successful");
   });

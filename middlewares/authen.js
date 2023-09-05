@@ -13,16 +13,12 @@ const verifyToken = async (req, res, next) => {
     try {
         jwt.verify( token, process.env.TOKEN_KEY, (err, decoded) => {
             if(err) {
-                console.log(err);
-                console.log("Err: Unauthorized");
                 res.clearCookie("token");
-                console.log(req.cookies.uid);
                 User.findByIdAndUpdate(req.cookies.uid, {$unset: {token: 1}})
                     .then(result => console.log('finded: ',result.length))
                     .catch( err => console.log(err));
-
                 return res.status(401).send({error:"Unauthorized!"})
-            }
+                }
             req.userId = decoded.userId; //export userid
             req.userName = decoded.name;
             // console.log(decoded, req.userName, req.userId);
@@ -32,10 +28,10 @@ const verifyToken = async (req, res, next) => {
                     return res.status(401).send({error:"Unauthorized!"})
                     }
                     );
-        next();
-        });
+            next();
+            });
         
-    }
+        }
     catch(err) {
         // console.log(err);
         // res.cookie(`aut`, 0, {
