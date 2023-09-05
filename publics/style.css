@@ -678,7 +678,7 @@ i {
     
 }
 .anime1 {
-    animation: append-animate 2s ease-in;
+    animation: append-animate 0.5s ease-in;
 }
 .comment-line p {
     word-break: break-word;
