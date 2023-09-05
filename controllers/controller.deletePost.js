@@ -5,7 +5,7 @@ const {Blog, User} = require('../models/Schema');
 module.exports = async (req, res, next) => {
     try {
 
-    const blog = await Blog.findById(req.params.id).exec();
+    const blog = await Blog.findById(req.params.uid).exec();
     
     if ( blog.personID == req.userId|| req.userId == '64e0eee99c007c207682e49a') {
         console.log('dung');
