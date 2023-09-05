@@ -11,11 +11,16 @@ const verifyToken = async (req, res, next) => {
         return res.status(403).send("A access token is needed");
     };
     try {
-        jwt.verify( token, process.env.TOKEN_KEY, async (err, decoded) => {
+        jwt.verify( token, process.env.TOKEN_KEY, (err, decoded) => {
             if(err) {
                 console.log(err);
                 console.log("Err: Unauthorized");
                 res.clearCookie("token");
+                console.log(req.cookies.uid);
+                User.findByIdAndUpdate(req.cookies.uid, {$unset: {token: 1}})
+                    .then(result => console.log('finded: ',result.length))
+                    .catch( err => console.log(err));
+
                 return res.status(401).send({error:"Unauthorized!"})
             }
             req.userId = decoded.userId; //export userid
