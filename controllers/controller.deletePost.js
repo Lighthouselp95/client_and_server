@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
     if ( blog.personID == req.userId|| req.userId == '64e0eee99c007c207682e49a') {
         console.log('dung');
         
-        if(blog.file.length!==0) {
+        if(blog?.file.length!==0) {
             for(let e of blog.file) {
                 console.log(!e.public_id, '--', e.url);
                 console.log(e.url.split('/').slice(-1));
