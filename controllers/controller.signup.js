@@ -38,31 +38,23 @@ module.exports = async (req, res, next) => {
             user.save()
                 .then((result) => {
                     console.log('signup inf: ',result);
-                    // res.send()
-                    // res.writeHead(200, {'Refresh' : '1'});
                     res.cookie(`uid`, _id.valueOf(), {
                         maxAge: 432000000,
-                        // expires works the same as the maxAge
-                        // expires: new Date('01 12 2021'),
-                        // secure: true,
                         sameSite: 'lax'
                     });
                     res.cookie(`token`, token, {
                         maxAge: 4320000000,
-                        // expires works the same as the maxAge
-                        // expires: new Date('01 12 2021'),
-                        // secure: true,
                         sameSite: 'lax'
                     });
-                     res.status(200).send({status:'sucess', userId : user._id, name: name});
-                     return;
+                     return res.status(200).send({status:'sucess', userId : user._id, name: name});
                     // res.redirect(req.get('referer'));
                 })
-                .catch((err) => (console.log(err)))
+                .catch((err) => {console.log(err);
+                    return res.status(404).send(err) })
         }
     catch (err) {
         console.log(err);
-        return;
+        return res.status(404).send(err);
         }
     }
             

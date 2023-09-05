@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
     console.log(req.body);
-    if(req.body.id && req.body.password) {
+    if(!req.cookies.token) {
         try {
-            const {id, password} = req.body;
+            const {id, password}=  req.body;
 
             const oldUser = await User.findOne({id: id})
             if(oldUser) {
@@ -34,16 +34,10 @@ module.exports = async (req, res, next) => {
                     console.log(newtokenuser.token);
                     res.cookie(`token`, token, {
                         maxAge: 432000000,
-                        // expires works the same as the maxAge
-                        // expires: new Date('01 12 2021'),
-                        // secure: true,
                         sameSite: 'lax'
                     });
                     res.cookie(`uid`, oldUser._id.valueOf(), {
                         maxAge: 432000000,
-                        // expires works the same as the maxAge
-                        // expires: new Date('01 12 2021'),
-                        // secure: true,
                         sameSite: 'lax'
                     });
 
