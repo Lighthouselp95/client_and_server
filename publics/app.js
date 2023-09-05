@@ -2,7 +2,8 @@
 
 // check out login status
 function checkoutLoginStatus() {
-    if(localStorage.getItem('acess_token') && localStorage.getItem('userId') && localStorage.getItem('name')) {
+    let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
+    if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
         if(document.getElementById('logout-button').classList.contains('hidden')) {
             document.getElementById('username').innerText = localStorage.getItem('name');
             document.getElementById('signup-button').classList.toggle('hidden');
@@ -158,7 +159,6 @@ function addCommentEvent(sendButtons) {
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(
                         {
-                            token: localStorage.getItem('acess_token'),
                             userId: localStorage.getItem('userId'),
                             comment: value
                         }
@@ -200,7 +200,6 @@ function addComment(comments, commentBodyDom) {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(
                     {
-                        token: localStorage.getItem('acess_token'),
                         userId: localStorage.getItem('userId'),
                         cmId: e.userId
                     }
@@ -236,7 +235,6 @@ function checkLikePost() {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(
             {
-                token: localStorage.getItem('acess_token'),
                 userId: localStorage.getItem('userId')
             }
             )
@@ -284,7 +282,6 @@ function addLikeEvent (likeButtons) {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(
                     {
-                        token: localStorage.getItem('acess_token'),
                         userId: localStorage.getItem('userId')
                     }
                     )
@@ -343,8 +340,7 @@ function addDeleteEvent(posts) {
                 method: 'delete',
                 body: JSON.stringify(
                     {   
-                        post_id: postId,
-                        token: localStorage.getItem('acess_token')
+                        post_id: postId
                     }
                     ),
                 headers: {
@@ -392,7 +388,6 @@ function handlePostSubmit(e) {
         const form = document.getElementsByTagName('form')[0];
         const submiter = document.getElementById('submit');
         const formData = new FormData(form, submiter);
-        formData.append('token', localStorage.getItem('acess_token'));
         for (const [key, value] of formData) {
             console.log(key, ': ', value);
         }
@@ -463,9 +458,8 @@ function handleSignupSubmit(e) {
         // var cre = new PasswordCredential(e.target);
         // navigator.credentials.store(cre);
         // console.log(cre);
-        localStorage.setItem('acess_token', `${res[1]}`);
-        localStorage.setItem('userId', `${res[2]}`);
-        localStorage.setItem('name', `${res[3]}`);
+        localStorage.setItem('userId', `${res.userId}`);
+        localStorage.setItem('name', `${res.name}`);
         document.getElementsByClassName('create-post')[1].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
         checkoutLoginStatus();
@@ -504,9 +498,8 @@ function handleLoginSubmit(e) {
         // var cre = new PasswordCredential(e.target);
         // navigator.credentials.store(cre);
         // console.log(cre);
-        localStorage.setItem('acess_token', `${res[1]}`);
-        localStorage.setItem('userId', `${res[2]}`);
-        localStorage.setItem('name', `${res[3]}`);
+        localStorage.setItem('userId', `${res.userId}`);
+        localStorage.setItem('name', `${res.name}`);
         document.getElementsByClassName('create-post')[2].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
     })
@@ -515,6 +508,7 @@ function handleLoginSubmit(e) {
         // checkPostCondition();
         // checkLikePost();
         // console.log(cre)
+        document.querySelectorAll('.main-column')[1].innerHTML = '';
         fetchNews();
     })
     .catch( (err) => {
@@ -528,7 +522,6 @@ function handleLoginSubmit(e) {
 
 // Handle logoout
 function handleLogoutButton() {
-    localStorage.removeItem('acess_token');
     localStorage.removeItem('userId');
     fetch('/logout', {
         method: 'get',

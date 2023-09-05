@@ -75,7 +75,11 @@ const userSchema = new Schema ({
         name: String,
         createAt: String
     }],
-    like: [{postId: String}]
+    like: [{postId: String}],
+    token: {
+        type: String,
+        required: false
+    }
     },{timestamps: true});
     
 

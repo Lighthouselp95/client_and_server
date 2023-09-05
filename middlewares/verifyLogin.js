@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = async (req, res, next) => {
         try {
             const {id, password} = req.body;
-    
+            
             if(!(id && password)) {
                 console.log("All input is required")
                 res.status(400).send("All input is required");
@@ -28,22 +28,30 @@ module.exports = async (req, res, next) => {
                         process.env.TOKEN_KEY,
                         {
                             allowInsecureKeySizes: true,
-                            expiresIn: "3d"
+                            expiresIn: "10s"
                         });
                         console.log('login token: ', token);
                         req.token = token;
                         // res.send()
                         // res.writeHead(200, {'Refresh' : '1'});
-                       
+                        const newtokenuser = await User.findOneAndUpdate({id: id}, {"token": token});
+                        console.log(newtokenuser.token);
                         res.cookie(`token`, token, {
                             maxAge: 432000000,
                             // expires works the same as the maxAge
                             // expires: new Date('01 12 2021'),
                             // secure: true,
-                            httpOnly: true,
                             sameSite: 'lax'
                         });
-                        res.status(200).send(['sucess', token, oldUser._id, name]);
+                        res.cookie(`uid`, oldUser._id.valueOf(), {
+                            maxAge: 432000000,
+                            // expires works the same as the maxAge
+                            // expires: new Date('01 12 2021'),
+                            // secure: true,
+                            sameSite: 'lax'
+                        });
+
+                        res.status(200).send({status:'Login sucess', userId : oldUser._id, name: name});
                         return;
                         }
                     }  
@@ -56,5 +64,4 @@ module.exports = async (req, res, next) => {
         catch (err) {
             console.log('err: ', err);        
         };
-        console.log('come to next middleware');
 }

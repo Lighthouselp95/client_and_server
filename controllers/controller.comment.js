@@ -6,9 +6,9 @@ const {Blog, User} = require('../models/Schema');
 module.exports = async (req, res, next) => {
     try {   
             const commentId = new mongoose.Types.ObjectId();
-            const user = await User.findOneAndUpdate({_id: req.userId}, {$push: {"comments": {"postId": req.params.postId, "name": req.userName,
+            const user = await User.findOneAndUpdate({_id:  req.cookies.uid}, {$push: {"comments": {"postId": req.params.postId, "name": req.userName,
             "comment": req.body.comment, _id: commentId, createAt: new Date()}}},{returnOriginal: false});
-            const blog = await Blog.findOneAndUpdate({_id: req.params.postId}, {$push: {"comments": {"userId": req.userId, "name": req.userName,
+            const blog = await Blog.findOneAndUpdate({_id: req.params.postId}, {$push: {"comments": {"userId":  req.cookies.uid, "name": req.userName,
             "comment": req.body.comment, _id: commentId, createAt: new Date()}}},{returnOriginal: false}); //use "" inside projection
             // console.log('user', user);
             // console.log('blog', blog);

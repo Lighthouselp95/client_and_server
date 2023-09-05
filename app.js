@@ -91,7 +91,12 @@ app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);
 app.get("/logout", (req, res) => {
     // clear the cookie
+    const _id = req.cookies.uid;
+    User.findOneAndUpdate({_id: _id}, {"token": undefined})
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
     res.clearCookie("token");
+    
     // redirect to login
     res.send("Log out successful");
   });
