@@ -131,11 +131,16 @@ app.get('/about', async (req, res) => {
     //     if(result) console.log(result);
     //     if(err) console.log(err);
     // })
-
+        // res.setHeader('Location','https://www.udemy.com/course/complete-react-native-mobile-development-zero-to-mastery-with-hooks/?fbclid=%5B%27IwAR071y3JRXUbZH03TOtw4jpREtx2OoVnxKRT_WCkG1z70EBzU7e_Rr17PZk%27%5D');
+        // res.status(302).send();
+        // res.redirect(200, 'https://www.udemy.com/course/complete-react-native-mobile-development-zero-to-mastery-with-hooks/?fbclid=%5B%27IwAR071y3JRXUbZH03TOtw4jpREtx2OoVnxKRT_WCkG1z70EBzU7e_Rr17PZk%27%5D');
+        res.setHeader('Content-Disposition', 'attachment; filename="giphy.gif"');
+        res.sendFile("./publics/assets/giphy.gif", {root: __dirname});
     
-    res.download("./publics/assets/giphy.gif",'giphy.gif', (err) => {
-        console.log(err);
-    })
+    
+    //     res.download("./publics/assets/giphy.gif",'giphy.gif', (err) => {
+    //     console.log(err);
+    // })
 }
     catch(err) {console.log(err)}
     // res.sendFile('./publics/about.html', {root: __dirname});

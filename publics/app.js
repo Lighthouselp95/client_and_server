@@ -56,13 +56,13 @@ document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
 document.addEventListener("DOMContentLoaded", fetchNews);
 
 // fetch new content to site
-function fetchNews() {
+async function fetchNews() {
     const main_column = document.createElement('div');
     main_column.classList.add('main-column');
     document.querySelector('.content').appendChild(main_column);
     let posts = [];
     console.log('into fetchnew')
-    fetch('/blog')
+    await fetch('/blog')
         .then(res => res.json())
         .then((data) => {
             posts = data;
@@ -76,7 +76,7 @@ function fetchNews() {
             checkPostCondition();
         })
         .catch(err => console.log(err));
-        // console.log('post ngoai: ', posts);
+        console.log('post ngoai: ', posts);
     };
 
 // Update timeline column function
@@ -209,10 +209,10 @@ function addComment(comments, commentBodyDom) {
         div.setAttribute('data-cm-id', e._id);
         
         div.setAttribute('data-user-id', e.userId);
-        div.classList.add('comment-wrapper');
+        div.classList.add('comment-wrapper'); //format("dddd, MMMM Do YYYY, h:mm:ss a")
         div.innerHTML = `
         <p class="comment-user">${e.name?e.name:""}</p>
-        <div class="comment-time">${moment(e.createAt).format("lll")}</div>
+        <div class="comment-time">${moment(e.createAt).format("lll")}</div> 
         <div class="comment-line ${comments.length==1?'anime1':''}"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
         

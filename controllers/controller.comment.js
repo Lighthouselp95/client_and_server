@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
             const blog = await Blog.findOneAndUpdate({_id: req.params.postId}, {$push: {"comments": {"userId":  req.cookies.uid, "name": req.userName,
             "comment": req.body.comment, _id: commentId, createAt: new Date()}}},{returnOriginal: false}); //use "" inside projection
             // console.log('user', user);
-            // console.log('blog', blog);
+            console.log('blog', blog.comments);
 
             // console.log(new Date())
             // console.log('e', blog.comments[0]._id.toString());
