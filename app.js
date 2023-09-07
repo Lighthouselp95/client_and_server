@@ -24,6 +24,7 @@ const uploader = require("./middlewares/multer");
 const cloudinary = require("./middlewares/cloudinary");
 const cloudinary_upload = require('./middlewares/upload_cloudinary')
 const http = require('http')
+const axios = require("axios")
 // use morgan to log request
 // app.use(morgan('dev'));
 // morgan.token('user-type', function(req, res) {
@@ -120,6 +121,44 @@ app.get('/', (req, res) => {
     res.sendFile('./publics/index.html', {root: __dirname});
 });
 
+app.get('/testfile2', async (req, res) => {
+    
+    // const url ='https://github.com/chromium/chromium/blob/master/media/test/data/bear-640x360-a_frag.mp4';
+    const url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4";
+    // const url = "http://212.183.159.230/20MB.zip"
+    axios({
+		url: url,
+		method: "get",
+        responseType: 'stream'
+	})
+		.then(response => {
+        
+            // console.log(response);
+
+            console.log(response.data.rawHeaders);
+            console.log(Object.keys(response));
+            // console.log(response.data.responseUrl.split('/').slice(-1)[0]);
+            // res.send(response.data.responseUrl);
+            const local_file = fs.createWriteStream('E:/Downloads/'+response.data.responseUrl.split('/').slice(-1)[0]);
+            response.data.pipe(local_file);
+            res.setHeader('Content-Length', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
+            res.setHeader('Content-Disposition', `attachment; filename=${response.data.responseUrl.split('/').slice(-1)[0]}`)
+			response.data.pipe(res);
+        })
+		.catch((err) => {
+			res.status(500).send({ message: err });
+		});
+
+
+})
+app.get('/testfile', async (req, res) => {
+    const path = "E:/Music/Đặt - 4H Người Khóc Cùng Anh - Hạnh Ke.mp3";
+    const stat = fs.statSync(path).size;
+    console.log(stat, ' bytes');
+    res.setHeader('Content-Disposition', 'attachment; filename="Dat 4h nguoi khoc cung anh.mp3"');
+    res.setHeader('Content-Length', stat);
+    fs.createReadStream(path).pipe(res).on('err', () => console.log(err));
+})
 app.get('/about', async (req, res) => {
     // res.send('<p>About Page</p>')
     try {
