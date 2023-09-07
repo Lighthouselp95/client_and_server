@@ -160,6 +160,9 @@ app.get('/testfile', async (req, res) => {
     fs.createReadStream(path).pipe(res).on('err', () => console.log(err));
 })
 app.get('/about', async (req, res) => {
+    res.sendFile('./publics/about.html', {root: __dirname});
+})
+app.get('/testfile3', async (req, res) => {
     // res.send('<p>About Page</p>')
     try {
     console.log(__dirname);
@@ -182,7 +185,7 @@ app.get('/about', async (req, res) => {
     // })
 }
     catch(err) {console.log(err)}
-    // res.sendFile('./publics/about.html', {root: __dirname});
+    // 
 }
 );
 // redirect
