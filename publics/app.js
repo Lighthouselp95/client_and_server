@@ -121,8 +121,10 @@ function addPosts(posts) {
             </audio>`).join(''))+'</div>')
             : '') :''}<p>${post.body}</p></div>
             <div class = "react-band">
-            <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i></div>
-            <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i>
+                </div>
+                <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
             </div>
             <div class="number-like">${post.like.length} person likes</div>
             </div>
@@ -160,7 +162,27 @@ function addPosts(posts) {
             }
         post_dom.querySelector('.post-body').addEventListener('click', (e) => {
             // if (e.target === post_dom.querySelector('.react')) {e.preventDefault()}
+            const list = post_dom.querySelectorAll('.post-img');
+            let condi;
+            list.forEach(ele => {
+            if (e.target == ele) {
+                condi = true;
+                
+                
+            }})
+            console.log(condi);
+            if(!condi) {
             post_dom.querySelector('.comment-content').classList.toggle('display');
+            }
+            })
+        post_dom.querySelector('.react-band').addEventListener('click', (e) => {
+            // if (e.target === post_dom.querySelector('.react')) {e.preventDefault()}
+            if (e.target.classList.value.includes('fa-heart')||e.target.classList.value.includes('fa-ellipsis-vertical')||e.target.classList.value.includes('more-button')) {
+                console.log('false');}
+                else {
+                post_dom.querySelector('.comment-content').classList.toggle('display');
+            }
+            
             })
         addComment(post.comments, cmt);
         addDeleteEvent([post_dom.querySelector('.more-button')]);
