@@ -177,7 +177,7 @@ function addPosts(posts) {
             })
         post_dom.querySelector('.react-band').addEventListener('click', (e) => {
             // if (e.target === post_dom.querySelector('.react')) {e.preventDefault()}
-            if (e.target.classList.value.includes('fa-heart')||e.target.classList.value.includes('fa-ellipsis-vertical')||e.target.classList.value.includes('more-button')) {
+            if (e.target.className == 'fa-solid fa-heart'||e.target.className == 'fa-regular fa-heart'||e.target.className == 'fa-solid fa-ellipsis-vertical'||e.target.className == 'more-button'||e.target.className == 'react') {
                 console.log('false');}
                 else {
                 post_dom.querySelector('.comment-content').classList.toggle('display');
