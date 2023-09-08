@@ -335,7 +335,7 @@ function addLikeEvent (likeButtons) {
                 })
                 .then(res => {
                     if(!res.ok) {
-                        ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                        // ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
                     } 
                     return res.json();
                 })
