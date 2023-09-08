@@ -131,13 +131,19 @@ CSS */
     -webkit-user-select: none;
     touch-action: manipulation;
     text-decoration: none;
-    transition: background 0.3s ease-in 0.1s;
+    transition: all 0.4s ease-in-out 0.15s;
     cursor: default;
+    /* border: 1px #00000000 solid; */
+    /* border: 1.5px #90919680 solid; */
+    border-radius: 10px;
 }
 .nav .button:hover {
-    transition: background 0s ease-in-out 0s;
+    transition: all 0s ease-in-out 0s;
     border-radius: 10px;
-    background-color: #86eaea;
+    
+    /* border: 1px #326bb18b solid; */
+    /* color: rgb(234, 234, 234); */
+    background-color: #b7fcfc;
 }
 
 .create-post {
