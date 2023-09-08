@@ -213,7 +213,7 @@ function addComment(comments, commentBodyDom) {
         div.innerHTML = `
         <p class="comment-user">${e.name?e.name:""}</p>
         <div class="comment-time">${moment(e.createAt).format("lll")}</div> 
-        <div class="comment-line ${comments.length==1?'anime1':''}"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
+        <div class="comment-line anime1 ${comments.length==1?'anime1':''}"><p>${e.comment}</p><div class="delete-comment"><i class="fa-solid fa-xmark"></i></div></div>
         `;
         
         localStorage.getItem('userId') == e.userId || localStorage.getItem('userId')=='64e0eee99c007c207682e49a'? div.querySelector('.delete-comment').style.visibility = 'visible' : 
