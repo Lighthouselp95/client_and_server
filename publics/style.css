@@ -131,14 +131,14 @@ CSS */
     -webkit-user-select: none;
     touch-action: manipulation;
     text-decoration: none;
-    transition: all 0.4s ease-in-out 0.15s;
+    transition: all 0.5s ease-in 0.2s;
     /* cursor: default; */
     /* border: 1px #00000000 solid; */
     /* border: 1.5px #90919680 solid; */
     border-radius: 10px;
 }
 .nav .button:hover {
-    transition: all 0s ease-in-out 0s;
+    transition: all 0.02s ease-in 0.1s;
     border-radius: 10px;
     
     /* border: 1px #afc7dec6 solid; */
