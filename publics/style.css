@@ -131,10 +131,11 @@ CSS */
     -webkit-user-select: none;
     touch-action: manipulation;
     text-decoration: none;
-    transition: background 0.3s ease-in 0.3s;
+    transition: background 0.3s ease-in 0.1s;
+    cursor: default;
 }
 .nav .button:hover {
-    transition: background 0.1s ease-in-out 0s;
+    transition: background 0s ease-in-out 0s;
     border-radius: 10px;
     background-color: #86eaea;
 }
