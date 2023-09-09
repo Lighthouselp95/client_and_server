@@ -121,28 +121,78 @@ app.get('/', (req, res) => {
     res.sendFile('./publics/index.html', {root: __dirname});
 });
 
+
+
+app.get('/about', async (req, res) => {
+    res.sendFile('./publics/about.html', {root: __dirname});
+})
+app.get('/testfile', async (req, res) => {
+    const path = "E:/Music/Đặt - 4H Người Khóc Cùng Anh - Hạnh Ke.mp3";
+    const stat = fs.statSync(path).size;
+    let start = 0, end = 5000000-1, chunk = 5000000-1;
+    console.log(req.headers.range);
+    if(req.headers.range) {
+    start = Number(req.headers.range?.split('=')[1].split('-')[0]);
+    end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk)<(stat-1)?(start+chunk):stat-1;
+    }
+    
+    // start = 0; end = stat-1;
+    console.log(start, '-', end);
+    console.log(stat, ' bytes');
+    res.setHeader('Content-Disposition', 'inline; filename="Dat 4h nguoi khoc cung anh.mp3"');
+    res.setHeader('Content-Length', end-start+1);
+    // res.setHeader('Content-Length', stat);
+
+    
+    // const head = {
+    //     'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+    //     'Accept-Ranges': 'bytes',
+    //     'Content-Length': chunksize,
+    //     'Content-Type': 'video/mp4',
+    //     }
+         
+    //     res.writeHead(206, head)
+    res.setHeader('Content-Range', `bytes `+ start +'-'+end+'/'+stat);
+    res.status(206);
+    if(end==stat-1) res.status(200);
+    fs.createReadStream(path, {start: start, end: end}).pipe(res).on('err', () => console.log(err));
+})
+
 app.get('/testfile2', async (req, res) => {
     
     // const url ='https://github.com/chromium/chromium/blob/master/media/test/data/bear-640x360-a_frag.mp4';
-    const url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4";
+    // const url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4";
+    const url = "https://res.cloudinary.com/dwvcdfn26/video/upload/v1694245678/client_and_server_proj/Nonstop_-_Em_N%C3%AAn_D%E1%BB%ABng_l%E1%BA%A1i_DJ_H%C6%B0ng_Taboo_-_Remix_txxnnl.mp3";
     // const url = "http://212.183.159.230/20MB.zip"
+        let start = 0, end = 5000000-1, chunk = 5000000-1;
+        console.log(req.headers.range);
+        if(req.headers.range) {
+        start = Number(req.headers.range?.split('=')[1].split('-')[0]);
+        end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk);
+        }
+        end = 97704644;
     axios({
 		url: url,
 		method: "get",
-        responseType: 'stream'
+        responseType: 'stream',
+        // headers: {'Content-Range': `bytes=`+ start +'-'+end},
 	})
 		.then(response => {
         
             // console.log(response);
 
             console.log(response.data.rawHeaders);
+            console.log(response.status);
+            console.log(response.headers);
+            console.log(response.config);
             console.log(Object.keys(response));
             // console.log(response.data.responseUrl.split('/').slice(-1)[0]);
             // res.send(response.data.responseUrl);
-            const local_file = fs.createWriteStream('E:/Downloads/'+response.data.responseUrl.split('/').slice(-1)[0]);
-            response.data.pipe(local_file);
             res.setHeader('Content-Length', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
-            res.setHeader('Content-Disposition', `attachment; filename=${response.data.responseUrl.split('/').slice(-1)[0]}`)
+            res.setHeader('Content-Disposition', `inline; filename=${response.data.responseUrl.split('/').slice(-1)[0]}`);
+            res.setHeader('content-type', 'audio/mpeg')
+            // res.setHeader('Content-Range', `bytes `+ start +'-'+end+'/'+response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
+            res.status(200);
 			response.data.pipe(res);
         })
 		.catch((err) => {
@@ -150,17 +200,6 @@ app.get('/testfile2', async (req, res) => {
 		});
 
 
-})
-app.get('/testfile', async (req, res) => {
-    const path = "E:/Music/Đặt - 4H Người Khóc Cùng Anh - Hạnh Ke.mp3";
-    const stat = fs.statSync(path).size;
-    console.log(stat, ' bytes');
-    res.setHeader('Content-Disposition', 'attachment; filename="Dat 4h nguoi khoc cung anh.mp3"');
-    res.setHeader('Content-Length', stat);
-    fs.createReadStream(path).pipe(res).on('err', () => console.log(err));
-})
-app.get('/about', async (req, res) => {
-    res.sendFile('./publics/about.html', {root: __dirname});
 })
 app.get('/testfile3', async (req, res) => {
     // res.send('<p>About Page</p>')

@@ -321,8 +321,7 @@ function addLikeEvent (likeButtons) {
     likeButtons.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
         ele.addEventListener('click', () => {
-            ele.getAttribute('data-like') == 0? 
-            ele.innerHTML = '<i class="fa-solid fa-heart"></i>' : ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            
           
             fetch(`/like/${postId}`, {
                 method: 'post',
@@ -340,6 +339,7 @@ function addLikeEvent (likeButtons) {
                     return res.json();
                 })
                 .then(data => {
+                    // ele.getAttribute('data-like') == 0? ele.innerHTML = '<i class="fa-solid fa-heart"></i>' : ele.innerHTML = '<i class="fa-regular fa-heart"></i>';
                     ele.parentElement.parentElement.querySelector('.number-like').innerHTML = `${data[2].like.length} person likes`
                     if(ele.getAttribute('data-like') == 0) {
                         ele.innerHTML = '<i class="fa-solid fa-heart"></i>';

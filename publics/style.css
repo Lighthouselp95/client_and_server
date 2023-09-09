@@ -138,7 +138,7 @@ CSS */
     border-radius: 10px;
 }
 .nav .button:hover {
-    transition: all 0.02s ease-in 0.1s;
+    transition: all 0.015s ease-in 0.25s;
     border-radius: 10px;
     
     /* border: 1px #afc7dec6 solid; */
