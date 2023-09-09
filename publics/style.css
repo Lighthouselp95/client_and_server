@@ -340,7 +340,6 @@ form input, form textarea, input {
 }
 .post-wrapper {
     border-radius: 3px;
-    margin: 10px;
     animation: append-animate 1s ease-in-out;
     transition: all 1s ease-in-out;
     padding-bottom: 10px;
@@ -459,9 +458,9 @@ form input, form textarea, input {
 } */
 .post-img {
     /* width: 50%; */
-    height: 250px;
+    height: 259px;
     min-height: 150px;
-    max-height: 300px;
+    max-height: 557px;
     object-fit: contain;
     /* object-fit: cover; */
     flex: 1 1 50%;
@@ -882,6 +881,13 @@ i {
         width: 95%;
         margin: 0 auto;
         padding: 50px 0px;
+    }
+    .post-wrapper {
+        border-radius: 3px;
+        margin: 10px;
+        animation: append-animate 1s ease-in-out;
+        transition: all 1s ease-in-out;
+        padding-bottom: 10px;
     }
    .post {
     border-radius: 0px;
