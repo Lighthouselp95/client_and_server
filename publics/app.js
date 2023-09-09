@@ -254,7 +254,7 @@ function addComment(comments, commentBodyDom) {
                 })
                 .then(res => {if(res.ok) {
                     
-                    document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).classList.add('opacity0');
+                    document.querySelector(`.comment-wrapper .comment-line`).classList.add('opacity0');
                     setTimeout(() => {
                         document.querySelector(`.comment-wrapper[data-cm-id="${e._id}"]`).remove();
                         const button8 = commentBodyDom.parentElement.previousElementSibling.querySelector('.button-8');
