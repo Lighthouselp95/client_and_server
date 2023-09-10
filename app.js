@@ -169,6 +169,8 @@ app.get('/testfile2', async (req, res) => {
         if(req.headers.range) {
         start = Number(req.headers.range?.split('=')[1].split('-')[0]);
         end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk);
+        } else {
+            end = "";
         }
         axios({
             url: url,
@@ -192,6 +194,7 @@ app.get('/testfile2', async (req, res) => {
             res.setHeader('content-type', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Type')+1])
             res.setHeader('Content-Range', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Range')+1]);
             res.status(206);
+            if (end=="") res.status(200);
 			response.data.pipe(res);
         })
 		.catch((err) => {
