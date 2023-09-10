@@ -320,6 +320,7 @@ function checkLikePost() {
 function addLikeEvent (likeButtons) {
     likeButtons.forEach((ele) => {
         let postId = ele.parentElement.querySelector('.more-button').getAttribute('data-id');
+        // ele.addEventListener('click', () => alert('Hello!'));
         ele.addEventListener('click', () => {
             
           

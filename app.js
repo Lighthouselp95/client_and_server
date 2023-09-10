@@ -134,6 +134,8 @@ app.get('/testfile', async (req, res) => {
     if(req.headers.range) {
     start = Number(req.headers.range?.split('=')[1].split('-')[0]);
     end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk)<(stat-1)?(start+chunk):stat-1;
+    } else {
+        end = stat -1;
     }
     
     // start = 0; end = stat-1;
@@ -171,12 +173,12 @@ app.get('/testfile2', async (req, res) => {
         end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk);
         }
         end = 97704644;
-    axios({
-		url: url,
-		method: "get",
-        responseType: 'stream',
-        // headers: {'Content-Range': `bytes=`+ start +'-'+end},
-	})
+        axios({
+            url: url,
+            method: "get",
+            responseType: 'stream',
+            // headers: {'Content-Range': `bytes=`+ start +'-'+end},
+        })
 		.then(response => {
         
             // console.log(response);
@@ -234,6 +236,7 @@ app.get('/about-us', (req, res) => {
 });
 app.get('/about-us2', (req, res) => {
     res.writeHead(302, {'Location' : '/about'});
+    res.send();
 });
 // handle params
 app.get('/example/:name/:age', (req, res) => {
