@@ -129,14 +129,12 @@ app.get('/about', async (req, res) => {
 app.get('/testfile', async (req, res) => {
     const path = "E:/Music/Đặt - 4H Người Khóc Cùng Anh - Hạnh Ke.mp3";
     const stat = fs.statSync(path).size;
-    let start = 0, end = 5000000-1, chunk = 5000000-1;
+    let start = 0, end = stat-1, chunk = 3000000-1;
     console.log(req.headers.range);
     if(req.headers.range) {
     start = Number(req.headers.range?.split('=')[1].split('-')[0]);
     end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk)<(stat-1)?(start+chunk):stat-1;
-    } else {
-        end = stat -1;
-    }
+    } 
     
     // start = 0; end = stat-1;
     console.log(start, '-', end);
@@ -172,12 +170,11 @@ app.get('/testfile2', async (req, res) => {
         start = Number(req.headers.range?.split('=')[1].split('-')[0]);
         end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk);
         }
-        end = 97704644;
         axios({
             url: url,
             method: "get",
             responseType: 'stream',
-            // headers: {'Content-Range': `bytes=`+ start +'-'+end},
+            headers: {'Range': `bytes=`+ start +'-'+end},
         })
 		.then(response => {
         
@@ -191,10 +188,10 @@ app.get('/testfile2', async (req, res) => {
             // console.log(response.data.responseUrl.split('/').slice(-1)[0]);
             // res.send(response.data.responseUrl);
             res.setHeader('Content-Length', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
-            res.setHeader('Content-Disposition', `inline; filename=${response.data.responseUrl.split('/').slice(-1)[0]}`);
-            res.setHeader('content-type', 'audio/mpeg')
-            // res.setHeader('Content-Range', `bytes `+ start +'-'+end+'/'+response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
-            res.status(200);
+            res.setHeader('Content-Disposition', `inline; filename="${response.data.responseUrl.split('/').slice(-1)[0]}"`);
+            res.setHeader('content-type', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Type')+1])
+            res.setHeader('Content-Range', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Range')+1]);
+            res.status(206);
 			response.data.pipe(res);
         })
 		.catch((err) => {
