@@ -164,14 +164,16 @@ app.get('/testfile2', async (req, res) => {
     // const url = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4";
     const url = "https://res.cloudinary.com/dwvcdfn26/video/upload/v1694245678/client_and_server_proj/Nonstop_-_Em_N%C3%AAn_D%E1%BB%ABng_l%E1%BA%A1i_DJ_H%C6%B0ng_Taboo_-_Remix_txxnnl.mp3";
     // const url = "http://212.183.159.230/20MB.zip"
-        let start = 0, end = 5000000-1, chunk = 5000000-1;
+        let start = 0, end = 5000000-1, chunk = 5000000-1, stat;
         console.log(req.headers.range);
+        
         if(req.headers.range) {
         start = Number(req.headers.range?.split('=')[1].split('-')[0]);
         end = Number(req.headers.range?.split('=')[1].split('-')[1])||(start+chunk);
         } else {
             end = "";
         }
+        
         axios({
             url: url,
             method: "get",

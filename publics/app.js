@@ -112,13 +112,13 @@ function addPosts(posts) {
             ${moment(post.createdAt).fromNow()}
             </i>
             </div>
-            <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => e.resource_type=='image'? //post.file[0].url.split('.').pop()=='mp4'? 
-            `<img src=${e.url} class="post-img" width="100%" height="100%">`
-            :  e.resource_type=='video'?`<video  class="post-img" width="100%" height="100%" controls autoplay="autoplay" webkit-playsinline playsinline muted><source src=${e.url}></video>`
-            :`<audio controls class="post-img" width="100%" height="100%">
+            <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => (e.resource_type=='image'&& //post.file[0].url.split('.').pop()=='mp4'? 
+            `<img src=${e.url} class="post-img" width="100%" height="100%">`)
+            ||  (e.file_format == 'mp4'&&`<video  class="post-img" width="100%" height="100%" controls autoplay="autoplay" webkit-playsinline playsinline muted><source src=${e.url}></video>`)
+            || (e.file_format == 'mp3'&&`<audio controls class="post-img" width="100%" height="100%">
                 <source src=${e.url}>
                 Your browser does not support the audio tag.
-            </audio>`).join(''))+'</div>')
+            </audio>`)).join(''))+'</div>')
             : '') :''}<p>${post.body}</p></div>
             <div class = "react-band">
                 <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i>

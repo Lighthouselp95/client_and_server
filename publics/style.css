@@ -438,6 +438,12 @@ form input, form textarea, input {
     flex-wrap: wrap;
     margin-bottom: 5px;
 }
+.img-wrapper audio {
+    max-width: 90%;
+}
+.img-wrapper:has(audio) {
+    justify-content: center;
+}
 /* .img-wrapper {
     grid-template-columns: repeat(2, minmax(30%, 50%));
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
