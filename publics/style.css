@@ -438,11 +438,17 @@ form input, form textarea, input {
     flex-wrap: wrap;
     margin-bottom: 5px;
 }
+
 .img-wrapper audio {
     max-width: 90%;
 }
-.img-wrapper:has(audio) {
+.img-wrapper:has(audio, video) {
     justify-content: center;
+}
+audio.post-img {
+    margin: 20px 0px 10px;
+    min-height: 50px;
+    height: auto;
 }
 /* .img-wrapper {
     grid-template-columns: repeat(2, minmax(30%, 50%));

@@ -5,6 +5,7 @@ const {Blog, User} = require('../models/Schema');
 
 module.exports = async (req, res, next) => {
     try {   
+        console.log('req.body: ', req.body)
             const commentId = new mongoose.Types.ObjectId();
             const user = await User.findOneAndUpdate({_id:  req.cookies.uid}, {$push: {"comments": {"postId": req.params.postId, "name": req.userName,
             "comment": req.body.comment, _id: commentId, createAt: new Date()}}},{returnOriginal: false});

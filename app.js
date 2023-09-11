@@ -102,10 +102,7 @@ app.get("/logout", (req, res) => {
     res.send("Log out successful");
   });
 // listening to port: 3002
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on port: ${process.env.PORT}`);
-    console.log(`Worker pid = ${process.pid}`); 
-});
+
 
 // app.use((req,res,next) => {
 //     console.log(req.hostname, req.path, req.method);
@@ -152,6 +149,7 @@ app.get('/testfile', async (req, res) => {
     //     }
          
     //     res.writeHead(206, head)
+    res.setHeader('content-type', 'audio/mpeg');  
     res.setHeader('Content-Range', `bytes `+ start +'-'+end+'/'+stat);
     res.status(206);
     if(end==stat-1) res.status(200);
@@ -184,17 +182,17 @@ app.get('/testfile2', async (req, res) => {
         
             // console.log(response);
 
-            console.log(response.data.rawHeaders);
-            console.log(response.status);
-            console.log(response.headers);
-            console.log(response.config);
-            console.log(Object.keys(response));
+            // console.log(response.data.rawHeaders);
+            // console.log(response.status);
+            // console.log(response.headers);
+            // console.log(response.config);
+            // console.log(Object.keys(response));
             // console.log(response.data.responseUrl.split('/').slice(-1)[0]);
             // res.send(response.data.responseUrl);
-            res.setHeader('Content-Length', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]);
+            res.setHeader('Content-Length', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Length')+1]); // response.headers['content-length']
             res.setHeader('Content-Disposition', `inline; filename="${response.data.responseUrl.split('/').slice(-1)[0]}"`);
-            res.setHeader('content-type', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Type')+1])
-            res.setHeader('Content-Range', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Range')+1]);
+            res.setHeader('content-type', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Type')+1]);    // response.headers['content-type']
+            res.setHeader('Content-Range', response.data.rawHeaders[response.data.rawHeaders.indexOf('Content-Range')+1]); // response.headers['content-range']
             res.status(206);
             if (end=="") res.status(200);
 			response.data.pipe(res);
@@ -252,3 +250,7 @@ app.use((req, res) => {
 });
 
 
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port: ${process.env.PORT}`);
+    console.log(`Worker pid = ${process.pid}`); 
+});

@@ -553,11 +553,11 @@ function handleLoginSubmit(e) {
     })
     .then(() => {
         checkoutLoginStatus();
-        // checkPostCondition();
-        // checkLikePost();
-        // console.log(cre)
-        document.querySelectorAll('.main-column')[1].innerHTML = '';
-        fetchNews();
+        checkPostCondition();
+        checkLikePost();
+        console.log(cre)
+        // document.querySelectorAll('.main-column')[1].innerHTML = '';
+        // fetchNews();
     })
     .catch( (err) => {
         console.log(err);

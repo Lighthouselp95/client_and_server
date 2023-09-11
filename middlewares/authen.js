@@ -3,6 +3,7 @@ const {Blog, User} = require('../models/Schema');
 
 const verifyToken = async (req, res, next) => {
     console.log(' --- ', req.body)
+    console.log(' req.headers:  ', req.headers['user-agent'])
     const token = req.cookies.token || req.headers['x-acess-token'];
 
     if (!token) {
