@@ -5,13 +5,19 @@
     /* scroll-padding-top: 5rem; */
     /* scroll-behavior: smooth; */
 }
-
+html {
+    height: 100%;
+    overflow-y: scroll !important;
+    /* overflow-y: visible !important; */
+}
 body {
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
     font-size: .9375rem;
     font-weight: 400;
     scroll-behavior: smooth;
     overflow-y: scroll;
+    overflow: auto; 
+    height: 100%;
 
 }
 .header {
@@ -66,7 +72,7 @@ body {
         flex-grow: 1;
         
 }
-.nav i {
+.nav i, #menu {
     display: none;
 }
 .auth {
