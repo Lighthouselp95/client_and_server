@@ -44,6 +44,36 @@ function checkoutLoginStatus() {
         })
 }
 
+const openMediaDevices = async () => {
+    try {
+        
+    document.querySelector('body').style = "overflow: hidden";
+    const constraints = { 'video': true
+        // 'deviceId': cameraId,
+        // 'width': {'min': 1280},
+        // 'height': {'min': 720}
+        ,'audio':true};
+    const openMediaDevice = await navigator.mediaDevices.getUserMedia(constraints);
+    const video = document.querySelector('#rtc-stream');
+    document.querySelector('#rtc-closed-button').addEventListener('click', () => {videoframe.style = "display: none";
+    // openMediaDevice.removeTrack();
+        document.querySelector('body').style = "overflow: hidden";
+        openMediaDevice.getTracks().forEach(function(track) {
+            console.log(track);
+            track.stop();
+        });
+    });
+    const videoframe = document.querySelector('.rtc-modular');
+    // const stream = openMediaDevice();
+    console.log('Got MediaStream:', openMediaDevice);
+    video.srcObject = openMediaDevice;
+    video.style = "display: block; margin: auto;"
+    videoframe.style = "overflow: hidden; text-align: center; padding: 100px 0px; left: 0; top: 0; background-color: beige; z-index: 14; display: block; position: fixed; visibility: visible; width: 100vw; height: 100vh;"
+    } catch(error) {
+        console.error('Error accessing media devices.', error);
+    }
+}
+document.querySelector('#rtc').addEventListener('click', openMediaDevices);
 // const loader = document.createElement('div');
 //     loader.classList.add('loader-container');
 //     loader.innerHTML = `<div class="loading-spinner">
