@@ -48,16 +48,21 @@ const openMediaDevices = async () => {
     try {
         
     document.querySelector('body').style = "overflow: hidden";
-    const constraints = { 'video': true
-        // 'deviceId': cameraId,
-        // 'width': {'min': 1280},
-        // 'height': {'min': 720}
+    const constraints = { 'video': {
+        "width": {
+            "min": 640,
+            "max": 1024
+        },
+        "height": {
+            "min": 480,
+            "max": 768
+        }}
         ,'audio':true};
     const openMediaDevice = await navigator.mediaDevices.getUserMedia(constraints);
     const video = document.querySelector('#rtc-stream');
     document.querySelector('#rtc-closed-button').addEventListener('click', () => {videoframe.style = "display: none";
     // openMediaDevice.removeTrack();
-        document.querySelector('body').style = "overflow: hidden";
+        document.querySelector('body').style = "overflow: auto";
         openMediaDevice.getTracks().forEach(function(track) {
             console.log(track);
             track.stop();
