@@ -582,20 +582,19 @@ function handleLoginSubmit(e) {
             })  
     .then( res => res.json() )
     .then ( res => {
+        document.getElementsByClassName('create-post')[2].classList.toggle('display');
+        document.querySelector('body').setAttribute("style", "overflow: auto");
         console.log (res); 
         // var cre = new PasswordCredential(e.target);
         // navigator.credentials.store(cre);
         // console.log(cre);
         localStorage.setItem('userId', `${res.userId}`);
         localStorage.setItem('name', `${res.name}`);
-        document.getElementsByClassName('create-post')[2].classList.toggle('display');
-        document.querySelector('body').setAttribute("style", "overflow: auto");
     })
     .then(() => {
         checkoutLoginStatus();
         checkPostCondition();
         checkLikePost();
-        console.log(cre)
         // document.querySelectorAll('.main-column')[1].innerHTML = '';
         // fetchNews();
     })

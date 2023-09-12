@@ -68,6 +68,7 @@ body {
 }
 .nav i {
     display: none;
+    font-size: 1.1rem;
 }
 .auth {
     /* width: 200px; */
