@@ -68,7 +68,6 @@ body {
 }
 .nav i {
     display: none;
-    font-size: 1.1rem;
 }
 .auth {
     /* width: 200px; */
@@ -902,6 +901,8 @@ i {
         padding: 50px 20px;
     }
     #nav-close-button {
+        top: 7px;
+        right: 2px;
         display: inline-block;
     }
     .translate100 {
@@ -918,6 +919,7 @@ i {
         right: 0px;
         top: 0px;
         z-index: 10;
+        translate: 100%;
     }
     .create-post form {
         width: 95%;
