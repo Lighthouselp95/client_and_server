@@ -914,7 +914,12 @@ i {
     .translate100 {
         translate: 100%;
     }
-    
+    #menu {
+        margin-right: 12px;
+        margin-left: 10px;
+        font-size: 1.1rem;
+        display: block;
+    }
     a.button {
         display: block;
         width: 100%;
