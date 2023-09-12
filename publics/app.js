@@ -47,7 +47,7 @@ function checkoutLoginStatus() {
 const openMediaDevices = async () => {
     try {
         
-    document.querySelector('body').style = "overflow: hidden";
+    // document.querySelector('body').style = "overflow: hidden";
     const constraints = { 'video': {
         "width": {
             "min": 640,
@@ -73,7 +73,7 @@ const openMediaDevices = async () => {
     console.log('Got MediaStream:', openMediaDevice);
     video.srcObject = openMediaDevice;
     video.style = "display: block; margin: auto;"
-    videoframe.style = "overflow: hidden; text-align: center; padding: 100px 0px; left: 0; top: 0; background-color: beige; z-index: 14; display: block; position: fixed; visibility: visible; width: 100vw; height: 100vh;"
+    videoframe.style = "overflow: hidden; text-align: center; padding: 11px; left: 50%; top:70px; translate: -50%; background-color: #e9e9d1; z-index: 14; display: block; position: fixed; visibility: visible;"
     } catch(error) {
         console.error('Error accessing media devices.', error);
     }
