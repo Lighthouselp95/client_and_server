@@ -43,7 +43,12 @@ function checkoutLoginStatus() {
             console.log (err); 
         })
 }
+document.querySelector('#nav-close-button').addEventListener('click', (e) => {
+    // e.stopPropagation();
+    // document.querySelector('#logout-button').style.pointerEvents = 'none';
+    document.querySelector('.nav-wrapper').style.translate = '100%';
 
+}, false)
 const openMediaDevices = async () => {
     try {
         
@@ -631,19 +636,25 @@ let button_modal = [
 ];
 
 button_modal.forEach((element, index) => {
-    element.addEventListener('click', () => {
+    element.addEventListener('click', (e) => {
+        // if (e.target.tagName=='path') {e.stopPropagation()}
+        // e.stopPropagation();
         document.querySelector('#create-a-post').value = '';
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: hidden");
-    })
-    document.getElementsByClassName('close-button-post')[index].addEventListener('click', () => {
+    }, false)
+    document.getElementsByClassName('create-post')[index].querySelector('.close-button-post').addEventListener('click', (e) => {
+        // e.stopPropagation();
         document.querySelector('#create-a-post').value = '';
         document.getElementsByClassName('create-post')[index].classList.toggle('display');
         document.querySelector('body').setAttribute("style", "overflow: auto");
-    })
+    }, false)
     
 });
-
+document.querySelector('#menu').addEventListener('click', (e) => {
+    
+    document.querySelector('.nav-wrapper').style.translate = '0%';
+})
 // Handle post create and Prevent scrolling on background
 // let create_a_post = document.getElementById('create-a-post');
 // create_a_post.addEventListener('focus', () => {

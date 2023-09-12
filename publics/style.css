@@ -66,6 +66,9 @@ body {
         flex-grow: 1;
         
 }
+.nav i {
+    display: none;
+}
 .auth {
     width: 200px;
     display: flex;
@@ -165,7 +168,7 @@ CSS */
     z-index: 13;
     width: 30px;
     height: 30px;
-    background-color: cadetblue;
+    /* background-color: cadetblue; */
     top: 11px;
     right: 15px;
 }
@@ -882,12 +885,38 @@ i {
         padding: 0px;
         padding-top: 15px;
     }
+    #rtc-stream {
+        width: 100vw;
+    }
     
     .nav {
-        display: none;
+        width: 180px;
+        flex-direction: column;
+        /* height: 0px; */
+        /* width: 0px; */
+        /* overflow: hidden; */
+        /* display: none; */
         gap: 0px;
         justify-content: space-around;
-        padding: 20px;
+        padding: 50px 20px;
+    }
+    #nav-close-button {
+        display: inline-block;
+    }
+    .translate100 {
+        translate: 100%;
+    }
+    
+    a.button {
+        display: block;
+        width: 100%;
+    }
+    .nav-wrapper {
+        background-color: white;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        z-index: 10;
     }
     .create-post form {
         width: 95%;
