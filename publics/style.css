@@ -6,8 +6,8 @@
     /* scroll-behavior: smooth; */
 }
 html {
-    height: 100%;
-    overflow-y: scroll !important;
+    /* height: 100%;
+    overflow-y: scroll !important; */
     /* overflow-y: visible !important; */
 }
 body {
@@ -15,9 +15,9 @@ body {
     font-size: .9375rem;
     font-weight: 400;
     scroll-behavior: smooth;
-    overflow-y: scroll;
-    overflow: auto; 
-    height: 100%;
+    /* overflow-y: scroll; */
+    /* overflow: auto; 
+    height: 100%; */
 
 }
 .header {
