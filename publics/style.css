@@ -846,16 +846,21 @@ i {
     top: 90px;
     right: 90px;
     width: 130px;
-    padding: 7px;
+    /* padding: 0 5px; */
     /* height: 400px; */
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* background-color: #fff; */
 }
 .right-banner-img {
     /* display: flex;
     flex-direction: column; */
     /* gap: 5px; */
-    /* width: 100%;
-    background-color: #a5b6dcs; */
+    width: 100%;
+    /* background-color: #a5b6dc; */
+}
+.image-card {
+    
+    /* margin-bottom: 4px; */
 }
 .right-banner img {
     width: 100%;
