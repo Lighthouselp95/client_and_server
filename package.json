@@ -3,28 +3,42 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "bin": "./app.js",
+  "pkg": {
+    "scripts": ["app.js"],
+    "assets": ["publics/**/*", "publics/index.html"]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pm2start": "npx pm2-runtime start app.js -i 0",
     "pm2kill": "npx pm2 kill",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "npx pkg -t node18-win . --output app2"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.5.0",
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cloudinary": "^1.40.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "formidable": "^3.5.1",
     "jsonwebtoken": "^9.0.1",
     "loadtest": "^7.1.0",
     "lodash": "^4.17.21",
     "mongoose": "^7.4.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "pkg": "^5.8.1",
     "pm2": "^4.2.3"
-  }
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "browserlist": "> 0.5%, last 2 versions, not dead"
 }

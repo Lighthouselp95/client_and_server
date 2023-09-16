@@ -1,6 +1,18 @@
 const express = require('express');
 const morgan = require('morgan');
+// const {formidable} = require('formidable');
+// console.log(formidable);
+// const form = formidable({multiples: true})
+
+// console.log(form);
 const fs = require('fs');
+const crypto = require('crypto');
+const hash = crypto.createHash('md5').update(fs.readFileSync(__filename).toString()).digest('hex');
+// console.log(require)
+console.log(new Date().getDate())
+console.log(hash);
+// console.log(fs.readFileSync(__filename).toString());
+console.log(__dirname, __filename);
 const os = require('os');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -24,7 +36,11 @@ const uploader = require("./middlewares/multer");
 const cloudinary = require("./middlewares/cloudinary");
 const cloudinary_upload = require('./middlewares/upload_cloudinary')
 const http = require('http')
-const axios = require("axios")
+const axios = require("axios");
+const path = require("path");
+// const axios = import(path.resolve(__dirname,'node_modules',"axios"));
+// const axios = require("axios/dist/node/axios.cjs")
+
 // use morgan to log request
 // app.use(morgan('dev'));
 // morgan.token('user-type', function(req, res) {
@@ -110,7 +126,7 @@ app.get("/logout", (req, res) => {
 // });
 
 
-app.use('/public', express.static('publics'));
+app.use('/public', express.static(path.join(__dirname,'publics')));
 
 app.get('/', (req, res) => {
     // console.log(req.url);
