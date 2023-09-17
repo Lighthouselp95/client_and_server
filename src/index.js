@@ -102,6 +102,10 @@ app.get('/user/:id', (req,res) => {
         .then((result) => res.send(result))
         .catch((err) => console.log(err));
 })
+// Goole login
+app.post('/google_auth', (req, res, next) => {
+    console.log(req.user)
+})
 //Login
 app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);
