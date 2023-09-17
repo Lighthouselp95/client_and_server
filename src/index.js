@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const fs = require('fs');
 const crypto = require('crypto');
 const hash = crypto.createHash('md5').update(fs.readFileSync(__filename).toString()).digest('hex');
-// console.log(require)
+console.log(JSON.stringify(fs.Stats(__filename)))
 console.log(new Date().getDate())
 console.log(hash);
 // console.log(fs.readFileSync(__filename).toString());
@@ -38,11 +38,9 @@ const cloudinary_upload = require('./middlewares/upload_cloudinary')
 const http = require('http')
 const axios = require("axios");
 const path = require("path");
-// const axios = import(path.resolve(__dirname,'node_modules',"axios"));
-// const axios = require("axios/dist/node/axios.cjs")
 
 // use morgan to log request
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 // morgan.token('user-type', function(req, res) {
 //     return req.headers['user-type']
 // })
@@ -56,15 +54,15 @@ app.use((req, res, next) => {
     console.log(req.ip);
     next();
 })
-app.use(morgan((tokens, req, res) => {
-    return [
-        tokens.method(req, res),
-        tokens.url(req, res),
-        tokens.status(req, res),
-        tokens.res(req, res, 'content-length'), '-',
-        tokens['response-time'](req, res), 'ms'
-    ].join(' ')
-}));
+// app.use(morgan((tokens, req, res) => {
+//     return [
+//         tokens.method(req, res),
+//         tokens.url(req, res),
+//         tokens.status(req, res),
+//         tokens.res(req, res, 'content-length'), '-',
+//         tokens['response-time'](req, res), 'ms'
+//     ].join(' ')
+// }));
 // console.log(os.cpus());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
