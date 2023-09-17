@@ -4,20 +4,24 @@ module.exports = async (req, res, next) => {
     try {
         console.log(req.body, '//', req.file)
         // var oldUser = await User.findById(req.userId).exec();
-
-        const blog = new Blog({
-            personID: req.userId,
-            name: req.userName,
-            groupID: 9876553431,
-            title: req.body.title,
-            snippet: 'Fb',
-            body: req.body.body,
+            req.body.personID = req.userId;
+            req.body.name = req.userName;
+        const blog = new Blog(
+            req.body
+            // {
+            // personID: req.userId,
+            // name: req.userName,
+            // groupID: 9876553431,
+            // title: req.body.title&&req.body.title,
+            // snippet: 'Fb',
+            // body: req.body.body&&req.body.body,
             // file: req.file?{asset_id: req.file.asset_id, url: req.file.secure_url, resource_type: req.file.resource_type, createAt: req.file.created_at, file_format: req.file.format}:[]
-        });
+        // }
+        );
         blog.file = [];
         if(req.files) {
         req.files.forEach((e) => {
-            blog.file.push({asset_id: e.asset_id, public_id: e.public_id, url: e.secure_url, resource_type: e.resource_type, createAt: e.created_at, file_format: e.format})
+            blog.file.push(e)
         })
     }
         console.log(blog);

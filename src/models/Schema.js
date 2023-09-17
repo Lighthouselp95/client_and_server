@@ -12,24 +12,19 @@ const blogSchema = new Schema ({
         required: true
     },
     groupID: {
-        type: String,
-        required: false
+        type: String
     },
     title: {
-        type: String,
-        required: false
+        type: String
     }, 
     tag: {
-        type: String,
-        required: false
+        type: String
     },
     snippet: {
-        type: String,
-        required: false
+        type: String
     },
     body: {
-        type: String,
-        required: false
+        type: String
     },
     file: [{
         asset_id: String,
@@ -37,7 +32,9 @@ const blogSchema = new Schema ({
         resource_type: String,
         createAt: String,
         file_format: String,
-        public_id: String
+        public_id: String,
+        original_filename: String
+
     }],
     like: [{
         userId: String,
@@ -77,8 +74,7 @@ const userSchema = new Schema ({
     }],
     like: [{postId: String}],
     token: {
-        type: String,
-        required: false
+        type: String
     }
     },{timestamps: true});
     
