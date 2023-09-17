@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
         let blogs = await Blog.find().sort({createdAt: 1}).exec();
         // blogs = JSON.stringify(blogs);
         // blogs = JSON.parse(blogs);
-        // console.log(blogs);
+        console.log(blogs);
         // for (let ele of blogs) {   
         //     // console.log(typeof ele.personID);
         //     const oldUser = await User.findById(ele.personID).exec();

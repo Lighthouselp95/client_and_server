@@ -30,10 +30,23 @@ const blogSchema = new Schema ({
         asset_id: String,
         url: String,
         resource_type: String,
-        createAt: String,
+        created_at: String,
         file_format: String,
         public_id: String,
-        original_filename: String
+        original_filename: String,
+        secure_url: String,
+        playback_url: String,
+        bytes: Number,
+        format: String,
+        width: Number,
+        height: Number,
+        duration: Number,
+        api_key: String,
+        audio: Map,
+        signature: String,
+        folder: String,
+        bit_rate: Number
+
 
     }],
     like: [{

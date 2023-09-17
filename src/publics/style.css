@@ -449,12 +449,13 @@ form input, form textarea, input {
 }
 
 .img-wrapper audio {
-    max-width: 90%;
+    max-width: 74%;
 }
 .img-wrapper:has(audio, video) {
     justify-content: center;
 }
 audio.post-img {
+    flex: 1 0 90%;
     margin: 20px 0px 10px;
     min-height: 50px;
     height: auto;

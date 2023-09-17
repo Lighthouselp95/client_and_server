@@ -77,7 +77,7 @@ mongoose.connect(dbURI, {useNewUrlParser : true, useUnifiedTopology : true})
 app.post('/blog', uploader.array("file"), authen, cloudinary_upload, controllerAddpost);
 
 app.post('/like/:postid', authen, controllerLikePost);
-app.post('/userlike', authen, controllerUserLike)
+app.get('/userlike', authen, controllerUserLike)
 app.post('/comment/:postId', authen, controllerComment);
 app.delete('/comment/:cmtId', authen, controllerDeleteComment);
 app.get('/user', async (req, res) => {

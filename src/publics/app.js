@@ -157,6 +157,7 @@ function addPosts(posts) {
             ||  (e.file_format == 'mp4'&&`<video  class="post-img" width="100%" height="100%" controls autoplay="autoplay" webkit-playsinline playsinline muted><source src=${e.url}></video>`)
             || ((e.file_format == 'mp3'||e.resource_type=='video')&&`<audio controls class="post-img" width="100%" height="100%">
                 <source src=${e.url}>
+                <p>${e.original_filename}</p>
                 Your browser does not support the audio tag.
             </audio>`)).join(''))+'</div>')
             : '') :''}<p>${post.body}</p></div>
@@ -318,15 +319,10 @@ function checkLikePost() {
     let moreButtons = document.querySelectorAll('.more-button');    
     var userLikes;
     fetch(`/userlike`, {
-        method: 'post',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(
-            {
-                userId: localStorage.getItem('userId')
-            }
-            )
+        method: 'get',
+        headers: {"Content-Type": "application/json"}
             
-            })
+        })
 
         .then(res => res.json())
 
