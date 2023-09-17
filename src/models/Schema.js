@@ -17,7 +17,7 @@ const blogSchema = new Schema ({
     },
     title: {
         type: String,
-        required: true
+        required: false
     }, 
     tag: {
         type: String,
@@ -25,11 +25,11 @@ const blogSchema = new Schema ({
     },
     snippet: {
         type: String,
-        required: true
+        required: false
     },
     body: {
         type: String,
-        required: true
+        required: false
     },
     file: [{
         asset_id: String,

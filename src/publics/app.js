@@ -473,6 +473,7 @@ function handlePostSubmit(e) {
         let body = document.getElementById('create-post-body').value;
         let file_url = document.getElementById('file').value;
         console.log('file upload url: ', file_url);
+        if(!(body||file_url||title)) return console.log('error: Lack information');
         const form = document.getElementsByTagName('form')[0];
         const submiter = document.getElementById('submit');
         const formData = new FormData(form, submiter);
