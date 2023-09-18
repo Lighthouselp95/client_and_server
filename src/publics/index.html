@@ -37,7 +37,11 @@
             
             
             <div class="auth">
-                <div id="username" class="username"></div>
+                <div class="avatar-wrapper">
+                    <img class="avatar" src="">
+                    <span id="username" class="username"></span>
+                </div>
+                
                 <button id="signup-button" class="login-button">Sign up</button>
                 <button id="login-button" class="login-button">Login</button>
                 <button id="logout-button" class="login-button hidden">Log out</button>
@@ -49,7 +53,9 @@
                     data-client_id="608363477240-83l36li84m9b1s1joo526qte7nol78v9.apps.googleusercontent.com" 
                     data-context="signin"
                     data-ux_mode="popup"
-                    data-login_uri="https://mejn-social-media.onrender.com/google_auth"
+                    data-login_uri="https://mejn-social-media.onrender.com/google_auth" 
+                    data-login_uri_x="http://localhost:3000/google_auth"
+
                     data-nonce=""
                     data-auto_select="false"
                     data-itp_support="false"

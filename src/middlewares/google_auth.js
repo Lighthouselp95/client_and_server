@@ -21,10 +21,19 @@ module.exports = async (req, res, next) => {
         // If request specified a G Suite domain:
         // const domain = payload['hd'];
         if(payload) {
-            console.log(payload.email);
-            const oldUser = await User.findOne({email: {$regex: payload.email, $options: 'i'}}); //
-            if(oldUser) {
-                console.log(oldUser);
+            console.log(payload);
+            var oldUser = await User.findOne({email: {$regex: payload.email, $options: 'i'}}); //
+            
+            console.log(oldUser);
+            if(!oldUser) {
+                const newUser = new User (
+                    payload
+                )
+                console.log(newUser)
+                await newUser.save().then(r => {console.log(r);
+                    oldUser = newUser;
+                    });
+            }
                 const token = jwt.sign(
                 {userId: oldUser._id, name: oldUser.name},
                 process.env.TOKEN_KEY,
@@ -48,7 +57,9 @@ module.exports = async (req, res, next) => {
                 })
                 return res.redirect('/');
                 
-                }
+                
+                    
+                
             
         } else {
         }

@@ -64,12 +64,10 @@ const blogSchema = new Schema ({
 const userSchema = new Schema ({
 
     id: {
-        type: String,
-        required: true
+        type: String
     }, 
     password: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
         type: String,

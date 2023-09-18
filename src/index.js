@@ -110,7 +110,7 @@ app.post('/google_auth', google_auth)
 //Login
 app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);
-app.get("/logout", (req, res) => {
+app.get("/logout", async (req, res) => {
     // clear the cookie
     const _id = req.cookies.uid;
     User.findOneAndUpdate({_id: _id}, {"token": undefined})
@@ -119,7 +119,7 @@ app.get("/logout", (req, res) => {
     res.clearCookie("token");
     res.clearCookie("uid");
     // redirect to login
-    res.redirect(`/`);
+    res.send();
 
   });
 // listening to port: 3002

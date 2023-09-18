@@ -26,9 +26,12 @@ function checkoutLoginStatus() {
             console.log(res)
             localStorage.setItem('userId', `${res.userId}`);
             localStorage.setItem('name', `${res.name}`);
+            localStorage.setItem('user', JSON.stringify(res.user));
+            console.log(JSON.parse(localStorage.getItem('user')))
             let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
             if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
                 if(document.getElementById('logout-button').classList.contains('hidden')) {
+                    document.querySelector('.avatar').src = JSON.parse(localStorage.getItem('user')).picture||"";
                     document.querySelector('.g_id_signin').style.display = 'none';
                     document.getElementById('username').innerText = localStorage.getItem('name');
                     document.getElementById('signup-button').classList.toggle('hidden');
@@ -37,6 +40,7 @@ function checkoutLoginStatus() {
             }
             } else {
                 if(!document.getElementById('logout-button').classList.contains('hidden')) {
+                    document.querySelector('.avatar').src = "";
                     document.getElementById('username').innerText = '';
                     document.querySelector('.g_id_signin').style.display = 'block';
                     document.getElementById('signup-button').classList.toggle('hidden');
@@ -47,6 +51,7 @@ function checkoutLoginStatus() {
         })
         .catch ( err => {
             if(!document.getElementById('logout-button').classList.contains('hidden')) {
+                document.querySelector('.avatar').src = "";
                 document.getElementById('username').innerText = '';
                 document.querySelector('.g_id_signin').style.display = 'block';
                 document.getElementById('signup-button').classList.toggle('hidden');

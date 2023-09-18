@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 module.exports = async (req, res, next) => {
     console.log(req.body);
     console.log(req.cookies.token)
-    if(!req.cookies.token) {
+    if(!req.cookies.token&&req.body) {
         try {
             const {id, password}=  req.body;
 
-            const oldUser = await User.findOne({id: id})
+            const oldUser = await User.findOne({id: id}).lean();
             if(oldUser) {
                 const name = oldUser.name;
                 const isPasswordValid = bcrypt.compareSync(password, oldUser.password);
@@ -45,7 +45,9 @@ module.exports = async (req, res, next) => {
                         maxAge: 432000000,
                         sameSite: 'lax'
                     })
-                    res.status(200).send({status:'Login sucess', userId : oldUser._id, name: name});
+                    delete oldUser.password;
+
+                    res.status(200).json({status:'Login sucess', userId : oldUser._id, name: name, user: oldUser});
                     return;
                     }
             }  
@@ -56,7 +58,8 @@ module.exports = async (req, res, next) => {
              }
             
         catch (err) {
-            console.log('err: ', err);        
+            console.log('err: ', err);    
+            return res.status(409).send("Account have not been registed yet");    
         };
     }
     else if (req.cookies.token) {
@@ -72,9 +75,11 @@ module.exports = async (req, res, next) => {
                         .catch( err => console.log(err));
                     return res.status(401).send({error:"Unauthorized!"})
                     }
-                User.findOne({_id: req.cookies.uid, token: req.cookies.token})
-                    .then(result => {console.log('Account logined');
-                        return res.status(200).send({status:'Login sucess', userId : req.cookies.uid, name: result.name})
+                User.findOne({_id: req.cookies.uid, token: req.cookies.token}).lean()
+                    .then(oldUser => {console.log('Account logined');
+                        delete oldUser.password;
+
+                        res.status(200).json({status:'Login sucess', userId : oldUser._id, name: oldUser.name, user: oldUser});
                         })
                     .catch(err => {
                         console.log(err)

@@ -82,12 +82,23 @@ body {
     justify-content: center;
     
 }
-
+.avatar-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+.avatar {
+    display: inline-block;
+    height: 32px;
+}
 .username {
+    margin-top: auto;
+    vertical-align: baseline;
+    /* margin-bottom: 9px; */
+    line-height: 32px;
     opacity: 0.9;
     font-size: 14.3px;
     font-weight: 600;
-    padding: 10px 7px;
+    padding: 0px 7px;
     letter-spacing: 0px;
     display: block;
     font-family: Arial, sans-serif;
