@@ -3,28 +3,33 @@
 // check out login status
 function checkoutLoginStatus() {
     let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
-            if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
-                if(document.getElementById('logout-button').classList.contains('hidden')) {
-                    document.getElementById('username').innerText = localStorage.getItem('name');
-                    document.getElementById('signup-button').classList.toggle('hidden');
-                    document.getElementById('login-button').classList.toggle('hidden');
-                    document.getElementById('logout-button').classList.toggle('hidden');
-            }
-            } else {
-                if(!document.getElementById('logout-button').classList.contains('hidden')) {
-                    document.getElementById('username').innerText = '';
-                    document.getElementById('signup-button').classList.toggle('hidden');
-                    document.getElementById('login-button').classList.toggle('hidden');
-                    document.getElementById('logout-button').classList.toggle('hidden');
-                }
-            }
+            // if(b.indexOf('token')>=0) {
+            //     if(document.getElementById('logout-button').classList.contains('hidden')) {
+            //         document.getElementById('username').innerText = localStorage.getItem('name');
+            //         document.getElementById('signup-button').classList.toggle('hidden');
+            //         document.getElementById('login-button').classList.toggle('hidden');
+            //         document.getElementById('logout-button').classList.toggle('hidden');
+            // }
+            // } else {
+            //     if(!document.getElementById('logout-button').classList.contains('hidden')) {
+            //         document.getElementById('username').innerText = '';
+            //         document.getElementById('signup-button').classList.toggle('hidden');
+            //         document.getElementById('login-button').classList.toggle('hidden');
+            //         document.getElementById('logout-button').classList.toggle('hidden');
+            //     }
+            // }
     fetch('/log-in', {
         method: 'post'        
         })  
+        .then( res => res.json())
         .then( res => {
+            console.log(res)
+            localStorage.setItem('userId', `${res.userId}`);
+            localStorage.setItem('name', `${res.name}`);
             let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
             if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
                 if(document.getElementById('logout-button').classList.contains('hidden')) {
+                    document.querySelector('.g_id_signin').style.display = 'none';
                     document.getElementById('username').innerText = localStorage.getItem('name');
                     document.getElementById('signup-button').classList.toggle('hidden');
                     document.getElementById('login-button').classList.toggle('hidden');
@@ -33,6 +38,7 @@ function checkoutLoginStatus() {
             } else {
                 if(!document.getElementById('logout-button').classList.contains('hidden')) {
                     document.getElementById('username').innerText = '';
+                    document.querySelector('.g_id_signin').style.display = 'block';
                     document.getElementById('signup-button').classList.toggle('hidden');
                     document.getElementById('login-button').classList.toggle('hidden');
                     document.getElementById('logout-button').classList.toggle('hidden');
@@ -40,6 +46,13 @@ function checkoutLoginStatus() {
             }
         })
         .catch ( err => {
+            if(!document.getElementById('logout-button').classList.contains('hidden')) {
+                document.getElementById('username').innerText = '';
+                document.querySelector('.g_id_signin').style.display = 'block';
+                document.getElementById('signup-button').classList.toggle('hidden');
+                document.getElementById('login-button').classList.toggle('hidden');
+                document.getElementById('logout-button').classList.toggle('hidden');
+            }
             console.log (err); 
         })
 }

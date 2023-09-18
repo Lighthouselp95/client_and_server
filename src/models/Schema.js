@@ -86,10 +86,18 @@ const userSchema = new Schema ({
         createAt: String
     }],
     like: [{postId: String}],
+    picture: String,
+    sub: String,
+    siven_name: String,
+    locale: String,
+    aud: String,
+    nbf: String,
+    jti: String,
+    azp: String,
     token: {
         type: String
     }
-    },{timestamps: true});
+    }, {timestamps: true});
     
 
     

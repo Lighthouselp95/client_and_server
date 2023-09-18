@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
     console.log(req.body);
+    console.log(req.cookies.token)
     if(!req.cookies.token) {
         try {
             const {id, password}=  req.body;
@@ -20,7 +21,7 @@ module.exports = async (req, res, next) => {
                 // console.log('sucess! ', oldUser);
                 
                 const token = jwt.sign(
-                    {userId: oldUser._id, password: password, name: name},
+                    {userId: oldUser._id, name: name},
                     process.env.TOKEN_KEY,
                     {
                         allowInsecureKeySizes: true,
@@ -40,7 +41,10 @@ module.exports = async (req, res, next) => {
                         maxAge: 432000000,
                         sameSite: 'lax'
                     });
-
+                    res.cookie('name', oldUser.name, {
+                        maxAge: 432000000,
+                        sameSite: 'lax'
+                    })
                     res.status(200).send({status:'Login sucess', userId : oldUser._id, name: name});
                     return;
                     }
@@ -57,7 +61,7 @@ module.exports = async (req, res, next) => {
     }
     else if (req.cookies.token) {
         try {
-            const token = req.cookies.token || req.headers['x-acess-token'];
+            const token = req.cookies.token;
 
             jwt.verify( token, process.env.TOKEN_KEY, (err, decoded) => {
                 if(err) {
@@ -70,9 +74,10 @@ module.exports = async (req, res, next) => {
                     }
                 User.findOne({_id: req.cookies.uid, token: req.cookies.token})
                     .then(result => {console.log('Account logined');
-                        return res.status(200).send('ok!')
+                        return res.status(200).send({status:'Login sucess', userId : req.cookies.uid, name: result.name})
                         })
                     .catch(err => {
+                        console.log(err)
                         res.clearCookie("token");
                         res.clearCookie("uid");
                         return res.status(401).send({error:"Unauthorized!"})

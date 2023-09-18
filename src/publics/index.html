@@ -5,7 +5,8 @@
         <title>Team overview | lighthouselp95 | Netlify</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="U0eZIOtshjAaXaa9rkqkYrjpZjUvH2wwFP0QGI1ua64" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+        <meta name="referrer" content="no-referrer-when-downgrade" />
         <script src="https://accounts.google.com/gsi/client" async></script>
         <link rel="icon" href="public/assets/images/logo.png" type="image/png" sizes="16x16">
         <link rel="icon" href="public/icon.svg" type="image/svg+xml" sizes="16x16">
@@ -45,23 +46,33 @@
                 </div>
                 <!-- Goolge login -->
                 <div id="g_id_onload"
-                    data-client_id="608363477240-83l36li84m9b1s1joo526qte7nol78v9.apps.googleusercontent.com"
+                    data-client_id="608363477240-83l36li84m9b1s1joo526qte7nol78v9.apps.googleusercontent.com" 
                     data-context="signin"
                     data-ux_mode="popup"
                     data-login_uri="http://localhost:3000/google_auth"
                     data-nonce=""
-                    data-auto_select="true"
-                    data-itp_support="true">
+                    data-auto_select="false"
+                    data-itp_support="false"
+                    data-skip_prompt_cookie="token">
                 </div>
 
                 <div class="g_id_signin"
                     data-type="standard"
                     data-shape="rectangular"
-                    data-theme="outline"
-                    data-text="signin_with"
-                    data-size="large"
+                    data-theme="filled_blue"
+                    data-text="continue_with"
+                    data-size="medium"
                     data-logo_alignment="left">
                 </div>
+                <!-- <div id="g_id_onload"
+                    data-client_id="608363477240-83l36li84m9b1s1joo526qte7nol78v9.apps.googleusercontent.com"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-callback="handle-google-callback"
+                    data-auto_prompt="false">
+                </div> -->
+
+               
             </div>
             
         </div>

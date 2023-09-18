@@ -6,6 +6,8 @@ const morgan = require('morgan');
 
 // console.log(form);
 const fs = require('fs');
+
+
 const crypto = require('crypto');
 const hash = crypto.createHash('md5').update(fs.readFileSync(__filename).toString()).digest('hex');
 console.log(JSON.stringify(fs.Stats(__filename)))
@@ -18,6 +20,7 @@ const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const {Blog, User} = require('./models/Schema');
+const google_auth = require('./middlewares/google_auth')
 const authen = require('./middlewares/authen');
 const controllerSignup = require("./controllers/controller.signup");
 const controllerDeletePost = require('./controllers/controller.deletePost');
@@ -46,7 +49,7 @@ app.use(morgan('dev'));
 // })
 // console.log(http.METHODS, http.STATUS_CODES);
 
-app.set('trust proxy', 'loopback, linklocal, uniquelocal', '162.158.162.0');
+// app.set('trust proxy', 'loopback, linklocal, uniquelocal', '162.158.162.0');
 // app.set('trust proxy', (ip) => {
 //     if (ip === '162.158.162.145' || ip === '162.158.162.7' || ip === '162.158.163.77' || ip === '162.158.163.62') return true // trusted IPs
 //   });
@@ -103,9 +106,7 @@ app.get('/user/:id', (req,res) => {
         .catch((err) => console.log(err));
 })
 // Goole login
-app.post('/google_auth', (req, res, next) => {
-    console.log(req.user)
-})
+app.post('/google_auth', google_auth)
 //Login
 app.post('/sign-up', verifySignup.verify, controllerSignup);
 app.post('/log-in', verifyLogin);
@@ -118,7 +119,9 @@ app.get("/logout", (req, res) => {
     res.clearCookie("token");
     res.clearCookie("uid");
     // redirect to login
-    res.send("Log out successful");
+    res.writeHead(302, {"Location":`http://${req.hostname}:${process.env.PORT}`});
+
+    res.end();
   });
 // listening to port: 3002
 
