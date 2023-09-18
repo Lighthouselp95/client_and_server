@@ -5,7 +5,6 @@ const {OAuth2Client} = require('google-auth-library');
 module.exports = async (req, res, next) => {
     console.log(req.body);
     console.log(req.params, '--', req.query);
-    const {OAuth2Client} = require('google-auth-library');
     const client = new OAuth2Client();
     const token = req.body.credential;
     async function verify() {

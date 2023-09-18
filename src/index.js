@@ -119,9 +119,8 @@ app.get("/logout", (req, res) => {
     res.clearCookie("token");
     res.clearCookie("uid");
     // redirect to login
-    res.writeHead(302, {"Location":`http://${req.hostname}:${process.env.PORT}`});
+    res.redirect(`/`);
 
-    res.end();
   });
 // listening to port: 3002
 
