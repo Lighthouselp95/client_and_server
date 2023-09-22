@@ -4,6 +4,7 @@
 function checkoutLoginStatus() {
     let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
         document.querySelector('.g_id_signin').style.display = 'block';
+        document.getElementById('logout-button').classList.add('hidden');
         document.getElementById('signup-button').classList.add('hidden');
         document.getElementById('login-button').classList.add('hidden');
     fetch('/log-in', {
@@ -30,9 +31,10 @@ function checkoutLoginStatus() {
                     document.querySelector('.avatar').src = "";
                     document.getElementById('username').innerText = '';
                     document.querySelector('.g_id_signin').style.display = 'block';
+                    
+                    document.getElementById('logout-button').classList.add('hidden');
                     document.getElementById('signup-button').classList.remove('hidden');
                     document.getElementById('login-button').classList.remove('hidden');
-                    document.getElementById('logout-button').classList.add('hidden');
                 
             }
         })
@@ -41,9 +43,10 @@ function checkoutLoginStatus() {
                 document.querySelector('.avatar').src = "";
                 document.getElementById('username').innerText = '';
                 document.querySelector('.g_id_signin').style.display = 'block';
+                
+                document.getElementById('logout-button').classList.add('hidden');
                 document.getElementById('signup-button').classList.remove('hidden');
                 document.getElementById('login-button').classList.remove('hidden');
-                document.getElementById('logout-button').classList.add('hidden');
             
             console.log (err); 
         })
