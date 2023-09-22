@@ -19,7 +19,9 @@
     "pm2kill": "npx pm2 kill",
     "start": "node ./src/index.js",
     "build": "npx pkg -t node18-win . --output app2",
-    "build-wp": "webpack --config ./webpack.config.js"
+    "build-wp": "webpack --config ./webpack.config.js",
+    "parcel": "parcel ./src/publics/index.html",
+    "build parcel": "parcel build ./src/publics/index.html"
   },
   "author": "",
   "license": "ISC",
@@ -56,6 +58,7 @@
     "url": "^0.11.3"
   },
   "devDependencies": {
+    "parcel-bundler": "^1.12.5",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"

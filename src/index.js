@@ -131,7 +131,7 @@ app.get("/logout", async (req, res) => {
 // });
 
 
-app.use('/public', express.static(path.join(__dirname,'publics')));
+app.use(express.static(path.join(__dirname,'publics')));
 
 app.get('/', (req, res) => {
     // console.log(req.url);

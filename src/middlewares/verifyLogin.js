@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
             const oldUser = await User.findOne({id: id}).lean();
             if(oldUser) {
                 const name = oldUser.name;
-                const isPasswordValid = bcrypt.compareSync(password, oldUser.password);
+                const isPasswordValid = oldUser?.password&&bcrypt.compareSync(password, oldUser.password);
                 console.log('isPasswordValid: ', isPasswordValid);
                 if(!isPasswordValid) {
                     res.status(409).send("wrong password");
