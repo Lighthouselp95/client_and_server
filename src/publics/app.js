@@ -3,10 +3,14 @@
 // check out login status
 function checkoutLoginStatus() {
     let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
-        document.querySelector('.g_id_signin').style.display = 'block';
-        document.getElementById('logout-button').classList.add('hidden');
-        document.getElementById('signup-button').classList.add('hidden');
-        document.getElementById('login-button').classList.add('hidden');
+    document.querySelector('.g_id_signin').style.display = 'none';
+    document.getElementById('signup-button').classList.add('hidden');
+    document.getElementById('login-button').classList.add('hidden');
+    document.getElementById('logout-button').classList.add('hidden');
+    document.querySelector('.avatar').src = "";
+    document.getElementById('username').innerText = '';
+
+        
     fetch('/log-in', {
         method: 'post'        
         })  
@@ -19,20 +23,18 @@ function checkoutLoginStatus() {
             console.log(JSON.parse(localStorage.getItem('user')))
             let b = document.cookie.replaceAll('=',':').replaceAll(';',':').replaceAll(' ','').split(':');
             if(localStorage.getItem('userId') && localStorage.getItem('name') && b.indexOf('token')>=0) {
-                    document.querySelector('.g_id_signin').style.display = 'none';
                     document.querySelector('.avatar').src = JSON.parse(localStorage.getItem('user')).picture||"";
                     
+
                     document.getElementById('username').innerText = localStorage.getItem('name');
                     
                     document.getElementById('logout-button').classList.remove('hidden');
             
+            
             } else {
               
-                    document.querySelector('.avatar').src = "";
-                    document.getElementById('username').innerText = '';
                     document.querySelector('.g_id_signin').style.display = 'block';
                     
-                    document.getElementById('logout-button').classList.add('hidden');
                     document.getElementById('signup-button').classList.remove('hidden');
                     document.getElementById('login-button').classList.remove('hidden');
                 
@@ -42,9 +44,10 @@ function checkoutLoginStatus() {
          
                 document.querySelector('.avatar').src = "";
                 document.getElementById('username').innerText = '';
+                document.getElementById('logout-button').classList.add('hidden');
+
                 document.querySelector('.g_id_signin').style.display = 'block';
                 
-                document.getElementById('logout-button').classList.add('hidden');
                 document.getElementById('signup-button').classList.remove('hidden');
                 document.getElementById('login-button').classList.remove('hidden');
             
@@ -99,10 +102,11 @@ document.querySelector('#rtc').addEventListener('click', openMediaDevices);
 //     document.querySelectorAll('.content')[0].appendChild(loader);
 // checkoutLoginStatus();
 
-document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
-// fetchNews();
-document.addEventListener("DOMContentLoaded", fetchNews);
-
+// document.addEventListener("DOMContentLoaded", checkoutLoginStatus);
+fetchNews();
+checkoutLoginStatus();
+// document.addEventListener("DOMContentLoaded", fetchNews);
+// document.addEventListener('DOMContentLoaded', ()=> {document.body.style.display='block'})
 // fetch new content to site
 async function fetchNews() {
     const main_column = document.createElement('div');
