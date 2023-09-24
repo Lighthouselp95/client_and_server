@@ -6,6 +6,16 @@ module.exports = async (req, res, next) => {
     try {
         console.log('da vao')
         let blogs = await Blog.find().sort({createdAt: 1}).exec();
+        // let user = await User.find()
+        // let dang = await Blog.aggregate([
+        //     { "$addFields": { "userId": { "$toObjectId": "$personID" }}},{
+        //     $lookup: {
+        //     From: 'User',
+        //     LocalField: 'userId',
+        //     foreignField: '_id',
+        //     as: 'user'
+        //     }}]);
+        //     console.log(dang);
         // blogs = JSON.stringify(blogs);
         // blogs = JSON.parse(blogs);
         // console.log(blogs);
