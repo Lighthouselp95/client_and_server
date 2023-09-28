@@ -399,12 +399,13 @@ form input, form textarea, input {
  
 }
 .post-head {
+    height: 100%;
+    /* justify-content: center; */
     font-weight: 630;
     font-size: 18px;
-    padding: 8px 14px;
-    padding-right: 100px;
     margin-left: 3px;
     margin-right: 3px;
+    padding-bottom: 10px;
     border-radius: 0px;
     opacity: 0.95;
     display: inline-block;
@@ -413,6 +414,18 @@ form input, form textarea, input {
     cursor: pointer;
     background-color: #e6e6e6;
     border-radius: 2px;
+}
+.post-head-wrapper {
+    margin-left: 3px;
+    height: 40px;
+    align-items: baseline;
+    display: flex;
+    flex-direction: row;
+}
+.post-head-wrapper img {
+    /* width: 42px; */
+    height: 100%;
+    border-radius: 50%;
 }
 .posts-person {
     font-weight: 620;

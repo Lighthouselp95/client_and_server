@@ -156,7 +156,10 @@ function addPosts(posts) {
             <div class="posts-person">
             ${post.title}
             </div>
-            <div class="post-head">${post.name}
+            <div class="post-head-wrapper">
+                <img src="${post.user[0]?.picture&&post.user[0].picture}"</img>
+                <div class="post-head">${post.name}
+                </div>
             </div>
             
             <div class="post-snippet">
