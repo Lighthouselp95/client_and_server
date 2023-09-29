@@ -399,16 +399,16 @@ form input, form textarea, input {
  
 }
 .post-head {
-    height: 100%;
+    /* height: 100%; */
     /* justify-content: center; */
     font-weight: 630;
     font-size: 18px;
     margin-left: 3px;
     margin-right: 3px;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
     border-radius: 0px;
     opacity: 0.95;
-    display: inline-block;
+    /* display: inline-block; */
 }
 .post-head:hover {
     cursor: pointer;
@@ -416,13 +416,17 @@ form input, form textarea, input {
     border-radius: 2px;
 }
 .post-head-wrapper {
+    /* justify-content: center; */
+    align-content: center;
+    align-items: center;
     margin-left: 3px;
     height: 40px;
-    align-items: baseline;
+    /* align-items: baseline; */
     display: flex;
     flex-direction: row;
 }
 .post-head-wrapper img {
+    margin: 0px 6px;
     /* width: 42px; */
     height: 100%;
     border-radius: 50%;
