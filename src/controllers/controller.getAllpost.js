@@ -30,7 +30,7 @@ module.exports = async (req, res, next) => {
          },
          {$sort: {createdAt: 1}}
       ]).exec();
-      console.log(blogs)
+      // console.log(blogs)
       // blogs = JSON.stringify(blogs);
       // blogs = JSON.parse(blogs);
       // console.log(blogs);

@@ -28,8 +28,9 @@ module.exports = async (req, res, next) => {
         var recentBlog;
         await blog.save()
                     .then(async (result) => {
-                        recentBlog = await Blog.findById(result._id)
-                        return res.status(201).send(recentBlog);
+                        recentBlog = await Blog.findById(result._id).lean();
+                        let recentUser = await User.findById(req.userId).lean();
+                        return res.status(201).send({...recentBlog, user: [recentUser]});
                     })
                     .catch((err) => (console.log(err)));
                 }

@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
         // const domain = payload['hd'];
         if(payload) {
             console.log(payload);
-            var oldUser = await User.findOne({email: {$regex: payload.email, $options: 'i'}}); //
+            var oldUser = await User.findOne({email: {$regex: payload.email, $options: 'i'}},{returnOriginal: false}); //
             
             console.log(oldUser);
             if(!oldUser) {
@@ -41,8 +41,8 @@ module.exports = async (req, res, next) => {
                     allowInsecureKeySizes: true,
                     expiresIn: "5d"
                 });
-                const newtokenuser = await User.findOneAndUpdate({email: {$regex: payload.email, $options: 'i'}}, {"token": token});
-                console.log(newtokenuser.token);
+                const newtokenuser = await User.findOneAndUpdate({email: {$regex: payload.email, $options: 'i'}}, {"token": token},{returnOriginal: false}); // {...payload, "token": token}
+                console.log(newtokenuser);
                 res.cookie(`token`, token, {
                     maxAge: 432000000,
                     sameSite: 'lax'

@@ -133,7 +133,6 @@ async function fetchNews() {
 
 // Update timeline column function
 
-
 // Add posts elements to html function
 function addPosts(posts) {
     const main_column = document.querySelectorAll('.main-column')[1];
