@@ -49,7 +49,7 @@ app.use(morgan('dev'));
 // })
 // console.log(http.METHODS, http.STATUS_CODES);
 
-app.set('trust proxy', 'loopback, linklocal, uniquelocal', '162.158.0.0');
+app.set('trust proxy', 'loopback, linklocal, uniquelocal', '162.158.0.0', '162.158.0.0/16', '172.70.0.0/12');
 // app.set('trust proxy', (ip) => {
 //     if (ip === '162.158.162.145' || ip === '162.158.0.0' || ip === '162.158.163.77' || ip === '162.158.163.62') return true // trusted IPs
 //   });
