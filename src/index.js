@@ -49,7 +49,7 @@ app.use(morgan('dev'));
 // })
 // console.log(http.METHODS, http.STATUS_CODES);
 
-app.set('trust proxy', 'loopback, linklocal, uniquelocal');
+app.set('trust proxy', ['loopback', 'linklocal, 162.158.0.0/16', 'uniquelocal, 172.70.0.0/12'])
 // app.set('trust proxy', (ip) => {
 //     if (ip === '162.158.0.0/16' || ip === '172.70.0.0/12' ) return true // trusted IPs
 //   });
@@ -57,7 +57,7 @@ app.use((req, res, next) => {
     console.log(req.ips);
     next();
 })
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 // app.use(morgan((tokens, req, res) => {
 //     return [
 //         tokens.method(req, res),
