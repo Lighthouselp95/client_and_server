@@ -57,6 +57,7 @@ app.use((req, res, next) => {
     console.log(req.ip);
     next();
 })
+app.use(morgan('dev'));
 // app.use(morgan((tokens, req, res) => {
 //     return [
 //         tokens.method(req, res),
