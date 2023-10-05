@@ -518,7 +518,7 @@ img.post-img {
     /* width: 50%; */
     /* height: 259px; */
     min-height: 150px;
-    max-height: 470px;
+    max-height: 450px;
     /* object-fit: cover; */
     object-fit: contain;
     flex: 1 0 90%;
