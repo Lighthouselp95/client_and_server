@@ -587,11 +587,12 @@ img.post-img {
     transition: all 0.01s;
     transform: scale(1.2);
 }
-i {
-    /* vertical-align: middle; */
-}
-.fa-ellipsis-vertical {
-    padding-top: 2px;
+
+.more-button i {
+    padding-top: 3px;
+    padding-right: 6px;
+    font-size: 18px;
+    opacity: 0.9;
 }
 .number-like {
     padding-left: 17px;

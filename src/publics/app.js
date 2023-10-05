@@ -178,7 +178,7 @@ function addPosts(posts) {
             <div class = "react-band">
                 <div class = "react" data-like="0"><i class="fa-regular fa-heart"></i>
                 </div>
-                <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-ellipsis-vertical"></i>
+                <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
             <div class="number-like">${post.like.length} person likes</div>
