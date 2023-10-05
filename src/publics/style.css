@@ -1140,6 +1140,9 @@ img.post-img {
     .right-banner {
         display: none;
     }
+    .img-wrapper {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 700px) and (min-width: 440px) {
