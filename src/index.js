@@ -48,6 +48,9 @@ app.use(morgan('dev'));
 //     return req.headers['user-type']
 // })
 // console.log(http.METHODS, http.STATUS_CODES);
+const Agent = require('agentkeepalive');  
+const keepAliveAgent = new Agent({});  
+console.log(keepAliveAgent.maxSockets, keepAliveAgent.maxFreeSockets);
 
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal'])
 app.set('trust proxy', (ip) => {
@@ -134,11 +137,11 @@ app.get("/logout", async (req, res) => {
 
 app.use(express.static(path.join(__dirname,'publics')));
 
-app.get('/', (req, res) => {
-    // console.log(req.url);
-    // res.send('<p>Home Page</p>')
-    res.sendFile('./publics/index.html', {root: __dirname});
-});
+// app.get('/', (req, res) => {
+//     // console.log(req.url);
+//     // res.send('<p>Home Page</p>')
+//     res.sendFile('./publics/index.html', {root: __dirname});
+// });
 
 
 

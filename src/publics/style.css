@@ -512,12 +512,12 @@ audio.post-img {
 } */
 .post-img {
     /* width: 50%; */
-    height: 259px;
+    /* height: 259px; */
     min-height: 150px;
-    max-height: 557px;
-    object-fit: contain;
-    /* object-fit: cover; */
-    flex: 1 1 50%;
+    max-height: 406px;
+    object-fit: cover;
+    /* object-fit: scale-down; */
+    flex: 1 1 70%;
     position: relative;
     align-self: baseline;
     /* flex-shrink: 1; */
@@ -525,7 +525,7 @@ audio.post-img {
     /* flex-basis: 200px; */
     min-width: 200px;
     min-width: 20%;
-    max-width: 58%;
+    max-width: 89%;
     /* width: 490px; */
     /* margin-left: -8px; */
     /* margin-right: 14px; */
