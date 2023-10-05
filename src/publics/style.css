@@ -514,10 +514,10 @@ audio.post-img {
     /* width: 50%; */
     /* height: 259px; */
     min-height: 150px;
-    max-height: 406px;
-    object-fit: cover;
-    /* object-fit: scale-down; */
-    flex: 1 1 70%;
+    max-height: 429px;
+    /* object-fit: cover; */
+    object-fit: contain;
+    flex: 1 0 90%;
     position: relative;
     align-self: baseline;
     /* flex-shrink: 1; */
