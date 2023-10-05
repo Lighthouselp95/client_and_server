@@ -492,6 +492,10 @@ audio.post-img {
     min-height: 50px;
     height: auto;
 }
+img.post-img {
+    object-fit: cover;
+
+}
 /* .img-wrapper {
     grid-template-columns: repeat(2, minmax(30%, 50%));
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
@@ -514,7 +518,7 @@ audio.post-img {
     /* width: 50%; */
     /* height: 259px; */
     min-height: 150px;
-    max-height: 429px;
+    max-height: 470px;
     /* object-fit: cover; */
     object-fit: contain;
     flex: 1 0 90%;
