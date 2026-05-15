@@ -21,7 +21,7 @@
     "pm2start": "npx pm2-runtime start app.js -i 0",
     "pm2kill": "npx pm2 kill",
     "start": "node ./src/index.js",
-    "build": "npx pkg -t node18-win . --output app2",
+    "build": "npx @yao-pkg/pkg -t node18-win . --output app2",
     "build-wp": "webpack --config ./webpack.config.js",
     "parcel": "parcel ./src/publics/index.html",
     "build parcel": "parcel build ./src/publics/index.html"
