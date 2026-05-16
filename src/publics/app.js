@@ -168,7 +168,7 @@ function addPosts(posts) {
             </div>
             <div class="post-body">${post.file? (post.file.length!==0? ('<div class="img-wrapper">'+(post.file.map((e) => (e.resource_type=='image'&& //post.file[0].url.split('.').pop()=='mp4'? 
             `<img src=${e.url} class="post-img" oncontextmenu="return false;" width="100%" height="100%" >`)
-            ||  (e.format == 'mp4'&&`<video  class="post-img" oncontextmenu="return false;" width="100%" height="100%" controls controlsList="nodownload" webkit-playsinline playsinline autoplay loop muted><source src=${e.secure_url || e.url}></video>`)
+            ||  (e.format == 'mp4'&&`<video  class="post-img" oncontextmenu="return false;" width="100%" height="100%" controls controlsList="nodownload" webkit-playsinline playsinline loop muted><source src=${e.secure_url || e.url}></video>`)
             || ((e.format == 'mp3'||e.resource_type=='video')&&`<audio controls controlsList="nodownload" class="post-img" oncontextmenu="return false;" width="100%" height="100%">
                 <source src=${e.secure_url || e.url}>
                 <p>${e.original_filename}</p>
