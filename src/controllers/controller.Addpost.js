@@ -7,13 +7,14 @@ module.exports = async (req, res, next) => {
             req.body.personID = req.userId;
             req.body.name = req.userName;
         
-            function embedYouTubeLinks(text) {
-                  const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s]*)/gi;
+                            function embedYouTubeLinks(text) {
+                  const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/gi;
                 
                   return text.replace(ytRegex, (match, videoId) => {
                     return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
                   });
                 }
+
                 
             req.body.body=embedYouTubeLinks(req.body.body);
         const blog = new Blog(
