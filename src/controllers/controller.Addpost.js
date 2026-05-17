@@ -25,14 +25,24 @@ module.exports = async (req, res, next) => {
         })
     }
         console.log(blog);
-        var recentBlog;
-        await blog.save()
-                    .then(async (result) => {
-                        recentBlog = await Blog.findById(result._id).lean();
-                        let recentUser = await User.findById(req.userId).lean();
-                        return res.status(201).send({...recentBlog, user: [recentUser]});
-                    })
-                    .catch((err) => (console.log(err)));
+        // var recentBlog;
+        // await blog.save()
+        //             .then(async (result) => {
+        //                 recentBlog = await Blog.findById(result._id).lean();
+        //                 let recentUser = await User.findById(req.userId).lean();
+        //                 return res.status(201).send({...recentBlog, user: [recentUser]});
+        //             })
+        //             .catch((err) => (console.log(err)));
+
+        // 1. Await the save operation directly without .then()/.catch()
+        const result = await blog.save();
+        
+        // 2. Fetch related data using lean() for better performance
+        const recentBlog = await Blog.findById(result._id).lean();
+        const recentUser = await User.findById(req.userId).lean();
+        
+        // 3. Return the response and exit the function immediately
+        return res.status(201).send({ ...recentBlog, user: [recentUser] });
                 }
             
             catch (err) {console.log(err)}
