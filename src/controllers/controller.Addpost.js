@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
                     return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
                   });
                 }
-                }
+                
             req.body.body=embedYouTubeLinks(req.body.body);
         const blog = new Blog(
             req.body
