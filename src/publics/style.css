@@ -493,7 +493,7 @@ audio.post-img {
     height: auto;
 }
 img.post-img {
-    object-fit: cover;
+    /* object-fit: cover; */
 
 }
 /* .img-wrapper {
@@ -518,7 +518,7 @@ img.post-img {
     /* width: 50%; */
     /* height: 259px; */
     min-height: 150px;
-    max-height: 450px;
+    max-height: 458px;
     /* object-fit: cover; */
     object-fit: contain;
     flex: 1 0 90%;
