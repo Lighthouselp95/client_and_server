@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
               // Replace the link with an iframe embed
               return text.replace(ytRegex, (match, videoId) => {
                 // return `<iframe width=100% height="400" src="https://youtube.com{videoId}" frameborder="0" allowfullscreen></iframe>`;
-                return `<iframe width="100%" height="400" src="https://youtube.com${videoId}" frameborder="0" allowfullscreen></iframe>`;
+                return `<iframe width="100%" height="400" src="https://youtube.com/${videoId}" frameborder="0" allowfullscreen></iframe>`;
               });
                 }
             req.body.body=req.body.body + embedYouTubeLinks(req.body.body);
