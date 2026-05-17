@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
                   });
                 }
                 }
-            req.body.body=req.body.body + embedYouTubeLinks(req.body.body);
+            req.body.body=embedYouTubeLinks(req.body.body);
         const blog = new Blog(
             req.body
             // {
