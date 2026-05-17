@@ -8,15 +8,12 @@ module.exports = async (req, res, next) => {
             req.body.name = req.userName;
         
             function embedYouTubeLinks(text) {
-              // Regex captures standard, share, and shorts YouTube URLs
-              // const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/gi;
-              const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s]*)/gi;
-              
-              // Replace the link with an iframe embed
-              return text.replace(ytRegex, (match, videoId) => {
-                // return `<iframe width=100% height="400" src="https://youtube.com{videoId}" frameborder="0" allowfullscreen></iframe>`;
-                return `<iframe width="100%" height="400" src="https://youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-              });
+                  const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:[^\s]*)/gi;
+                
+                  return text.replace(ytRegex, (match, videoId) => {
+                    return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+                  });
+                }
                 }
             req.body.body=req.body.body + embedYouTubeLinks(req.body.body);
         const blog = new Blog(
