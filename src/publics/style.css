@@ -1,3 +1,21 @@
+/* Video hide control transparent */
+video::-webkit-media-controls-enclosure {
+  background: transparent;
+}
+
+video::-webkit-media-controls-panel {
+  background: transparent;
+}
+
+video::-webkit-media-controls {
+  background: transparent;
+}
+video::-webkit-media-controls-panel {
+  background: rgba(0,0,0,0) !important;
+  box-shadow: none !important;
+}
+
+
 * {
     box-sizing: border-box;
     padding: 0;
