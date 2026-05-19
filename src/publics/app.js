@@ -245,7 +245,7 @@ function addPosts(posts) {
             };
         post_dom.querySelector('.number-like').addEventListener('mouseenter', (e) => {
             likeblock.style.display = "block";
-            const rect = target.getBoundingClientRect();
+            const rect = e.target.getBoundingClientRect();
 
             likeblock.style.left = rect.right + 10 + "px";
             likeblock.style.top = rect.top + "px";
