@@ -240,7 +240,7 @@ function addPosts(posts) {
             
             })
         const likeblock = post_dom.querySelector('.like-block');
-            for (let i = 0; i< post.like.length-1;i++){
+            for (let i = 0; i< post.like.length;i++){
                 likeblock.innerHTML += `<p>${post.like[i].name}</p>`;
             };
         post_dom.querySelector('.number-like').addEventListener('mouseenter', (e) => {
