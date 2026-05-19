@@ -181,7 +181,7 @@ function addPosts(posts) {
                 <div class = "more-button" data-id="${post._id}" data-user-id = "${post.personID}"><i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
-            <div class="number-like">${post.like.length} person likes</div>
+            <div class="number-like">${post.like.length} person likes<div class="like-block"></div></div>
             </div>
 
             <div class="comment-button">
@@ -239,6 +239,22 @@ function addPosts(posts) {
             }
             
             })
+        const likeblock = post_dom.querySelector('.like-block');
+            for (let i = 0; i< post.like.length-1;i++){
+                likeblock.innerHTML += `<p>${post.like[i].name}</p>`;
+            };
+        post_dom.querySelector('.number-like').addEventListener('mouseenter', (e) => {
+            likeblock.style.display = "block";
+            const rect = target.getBoundingClientRect();
+
+            likeblock.style.left = rect.right + 10 + "px";
+            likeblock.style.top = rect.top + "px";
+        })
+        post_dom.querySelector('.number-like').addEventListener('mouseleave', (e) => {
+            likeblock.style.display = "none";
+
+        })
+
         addComment(post.comments, cmt);
         addDeleteEvent([post_dom.querySelector('.more-button')]);
         addLikeEvent([post_dom.querySelector('.react')]);
