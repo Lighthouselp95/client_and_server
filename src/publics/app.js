@@ -240,13 +240,15 @@ function addPosts(posts) {
             
             })
         const likeblock = post_dom.querySelector('.like-block');
+        likeblock.style.display = "none";
             for (let i = 0; i< post.like.length;i++){
                 likeblock.innerHTML += `<p>${post.like[i].name}</p>`;
+                
             };
         post_dom.querySelector('.number-like').addEventListener('mouseenter', (e) => {
             likeblock.style.display = "block";
             const rect = e.target.getBoundingClientRect();
-
+            likeblock.style.cssText += "padding-top: 5px; padding-left: 8px; border-radius: 8px; position: fixed; z-index: 999;";
             likeblock.style.left = rect.left + 10 + "px";
             likeblock.style.top = rect.top + "px";
         })
