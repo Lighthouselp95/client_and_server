@@ -247,7 +247,7 @@ function addPosts(posts) {
             likeblock.style.display = "block";
             const rect = e.target.getBoundingClientRect();
 
-            likeblock.style.left = rect.right + 10 + "px";
+            likeblock.style.left = rect.left + 10 + "px";
             likeblock.style.top = rect.top + "px";
         })
         post_dom.querySelector('.number-like').addEventListener('mouseleave', (e) => {
