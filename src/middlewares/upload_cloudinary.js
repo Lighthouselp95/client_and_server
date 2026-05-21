@@ -19,8 +19,14 @@ module.exports = async (req, res, next) => {
         unique_filename: true
     };
         if (isVideo) {
-        uploadOptions.eager = [{ effect: "volume:40dB" }];
-        uploadOptions.eager_async = true;
+        //uploadOptions.eager = [{ effect: "volume:40dB" }];
+        //uploadOptions.eager_async = true;
+        uploadOptions.eager = [{ 
+        streaming_profile: "auto", 
+        effect: "volume:20dB" 
+         }];
+         uploadOptions.eager_async = true;
+        
         };
         //const finalUrl = (temp.eager && temp.eager.length > 0) ? temp.eager[0].secure_url : temp.secure_url;
         //uploads.push({ ...temp, finalUrl });
