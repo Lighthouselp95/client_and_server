@@ -9,11 +9,29 @@ module.exports = async (req, res, next) => {
       const uploads = [];
       for(let e of req.files) {
         console.log("Req file: ", e);
-        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto", folder: "client_and_server_proj", use_filename: true, unique_filename: true, eager: [{ effect: "e_volume:20dB" }], // Boosts volume by 50% (Use "volume:auto" for normalization)
-  eager_async: true})
-        const finalUrl = (temp.eager && temp.eager.length > 0) ? temp.eager[0].secure_url : temp.secure_url;
-uploads.push({ ...temp, finalUrl });
-       // uploads.push(temp); //video, image or k co
+        const isVideo = e.mimetype && e.mimetype.startsWith('video/');
+        
+        //let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto", folder: "client_and_server_proj", use_filename: true, unique_filename: true})
+        const uploadOptions = {
+        resource_type: "auto",
+        folder: "client_and_server_proj",
+        use_filename: true,
+        unique_filename: true
+    };
+        if (isVideo) {
+        uploadOptions.eager = [{ effect: "volume:40dB" }];
+        uploadOptions.eager_async = true;
+        };
+        //const finalUrl = (temp.eager && temp.eager.length > 0) ? temp.eager[0].secure_url : temp.secure_url;
+        //uploads.push({ ...temp, finalUrl });
+       let temp = await cloudinary.uploader.upload(e.path, uploadOptions);
+
+    // 5. Safe URL Extraction (Uses boosted URL for videos, normal secure_url for images)
+    const finalUrl = (temp.eager && temp.eager.length > 0) ? temp.eager[0].secure_url : temp.secure_url;
+
+    uploads.push({ ...temp, finalUrl });
+        
+        // uploads.push(temp); //video, image or k co
         
         // req.file.push(upload);
         console.log("Upload is: ", req.file);
