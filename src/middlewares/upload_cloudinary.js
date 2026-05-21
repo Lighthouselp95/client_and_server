@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       const uploads = [];
       for(let e of req.files) {
         console.log("Req file: ", e);
-        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto", folder: "client_and_server_proj", use_filename: true, unique_filename: true, eager: [{ effect: "volume:10dB" }], // Boosts volume by 50% (Use "volume:auto" for normalization)
+        let temp = await cloudinary.uploader.upload(e.path, {resource_type: "auto", folder: "client_and_server_proj", use_filename: true, unique_filename: true, eager: [{ effect: "volume:30dB" }], // Boosts volume by 50% (Use "volume:auto" for normalization)
   eager_async: true})
         const finalUrl = (temp.eager && temp.eager.length > 0) ? temp.eager[0].secure_url : temp.secure_url;
 uploads.push({ ...temp, finalUrl });
