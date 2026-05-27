@@ -16,15 +16,16 @@ module.exports = async (req, res, next) => {
         resource_type: "auto",
         folder: "client_and_server_proj",
         use_filename: true,
-        unique_filename: true
+        unique_filename: true,
+           transformation: [
+    { effect: "volume:6dB" } 
+  ]
     };
         if (isVideo) {
         //uploadOptions.eager = [{ effect: "volume:40dB" }];
         //uploadOptions.eager_async = true;
         uploadOptions.eager = [{ 
-            streaming_profile: "auto"},{
-            raw_transformation: "e_volume:50dB" 
-        }];
+            streaming_profile: "auto"},{"effect": "volume:6db"}];
          uploadOptions.eager_async = true;
         
         };
