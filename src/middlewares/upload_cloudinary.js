@@ -18,14 +18,14 @@ module.exports = async (req, res, next) => {
         use_filename: true,
         unique_filename: true,
            transformation: [
-    { effect: "volume:6dB" } 
+    //{ effect: "volume:6dB" } 
   ]
     };
         if (isVideo) {
         //uploadOptions.eager = [{ effect: "volume:40dB" }];
         //uploadOptions.eager_async = true;
         uploadOptions.eager = [{ 
-            streaming_profile: "auto"},{"effect": "volume:6dB"}];
+            streaming_profile: "auto"},{"effect": "volume:3dB"}];
          uploadOptions.eager_async = true;
         
         };
