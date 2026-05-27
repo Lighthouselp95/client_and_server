@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
         use_filename: true,
         unique_filename: true,
            transformation: [
-   { effect: "volume:1dB" } 
+   { effect: "volume:50" } 
   ]
     };
         if (isVideo) {
