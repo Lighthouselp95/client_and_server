@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
         //uploadOptions.eager = [{ effect: "volume:40dB" }];
         //uploadOptions.eager_async = true;
         uploadOptions.eager = [{ 
-            streaming_profile: "auto"},{"effect": "volume:100"}];
+            streaming_profile: "auto"}/*,{"effect": "volume:100"}*/];
          uploadOptions.eager_async = true;
         
         };
