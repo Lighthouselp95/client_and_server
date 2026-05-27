@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
         console.log('dung');
         
         if(blog.file&&blog.file.length!==0) {
-            for(let e of blog.file) {
+            for(let e of blog.file) {if (e.length>3) { //sometime user upload fail post so delete not work
                 console.log(!e.public_id, '--', e.url);
                 
                     console.log(e.public_id, typeof e.public_id);
@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
                 let result = await cloudinary.uploader.destroy(e.public_id, {resource_type: e.resource_type, type: 'upload'});
                 console.log(result.result);
                 console.log('deleted on cloudinary');  
-            }
+            }};
              
         }
                 await Blog.findByIdAndRemove(`${req.params.id}`).exec();
