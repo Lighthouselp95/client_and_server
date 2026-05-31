@@ -6,7 +6,7 @@ https://mejn-social-media.onrender.com/
 API document
 
 
-get('/blog')    :   get all blogs.
+get('/blog')    :   get all blogs.\n
 get('/blog/:id')    :   get one blog.
 post('/blog')   :   post a blog.
 delete('/blog/:id') :   delete a blog.
