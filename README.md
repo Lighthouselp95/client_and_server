@@ -7,7 +7,9 @@ API document
 
 
 get('/blog')    :   get all blogs.\n
+
 get('/blog/:id')    :   get one blog.
+
 post('/blog')   :   post a blog.
 delete('/blog/:id') :   delete a blog.
 post('/like/:postid')   :   like a post.
