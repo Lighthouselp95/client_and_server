@@ -57,7 +57,7 @@ app.set('trust proxy', (ip) => {
     if (ip === '162.158.0.0/16' || ip === '172.70.0.0/12' ) return true // trusted IPs
   });
 app.use((req, res, next) => {
-    console.log(req.ip);
+    console.log(req.headers['x-forwarded-for'] + ' ' + req.headers['cf-ipcountry'] + ' ' + req.headers['cf-ipcountry']);
     next();
 })
 // app.use(morgan('dev'));
@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 //         tokens['response-time'](req, res), 'ms'
 //     ].join(' ')
 // }));
-// console.log(os.cpus());
+console.log(os.cpus());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 // connect to mongodb
