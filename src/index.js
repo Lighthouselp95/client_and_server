@@ -57,7 +57,7 @@ app.set('trust proxy', (ip) => {
     if (ip === '162.158.0.0/16' || ip === '172.70.0.0/12' ) return true // trusted IPs
   });
 app.use((req, res, next) => {
-    console.log(req.headers['x-forwarded-for'] + ' ' + req.headers['cf-ipcountry'] + ' ' + req.headers['cf-ipcountry']);
+    console.log(req.headers['x-forwarded-for'] + ' ' + req.headers['cf-ipcountry'] + ' ' + req.headers['user-agent']);
     next();
 })
 // app.use(morgan('dev'));
