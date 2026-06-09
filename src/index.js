@@ -71,6 +71,8 @@ app.use((req, res, next) => {
 //     ].join(' ')
 // }));
 console.log(os.cpus());
+console.log('Os memory: ' + os.totalmem());
+console.log(os.homedir());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 // connect to mongodb
